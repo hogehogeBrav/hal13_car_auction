@@ -37,7 +37,7 @@
 			<div class="article-header">
 				<h2>在庫一覧</h2>
 				<div>
-					<button>登録</button>
+					<button id="entry-btn">登録</button>
 					<button>PDF出力</button>	
 				</div>
 			</div>
@@ -83,6 +83,27 @@
 		</article>
 	    </main>
 	</div>
+
+
+	<div id="entryModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="modal-header">
+                <h3>登録</h2>
+                <span class="modalClose">×</span>
+            </div>
+            <p><input type="file" name="car_img" id="myImage" accept="image/*"></p>
+            <p>メーカー名<input type="text" name="maker"></p>
+            <p>車種名<input type="text" name="type"></p>
+            <p>グレード<input type="text" name="grade"></p>
+            <p>年式<input type="text" name=""></p>
+
+            <button>ボタン</button>
+          </div>
+        </div>
+    </div>
 	
+    <script src="../js/modal.js"></script>
+
 </body>
 </html>
