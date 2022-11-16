@@ -1,0 +1,54 @@
+<!-- 
+    システム名：HAL自動車オークションシステム
+    画面ID：A_stock.jsp
+    画面名：在庫管理画面
+    作成者：小嶋美紀
+ -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/destyle.css">
+    <link rel="stylesheet" href="css/style.css">
+<title>在庫管理画面</title>
+</head>
+<body>
+	
+	<div class="grid">
+		<header><!-- 共通部分 -->
+			<h1>在庫管理</h1>
+			<!-- <jsp:include page="logout.jsp" /> -->
+		</header>
+		
+		<nav><!-- 共通部分 -->
+		    <ul>
+		        <li><a href="./" class="current">在庫管理</a></li>
+		        <li><a href="./">オークション管理</a></li>
+		        <li><a href="./">ユーザー管理</a></li>
+		        <li><a href="./">売上管理</a></li>
+		    </ul>
+		</nav>
+		
+		<main><!-- 画面ごとに変更される部分 -->
+		<article>	
+			<h2>在庫一覧</h2>
+			<div class="tablediv">
+				<table>
+			        <tr>
+			            <th>商品ID</th>
+			            <th>商品名</th>
+			            <th>在庫数</th>
+			        </tr>
+			        <tr>
+			            <td><%=stock.get_id() %></td>
+			        </tr>
+			    </table>
+		    </div>
+		</article>
+	    </main>
+	</div>
+	
+</body>
+</html>
