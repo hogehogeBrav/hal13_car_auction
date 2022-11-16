@@ -10,8 +10,9 @@
 	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/destyle.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/destyle.css">
+    <link rel="stylesheet" href="../css/A_style.css">
+	<link rel="stylesheet" href="../css/A_stock.css">
 <title>在庫管理画面</title>
 </head>
 <body>
@@ -32,17 +33,50 @@
 		</nav>
 		
 		<main><!-- 画面ごとに変更される部分 -->
-		<article>	
-			<h2>在庫一覧</h2>
+		<article>
+			<div class="article-header">
+				<h2>在庫一覧</h2>
+				<div>
+					<button>登録</button>
+					<button>PDF出力</button>	
+				</div>
+			</div>
 			<div class="tablediv">
 				<table>
 			        <tr>
-			            <th>商品ID</th>
-			            <th>商品名</th>
-			            <th>在庫数</th>
+			            <th>ID</th>
+			            <th>メーカー名</th>
+			            <th>車種名</th>
+						<th>グレード名</th>
+						<th>排気量</th>
+						<th>年式</th>
+						<th>輸入車モデル年式</th>
+						<th>走行距離</th>
+						<th>走行距離の状態</th>
+						<th>色系統</th>
+						<th>色</th>
+						<th>車検有効期限</th>
+						<th>ミッション</th>
+						<th>ボディタイプ</th>
+						<th>型式</th>
 			        </tr>
 			        <tr>
-			            <td><%=stock.get_id() %></td>
+			            <td>00001</td>
+						<td>日産</td>
+						<td>ジューク</td>
+						<td>16GTターボ</td>
+						<td>1,610cc</td>
+						<td>平成22年(2010年)12月</td>
+						<td>-</td>
+						<td>59,350km</td>
+						<td>実走行</td>
+						<td>アカ系</td>
+						<td>-</td>
+						<td>令和5年12月まで</td>
+						<td>オートマチック(AT)</td>
+						<td>クロカン、SUV</td>
+						<td>型式</td>
+
 			        </tr>
 			    </table>
 		    </div>

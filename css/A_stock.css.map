@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": ";AAAA;;;;;;;EAOE;AAMF,AAAA,EAAE,CAAA;EACE,KAAK,EAAE,IAAI;CACd",
+    "sources": [
+        "../sass/A_stock.scss"
+    ],
+    "names": [],
+    "file": "A_stock.css"
+}
