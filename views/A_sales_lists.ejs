@@ -1,0 +1,79 @@
+<!doctype html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>売上照会画面</title>
+
+</head>
+
+<body>
+    <h1>売上照会</h1>
+
+    <div class="table">
+        <div class="group">
+            <input type="date">日付
+            <input type="num">ユーザーID
+            <select name="state" id="">
+                <option value="">未入金</option>
+                <option value="">入金済み</option>
+                <!-- <option value="">キャンセル</option> -->
+                <option value="">期限間近</option>
+                <option value="">期限切れ</option>
+                <option value="">入力待ち</option>
+                <option value=""></option>
+            </select>
+        </div>
+<br>
+        <div class="sales">
+            <div class="tr">
+                <% for(let i=0; i < values.length; i++){ %>
+                    <%= i %>：<%=values[i].id %>-<%= values[i].username %>-<%= values[i].email %>-<%= values[i].password %>
+                <% } %>
+                <div class="th">
+                    <input type="checkbox" name="sales_id">
+                    落札日時
+                </div>
+                <div class="td">
+                    車両名
+                </div>
+                <div class="td">
+                    落札者
+                </div>
+                <div class="td">
+                    状態
+                </div>
+                <div class="td">
+                    落札価格
+                </div>
+                <div class="td">
+
+                </div>
+            </div>
+        </div>
+<!-- <br>
+        <div class="check_button">
+            <button name="all_select" id="all_select">全選択</button>
+            <button name="all_clear" id="all_clear">全解除</button>
+            <button name="range_select" id="range_select">範囲選択</button>
+            <button name="range_clear" id="range_clear">範囲解除</button>
+        </div> -->
+<br>
+        <div class="command">
+            <button name="save"　id="save_btn">保存</button>
+            <button name="change" id="update_btn">状態変更</button>
+            <!-- <button name="ouput_excel" id="excel_btn">excel出力</button> -->
+            <button name="output_pdf" id="pdf_btn">帳票出力</button>
+            <!-- <button name="sum">合計</button> -->
+        </div>
+    </div>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="../js/A_sales_list.js"></script>
+</body>
+
+</html>
