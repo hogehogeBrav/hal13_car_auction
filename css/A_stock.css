@@ -10,4 +10,9 @@
 th {
   width: auto;
 }
+
+#entryModal .modal-content {
+  width: 70%;
+  height: 80%;
+}
 /*# sourceMappingURL=A_stock.css.map */

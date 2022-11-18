@@ -72,21 +72,21 @@ main{
 .form-article{
     margin-right: 2rem;
 }
-form{
-    background: #fff;
-    padding: 0.8rem;
-    button{
-        background: $blue;
-        color: #fff;
-        padding: 0.2rem 0.8rem;
-        border-radius: 3px;
-    }
-    box-shadow: 0.5px 2px 1px 0 rgba(99,99,99,0.5);
-    border-top: 0.1px solid rgba(0,0,0,.12);
-    border-left: 0.1px solid rgba(140,140,140,0.5);
-    border-right: 0.1px solid rgba(140,140,140,0.5);
-    border-radius: 3px;
-}
+// form{
+//     background: #fff;
+//     padding: 0.8rem;
+//     button{
+//         background: $blue;
+//         color: #fff;
+//         padding: 0.2rem 0.8rem;
+//         border-radius: 3px;
+//     }
+//     box-shadow: 0.5px 2px 1px 0 rgba(99,99,99,0.5);
+//     border-top: 0.1px solid rgba(0,0,0,.12);
+//     border-left: 0.1px solid rgba(140,140,140,0.5);
+//     border-right: 0.1px solid rgba(140,140,140,0.5);
+//     border-radius: 3px;
+// }
 span{
 	color:#f00 ;
 }
@@ -163,20 +163,19 @@ input{
             }
         }
     }
-    // &::-webkit-scrollbar {
-    //     width: 10px;
-    //   }
+    &::-webkit-scrollbar {
+        height: 10px;
+      }
      
-    // &::-webkit-scrollbar-track {
-    //     background-color: #f4f4f4;
-    //     border-radius: 100px;
-    // }
+    &::-webkit-scrollbar-track {
+        background-color: #f4f4f4;
+        border-radius: 100px;
+    }
      
-    // &::-webkit-scrollbar-thumb {
-    //     background-color: #cdcdcd;
-    //     border-radius: 100px;
-    // }
-    
+    &::-webkit-scrollbar-thumb {
+        background-color: #cdcdcd;
+        border-radius: 100px;
+    }   
 }
 
 .genderradio,.selectp{
@@ -192,18 +191,18 @@ select,option{
     justify-content: space-between;
     text-align: center;
     margin-bottom: 1rem;
-    button{
-        background: $blue;
-        color: #fff;
-        font-size: 1rem;
-        font-weight: bold;
-        text-align: center;
-        padding: 0.5rem 1.2rem;
-        border-radius: 50px;
-        margin-right: 1rem;
-    }
 }
 
+button{
+    background: $blue;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    margin-right: 1rem;
+}
 
 
 
@@ -236,20 +235,18 @@ select,option{
     transform: translate(-50%, -50%);
     overflow: auto; /* スクロール設定 */
     border-radius: 7px;
-  }
+    &::-webkit-scrollbar{
+        width: 10px;
+    }
+    &::-webkit-scrollbar-track{
+        background-color: #f4f4f4;
+        border-radius: 100px;    
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #cdcdcd;
+        border-radius: 100px;
+    }
 
-  .modal-content::-webkit-scrollbar {
-    width: 10px;
-  }
- 
-  .modal-content::-webkit-scrollbar-track {
-    background-color: #f4f4f4;
-    border-radius: 100px;
-  }
- 
-  .modal-content::-webkit-scrollbar-thumb {
-    background-color: #cdcdcd;
-    border-radius: 100px;
   }
   
   @keyframes modalopen {
@@ -266,12 +263,11 @@ select,option{
   .modalClose {
     font-size: 2rem;
     color: $blue;
+    &:hover{
+      cursor: pointer;
+    }
   }
-  
-  .modalClose:hover {
-    cursor: pointer;
-  }
-  
+    
   .modal-body {
     padding: 10px 20px;
     color: black;

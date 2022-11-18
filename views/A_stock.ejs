@@ -60,8 +60,8 @@
 						<th>ボディタイプ</th>
 						<th>型式</th>
 			        </tr>
-			        <tr>
-			            <td>00001</td>
+					<tr>
+						<td>00001</td>
 						<td>日産</td>
 						<td>ジューク</td>
 						<td>16GTターボ</td>
@@ -76,8 +76,7 @@
 						<td>オートマチック(AT)</td>
 						<td>クロカン、SUV</td>
 						<td>型式</td>
-
-			        </tr>
+					</tr>
 			    </table>
 		    </div>
 		</article>
@@ -92,13 +91,65 @@
                 <h3>登録</h2>
                 <span class="modalClose">×</span>
             </div>
-            <p><input type="file" name="car_img" id="myImage" accept="image/*"></p>
-            <p>メーカー名<input type="text" name="maker"></p>
-            <p>車種名<input type="text" name="type"></p>
-            <p>グレード<input type="text" name="grade"></p>
-            <p>年式<input type="text" name=""></p>
-
-            <button>ボタン</button>
+			<form action="">
+				<p><input type="file" name="car_img" id="myImage" accept="image/*"></p>
+				<p>
+					メーカー名
+					<select name="maker">
+						<option value="1">メーカー1</option>
+						<option value="2">メーカー2</option>
+						<option value="3">メーカー3</option>
+					</select>
+				</p>
+				<p>
+					車種名
+					<select name="car-type">
+						<option value="1">車種1</option>
+						<option value="2">車種2</option>
+						<option value="3">車種3</option>
+					</select>
+				</p>
+				<p>グレード<input type="text" name="grade"></p>
+				<p>排気量<input type="text" name="displacement"></p>
+				<p>年式<input type="text" name="model-year"></p>
+				<p>輸入車モデル年式<input type="text" name="import-model-year"></p>
+				<p>走行距離<input type="text" name="mileage"></p>
+				<p>
+					走行状態
+					<select name="run-status">
+						<option value="1">実走行</option>
+						<option value="2">メーター交換車</option>
+						<option value="3">改ざん車</option>
+						<option value="99">その他</option>
+					</select>
+				</p>
+				<p>
+					色系統
+					<select name="color-type">
+						<option value="1">赤</option>
+						<option value="2">青</option>
+						<option value="3">黒</option>
+					</select>
+				</p>
+				<p>色名<input type="text" name=""></p>
+				<p>車検有効期限<input type="text" name=""></p>
+				<p>
+					ミッション
+					<select name="">
+						<option value="1">AT</option>
+						<option value="2">MT</option>
+					</select>
+				</p>
+				<p>
+					ミッション
+					<select name="body-type">
+						<option value="1">クロカン、SUV</option>
+						<option value="2">ああ</option>
+					</select>
+				</p>
+				<p>型式<input type="text" name=""></p>
+				<button>ボタン</button>
+			</form>
           </div>
         </div>
     </div>
