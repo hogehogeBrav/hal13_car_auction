@@ -15,9 +15,35 @@ th{
     width: auto;
 }
 
+.tablediv{
+    tr{
+        td{
+            button{
+                color: #fff;
+                white-space: nowrap;
+                margin: 0;
+            }
+            // .tdBtn{
+            //     margin: 0;
+            // }
+        }
+    }
+}
+
 #entryModal{
     .modal-content{
         width: 70%;
         height: 80%;
     }
+}
+
+.detailBtn{
+    display: block;
+    background: $blue;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
 }

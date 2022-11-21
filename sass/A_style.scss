@@ -142,10 +142,10 @@ input{
             color: #fff;
             background: $blue;
             text-align: center;
-            white-space: nowrap
         }
         th,td{
             padding: 0.5rem 0.8rem;
+            white-space: nowrap
         }
         td{
             background: #eee;
@@ -156,6 +156,7 @@ input{
                     color: #888;
                 }
             }
+            vertical-align: middle;
         }
         &:nth-child(odd){
             td{

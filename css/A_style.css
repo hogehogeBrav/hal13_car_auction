@@ -144,15 +144,16 @@ input {
   color: #fff;
   background: #113458;
   text-align: center;
-  white-space: nowrap;
 }
 
 .tablediv tr th, .tablediv tr td {
   padding: 0.5rem 0.8rem;
+  white-space: nowrap;
 }
 
 .tablediv tr td {
   background: #eee;
+  vertical-align: middle;
 }
 
 .tablediv tr td button {

@@ -1,6 +1,6 @@
 <!-- 
     システム名：HAL自動車オークションシステム
-    画面ID：A_stock.jsp
+    画面ID：A_stock.ejs
     画面名：在庫管理画面
     作成者：小嶋美紀
  -->
@@ -44,6 +44,8 @@
 			<div class="tablediv">
 				<table>
 			        <tr>
+						<th>詳細</th>
+						<!-- <th>編集</th> -->
 			            <th>ID</th>
 			            <th>メーカー名</th>
 			            <th>車種名</th>
@@ -59,8 +61,12 @@
 						<th>ミッション</th>
 						<th>ボディタイプ</th>
 						<th>型式</th>
+						<th>削除</th>
 			        </tr>
-					<tr>
+					<tr class="stock-row">
+						<!-- <td><button class="tdBtn">詳細</button></td> -->
+						<td><a href="./A_car_detail.ejs?id=00001" class="detailBtn">詳細</a></td>
+						<!-- <td><button class='update-btn' class="tdBtn">編集</button></td> -->
 						<td>00001</td>
 						<td>日産</td>
 						<td>ジューク</td>
@@ -76,13 +82,13 @@
 						<td>オートマチック(AT)</td>
 						<td>クロカン、SUV</td>
 						<td>型式</td>
+						<td><button class="tdBtn">削除</button></td>
 					</tr>
 			    </table>
 		    </div>
 		</article>
 	    </main>
 	</div>
-
 
 	<div id="entryModal" class="modal">
         <div class="modal-content">
@@ -92,6 +98,7 @@
                 <span class="modalClose">×</span>
             </div>
 			<form action="">
+				<h4>基本情報</h4>
 				<p><input type="file" name="car_img" id="myImage" accept="image/*"></p>
 				<p>
 					メーカー名
@@ -148,11 +155,86 @@
 					</select>
 				</p>
 				<p>型式<input type="text" name=""></p>
+				<h4>詳細情報</h4>
+
+				<h4>装備品</h4>
 				<button>ボタン</button>
 			</form>
           </div>
         </div>
     </div>
+
+	<div id="updateModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="modal-header">
+                <h3>編集</h2>
+                <span class="modalClose">×</span>
+            </div>
+			<form action="">
+				<p><input type="file" name="car_img" id="myImage" accept="image/*"></p>
+				<p>ID：0001</p>
+				<p>
+					メーカー名
+					<select name="maker">
+						<option value="1">メーカー1</option>
+						<option value="2">メーカー2</option>
+						<option value="3">メーカー3</option>
+					</select>
+				</p>
+				<p>
+					車種名
+					<select name="car-type">
+						<option value="1">車種1</option>
+						<option value="2">車種2</option>
+						<option value="3">車種3</option>
+					</select>
+				</p>
+				<p>グレード<input type="text" name="grade"></p>
+				<p>排気量<input type="text" name="displacement"></p>
+				<p>年式<input type="text" name="model-year"></p>
+				<p>輸入車モデル年式<input type="text" name="import-model-year"></p>
+				<p>走行距離<input type="text" name="mileage"></p>
+				<p>
+					走行状態
+					<select name="run-status">
+						<option value="1">実走行</option>
+						<option value="2">メーター交換車</option>
+						<option value="3">改ざん車</option>
+						<option value="99">その他</option>
+					</select>
+				</p>
+				<p>
+					色系統
+					<select name="color-type">
+						<option value="1">赤</option>
+						<option value="2">青</option>
+						<option value="3">黒</option>
+					</select>
+				</p>
+				<p>色名<input type="text" name=""></p>
+				<p>車検有効期限<input type="text" name=""></p>
+				<p>
+					ミッション
+					<select name="">
+						<option value="1">AT</option>
+						<option value="2">MT</option>
+					</select>
+				</p>
+				<p>
+					ボディタイプ
+					<select name="body-type">
+						<option value="1">クロカン、SUV</option>
+						<option value="2">ああ</option>
+					</select>
+				</p>
+				<p>型式<input type="text" name=""></p>
+				<button>ボタン</button>
+			</form>
+          </div>
+        </div>
+    </div>
+
 	
     <script src="../js/modal.js"></script>
 
