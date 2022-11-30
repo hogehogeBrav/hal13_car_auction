@@ -9,6 +9,11 @@
 const buttonOpen = document.getElementById('entry-btn');
 const modal = document.getElementById('entryModal');
 const buttonClose = document.getElementsByClassName('modalClose');
+//削除ボタン
+const deleteOpen = document.getElementById('delete-btn');
+const deleteModal = document.getElementById('deleteModal');
+// const updateOpen = document.getElementsByClassName('update-btn');
+// const updateModal = document.getElementById('updateModal');
 // body要素を取得
 const body = document.getElementsByTagName('body')[0];
 console.log(body);
@@ -27,7 +32,8 @@ for(let i=0; i< buttonClose.length;i++){
   console.log(buttonClose[i]);
   buttonClose[i].addEventListener('click',(e)=>{
     modal.style.display = 'none';
-    updateModal.style.display = 'none';
+    // updateModal.style.display = 'none';
+    deleteModal.style.display = 'none';
     body.classList.remove('open');
   },false);
 }
@@ -35,19 +41,27 @@ for(let i=0; i< buttonClose.length;i++){
 // モーダルコンテンツ以外がクリックされた時
 addEventListener('click', outsideClose);
 function outsideClose(e) {
-  if (e.target == modal || e.target == updateModal) {
+  console.log("outsideClose関数実行");
+  console.log(e.target);
+  if (e.target == modal || e.target == deleteModal) {
     modal.style.display = 'none';
-    updateModal.style.display = 'none';
+    // updateModal.style.display = 'none';
+    deleteModal.style.display = 'none';
   }
   body.classList.remove('open');
 }
 
-const updateOpen = document.getElementsByClassName('update-btn');
-const updateModal = document.getElementById('updateModal');
 
-for(let i=0; i< updateOpen.length;i++){
-  updateOpen[i].addEventListener('click',(e)=>{
-    updateModal.style.display = 'block';
-    body.classList.add('open');  
-  },false);
+// for(let i=0; i< updateOpen.length;i++){
+//   updateOpen[i].addEventListener('click',(e)=>{
+//     updateModal.style.display = 'block';
+//     body.classList.add('open');  
+//   },false);
+// }
+
+//削除モーダルオープン
+deleteOpen.addEventListener('click', deleteModalOpen);
+function deleteModalOpen() {
+  deleteModal.style.display = 'block';
+  body.classList.add('open');
 }
