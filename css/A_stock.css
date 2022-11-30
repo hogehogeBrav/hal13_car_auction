@@ -1,0 +1,94 @@
+@charset "UTF-8";
+/**
+* システム名：HAL自動車オークションシステム
+* 
+* 在庫管理画面CSS
+* さわるなキケン
+* 
+* 作成者：小嶋美紀
+*/
+th {
+  width: auto;
+}
+
+.tablediv tr td button {
+  color: #fff;
+  white-space: nowrap;
+  margin: 0;
+}
+
+#entryModal .modal-content {
+  width: 70%;
+  height: 80%;
+}
+
+#entryModal .modal-content h4 {
+  font-weight: bold;
+  color: #113458;
+  margin-bottom: 0.4rem;
+}
+
+#entryModal .modal-content ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#entryModal .modal-content ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#entryModal .modal-content ul li input {
+  display: none;
+}
+
+#entryModal .modal-content ul li input:checked + label {
+  border: solid 1px #113458;
+  background: #113458;
+  color: #fff;
+}
+
+#entryModal .modal-content ul li label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 7.7rem;
+  border: solid 1px #303030;
+  border-radius: 5px;
+  padding: 0.15rem;
+  height: 2.5rem;
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: #606060;
+  border: solid 1px #606060;
+}
+
+.detailBtn {
+  display: block;
+  background: #113458;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+}
+/*# sourceMappingURL=A_stock.css.map */

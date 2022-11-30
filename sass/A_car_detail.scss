@@ -1,0 +1,143 @@
+/**
+* システム名：HAL自動車オークションシステム
+* 
+* 車両詳細画面CSS
+* さわるなキケン
+* 
+* 作成者：小嶋美紀
+*/
+
+$black: #303030;
+$blue: #113458;
+$back: #f6f5f9;
+
+
+.img-area{
+    width: 220;
+    height: 220;
+    margin-bottom: 1rem;
+}
+
+h2{
+    margin-bottom: 0.3rem;
+}
+
+h3{
+    color: $blue;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.1rem;
+}
+
+article{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .info-area{
+        font-size: 0.9rem;
+    }
+    .detail-area{
+        font-size: 0.9rem;
+    }
+    table{
+        // border-collapse: collapse;
+        th{
+            font-weight: normal;
+            border: solid 1px #606060;
+            background: #eeeeee;
+        }
+        td{
+            border: solid 1px #606060;
+            width: 5rem;
+            white-space: wrap;
+            background: #fff;
+        }
+    }
+}
+
+.parts-area{
+    ul{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-wrap: wrap;
+        li{
+            border: solid 1px $black;
+            border-radius: 5px;
+            padding: 0.15rem;
+            // white-space: nowrap;
+            width: 12%;
+            height: 2.5rem;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+            margin-right: 0.3rem;
+            margin-bottom: 0.3rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .enable{
+            color: #fff;
+            border: solid 1px $blue;
+            background: $blue;
+        }
+        .disable{
+            color: #606060;
+            border: solid 1px #606060;
+        }
+    }
+}
+
+.article-header{
+    align-items: center;
+    margin: 0;
+    margin-bottom: 0.2rem;
+}
+
+#entryModal{
+    .modal-content{
+        width: 70%;
+        height: 80%;
+        h4{
+            font-weight: bold;
+            color: $blue;
+            margin-bottom: 0.4rem;
+        }
+        // 装備品チェックボックス
+        ul{
+            display: flex;
+            flex-wrap: wrap;
+            li{
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                input{
+                    display: none;
+                    &:checked + label{
+                        border: solid 1px $blue;
+                        background: $blue;
+                        color: #fff;
+                    }
+                }
+                label{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 7.7rem;
+                    border: solid 1px $black;
+                    border-radius: 5px;
+                    padding: 0.15rem;
+                    height: 2.5rem;
+                    margin-right: 0.3rem;
+                    margin-bottom: 0.3rem;
+                    font-weight: bold;
+                    font-size: 0.8rem;
+                    color: #606060;
+                    border: solid 1px #606060;
+                }
+            }    
+        }
+    }
+}
