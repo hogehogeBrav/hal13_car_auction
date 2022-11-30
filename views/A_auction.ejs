@@ -1,7 +1,7 @@
 <!-- 
     システム名：HAL自動車オークションシステム
-    画面ID：A_car_detail.ejs
-    画面名：車両詳細画面
+    画面ID：A_auction.ejs
+    画面名：オークション管理画面
     作成者：小嶋美紀
  -->
  <!DOCTYPE html>
@@ -12,30 +12,81 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="../css/destyle.css">
      <link rel="stylesheet" href="../css/A_style.css">
-     <link rel="stylesheet" href="../css/A_car_detail.css">
- <title>車両詳細画面</title>
+     <link rel="stylesheet" href="../css/A_car_auction.css">
+ <title>オークション管理画面</title>
  </head>
  <body>
      
      <div class="grid">
          <header><!-- 共通部分 -->
-             <h1>車両詳細</h1>
+             <h1>オークション管理</h1>
              <!-- <jsp:include page="logout.jsp" /> -->
          </header>
          
          <nav><!-- 共通部分 -->
              <ul>
-                 <li><a href="./A_stock.ejs" class="current">在庫管理</a></li>
-                 <li><a href="./A_auction.ejs">オークション管理</a></li>
+                 <li><a href="./A_stock.ejs">在庫管理</a></li>
+                 <li><a href="./A_auction.ejs" class="current">オークション管理</a></li>
                  <li><a href="./">ユーザー管理</a></li>
                  <li><a href="./">売上管理</a></li>
              </ul>
          </nav>
          
          <main><!-- 画面ごとに変更される部分 -->
-            
          <article>
-			
+			<div class="article-header">
+				<h2>車両一覧</h2>
+				<!-- <div>
+					<button id="entry-btn">登録</button>
+					<button>PDF出力</button>	
+				</div> -->
+			</div>
+			<div class="tablediv">
+				<table>
+			        <tr>
+						<th>出品</th>
+						<!-- <th>編集</th> -->
+			            <th>ID</th>
+			            <th>メーカー名</th>
+			            <th>車種名</th>
+						<th>グレード名</th>
+						<th>排気量</th>
+						<th>年式</th>
+						<th>輸入車モデル年式</th>
+						<th>走行距離</th>
+						<th>走行距離の状態</th>
+						<th>色系統</th>
+						<th>色</th>
+						<th>車検有効期限</th>
+						<th>ミッション</th>
+						<th>ボディタイプ</th>
+						<th>型式</th>
+						<th>削除</th>
+			        </tr>
+					<tr class="stock-row">
+						<!-- <td><button class="tdBtn">詳細</button></td> -->
+						<!-- <td><a href="./A_car_detail.ejs?id=00001" class="detailBtn">出品</a></td> -->
+						<td><button class="tdBtn" value="00001">出品</button></td>
+						<td>00001</td>
+						<td>日産</td>
+						<td>ジューク</td>
+						<td>16GTターボ</td>
+						<td>1,610cc</td>
+						<td>平成22年(2010年)12月</td>
+						<td>-</td>
+						<td>59,350km</td>
+						<td>実走行</td>
+						<td>アカ系</td>
+						<td>-</td>
+						<td>令和5年12月まで</td>
+						<td>オートマチック(AT)</td>
+						<td>クロカン、SUV</td>
+						<td>型式</td>
+						<td><button class="tdBtn">削除</button></td>
+					</tr>
+			    </table>
+		    </div>
+		    </div>
          </article>
 
          </main>
