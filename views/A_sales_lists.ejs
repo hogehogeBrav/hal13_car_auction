@@ -15,44 +15,53 @@
 
     <div class="table">
         <div class="group">
-            <input type="date">日付
-            <input type="num">ユーザーID
+            <input type="number">日付
+            <input type="number">ユーザーID
             <select name="state" id="">
-                <option value="">未入金</option>
-                <option value="">入金済み</option>
-                <!-- <option value="">キャンセル</option> -->
+                <% for(let i=0; i < options.length; i++){ %>
+                    <option value="<%= options[i].status_ID %>"><%= options[i].state %></option>
+                <% } %>
+                <!-- <option value="">未入金</option>
                 <option value="">期限間近</option>
                 <option value="">期限切れ</option>
                 <option value="">入力待ち</option>
-                <option value=""></option>
+                <option value="">入金済み</option> -->
+                <!-- <option value="">キャンセル</option> -->
             </select>
+
+            <button type="submit" name="serch">検索</button>
         </div>
 <br>
         <div class="sales">
+            <% for(let i=0; i < values.length; i++){ %>
             <div class="tr">
-                <% for(let i=0; i < values.length; i++){ %>
-                    <%= i %>：<%=values[i].id %>-<%= values[i].username %>-<%= values[i].email %>-<%= values[i].password %>
-                <% } %>
                 <div class="th">
-                    <input type="checkbox" name="sales_id">
-                    落札日時
+                    <input type="checkbox" name="sales_id" class="sales_list_check" value="<%= values[i].sales_ID %>">
+                    <input type="hidden" name="state_id" class="state_values" value="<%= values[i].sales_status_ID %>">
+                    落札日時：
+                    <%= values[i].bid_date %>
                 </div>
                 <div class="td">
-                    車両名
+                    車両名：
+                    <%= values[i].car_ID %>
                 </div>
                 <div class="td">
-                    落札者
+                    落札者：
+                    <%= values[i].user_ID %>
                 </div>
                 <div class="td">
-                    状態
+                    状態：
+                    <span class="state_lists">
+                        <%= values[i].state %>
+                    </span>
                 </div>
                 <div class="td">
-                    落札価格
-                </div>
-                <div class="td">
-
+                    落札価格：
+                    <%= values[i].bid_price %>
                 </div>
             </div>
+            <br>
+            <% } %>
         </div>
 <!-- <br>
         <div class="check_button">
@@ -63,17 +72,20 @@
         </div> -->
 <br>
         <div class="command">
-            <button name="save"　id="save_btn">保存</button>
-            <button name="change" id="update_btn">状態変更</button>
+            <button name="save" id="save_btn">保存</button>
+            <button name="change" id="state_btn">状態変更</button>
             <!-- <button name="ouput_excel" id="excel_btn">excel出力</button> -->
             <button name="output_pdf" id="pdf_btn">帳票出力</button>
             <!-- <button name="sum">合計</button> -->
         </div>
     </div>
 
-
+<script>
+    // let results = "<%= json_result %>";
+    let options = "<%= json_option %>";
+</script>
 <script src="/socket.io/socket.io.js"></script>
-<script src="../js/A_sales_list.js"></script>
+<script src="/A_sales_list.js"></script>
 </body>
 
 </html>
