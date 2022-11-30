@@ -1,0 +1,433 @@
+<!-- 
+    システム名：HAL自動車オークションシステム
+    画面ID：A_stock.ejs
+    画面名：在庫管理画面
+    作成者：小嶋美紀
+ -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/destyle.css">
+    <link rel="stylesheet" href="../css/A_style.css">
+	<link rel="stylesheet" href="../css/A_stock.css">
+<title>在庫管理画面</title>
+</head>
+<body>
+	
+	<div class="grid">
+		<header><!-- 共通部分 -->
+			<h1>在庫管理</h1>
+			<!-- <jsp:include page="logout.jsp" /> -->
+		</header>
+		
+		<nav><!-- 共通部分 -->
+		    <ul>
+		        <li><a href="./A_stock.ejs" class="current">在庫管理</a></li>
+		        <li><a href="./A_auction.ejs">オークション管理</a></li>
+		        <li><a href="./">ユーザー管理</a></li>
+		        <li><a href="./">売上管理</a></li>
+		    </ul>
+		</nav>
+		
+		<main><!-- 画面ごとに変更される部分 -->
+		<article>
+			<div class="article-header">
+				<h2>在庫一覧</h2>
+				<div>
+					<button id="entry-btn">登録</button>
+					<button>PDF出力</button>	
+				</div>
+			</div>
+			<div class="tablediv">
+				<table>
+			        <tr>
+						<th>詳細</th>
+						<!-- <th>編集</th> -->
+			            <th>ID</th>
+			            <th>メーカー名</th>
+			            <th>車種名</th>
+						<th>グレード名</th>
+						<th>排気量</th>
+						<th>年式</th>
+						<th>輸入車モデル年式</th>
+						<th>走行距離</th>
+						<th>走行距離の状態</th>
+						<th>色系統</th>
+						<th>色</th>
+						<th>車検有効期限</th>
+						<th>ミッション</th>
+						<th>ボディタイプ</th>
+						<th>型式</th>
+						<th>削除</th>
+			        </tr>
+					<tr class="stock-row">
+						<!-- <td><button class="tdBtn">詳細</button></td> -->
+						<td><a href="./A_car_detail.ejs?id=00001" class="detailBtn">詳細</a></td>
+						<!-- <td><button class='update-btn' class="tdBtn">編集</button></td> -->
+						<td>00001</td>
+						<td>日産</td>
+						<td>ジューク</td>
+						<td>16GTターボ</td>
+						<td>1,610cc</td>
+						<td>平成22年(2010年)12月</td>
+						<td>-</td>
+						<td>59,350km</td>
+						<td>実走行</td>
+						<td>アカ系</td>
+						<td>-</td>
+						<td>令和5年12月まで</td>
+						<td>オートマチック(AT)</td>
+						<td>クロカン、SUV</td>
+						<td>型式</td>
+						<td><button class="tdBtn">削除</button></td>
+					</tr>
+			    </table>
+		    </div>
+		</article>
+	    </main>
+	</div>
+
+	<div id="entryModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="modal-header">
+                <h3>登録</h2>
+                <span class="modalClose">×</span>
+            </div>
+			<form action="">
+				<h4>基本情報</h4>
+				<p><input type="file" name="car_img" id="myImage" accept="image/*"></p>
+				<p>
+					メーカー名
+					<select name="maker">
+						<option value="1">メーカー1</option>
+						<option value="2">メーカー2</option>
+						<option value="3">メーカー3</option>
+					</select>
+				</p>
+				<p>
+					車種名
+					<select name="car-type">
+						<option value="1">車種1</option>
+						<option value="2">車種2</option>
+						<option value="3">車種3</option>
+					</select>
+				</p>
+				<p>グレード<input type="text" name="grade"></p>
+				<p>排気量<input type="text" name="displacement"></p>
+				<p>年式<input type="text" name="model-year"></p>
+				<p>輸入車モデル年式<input type="text" name="import-model-year"></p>
+				<p>走行距離<input type="text" name="mileage"></p>
+				<p>
+					走行状態
+					<select name="run-status">
+						<option value="1">実走行</option>
+						<option value="2">メーター交換車</option>
+						<option value="3">改ざん車</option>
+						<option value="99">その他</option>
+					</select>
+				</p>
+				<p>
+					色系統
+					<select name="color-type">
+						<option value="1">赤</option>
+						<option value="2">青</option>
+						<option value="3">黒</option>
+					</select>
+				</p>
+				<p>色名<input type="text" name=""></p>
+				<p>車検有効期限<input type="text" name=""></p>
+				<p>
+					ミッション
+					<select name="">
+						<option value="1">AT</option>
+						<option value="2">MT</option>
+					</select>
+				</p>
+				<p>
+					ミッション
+					<select name="body-type">
+						<option value="1">クロカン、SUV</option>
+						<option value="2">ああ</option>
+					</select>
+				</p>
+				<p>型式<input type="text" name=""></p>
+				<h4>詳細情報</h4>
+				<p>ドア数<input type="number" name=""></p>
+				<p>乗車定員数<input type="number" name=""></p>
+				<p>
+					駆動方式
+					<select name="">
+						<option value="1">4WD</option>
+						<option value="2"></option>
+					</select>
+				</p>
+				<p>
+					燃料
+					<select name="">
+						<option value="1">ガソリン</option>
+						<option value="2">電気</option>
+					</select>
+				</p>
+				<p>
+					点検記録簿
+					<select name="">
+						<option value="1">あり</option>
+						<option value="2">なし</option>
+					</select>
+				</p>
+				<p>
+					修復歴
+					<select name="">
+						<option value="1">あり</option>
+						<option value="2">なし</option>
+					</select>
+				</p>
+				<p>車台番号(下3桁)<input type="number" name=""></p>
+				<p>リサイクル預託金<input type="number" name=""></p>
+				<p>
+					輸入経路
+					<select name="">
+						<option value="1">ディーラー車</option>
+						<option value="2">持ち込み</option>
+					</select>
+				</p>
+				<p>
+					ハンドル
+					<select name="">
+						<option value="1">右</option>
+						<option value="2">左</option>
+					</select>
+				</p>
+				<p>
+					車歴
+					<select name="">
+						<option value="1">自家用</option>
+						<option value="2">あああ</option>
+					</select>
+				</p>
+				<p>
+					所有車歴
+					<select name="">
+						<option value="1">なし</option>
+						<option value="2">1人</option>
+						<option value="3">複数オーナー</option>
+					</select>
+				</p>
+				<p>引き渡し条件<input type="text" name=""></p>
+				<h4>装備品</h4>
+				<ul>
+					<li>
+						<input type="checkbox" name="parts" id="aircon" value="aircon">
+						<label for="aircon">エアコン</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="smartkey" value="smartkey">
+						<label for="smartkey">スマートキー</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="sunroof" value="sunroof">
+						<label for="sunroof">サンルーフ</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="lowdown" value="lowdown">
+						<label for="lowdown">ローダウン</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="power-steering" value="power-steering">
+						<label for="power-steering">パワステ</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="CD" value="CD">
+						<label for="CD">CD</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="seats" value="seats">
+						<label for="seats">本革シート</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="no-smoking" value="no-smoking">
+						<label for="no-smoking">禁煙車</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="power-window" value="power-window">
+						<label for="power-window">パワーウィンドウ</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="MD" value="MD">
+						<label for="MD">MD</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="aero" value="aero">
+						<label for="aero">純正エアロパーツ</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="pet" value="pet">
+						<label for="pet">ペット同乗なし</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="door-lock" value="door-lock">
+						<label for="door-lock">集中ドアロック</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="DVD" value="DVD">
+						<label for="DVD">DVDビデオ</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="alumi" value="alumi">
+						<label for="alumi">純正アルミホイール</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="limited" value="limited">
+						<label for="limited">限定車</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="ABS" value="ABS">
+						<label for="ABS">ABS</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="TV" value="TV">
+						<label for="TV">テレビ</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="ESC" value="ESC">
+						<label for="ESC">横滑り防止装置</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="test" value="test">
+						<label for="test">試乗、現車確認可能</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="airbag" value="airbag">
+						<label for="airbag">エアバッグ</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="nav" value="nav">
+						<label for="nav">ナビゲーション</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="TCS" value="TCS">
+						<label for="TCS">トラクションコントロール</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="manual" value="manual">
+						<label for="manual">取扱説明書</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="ETC" value="ETC">
+						<label for="ETC">ETC</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="back-camera" value="back-camera">
+						<label for="back-camera">バックカメラ</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="cold-manual" value="cold-manual">
+						<label for="cold-manual">寒冷地帯仕様書</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="new-warranty" value="new-warranty">
+						<label for="new-warranty">新車時保証書</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="keyless" value="keyless">
+						<label for="keyless">キーレスエントリー</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="slide-door" value="slide-door">
+						<label for="slide-door">電動スライドドア</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="welfare" value="welfare">
+						<label for="welfare">福祉車両</label>
+					</li>
+					<li>
+						<input type="checkbox" name="parts" id="spare-tire" value="spare-tire">
+						<label for="spare-tire">スペアタイヤ</label>
+					</li>
+				</ul>
+				<button>ボタン</button>
+			</form>
+          </div>
+        </div>
+    </div>
+
+	<div id="updateModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="modal-header">
+                <h3>編集</h2>
+                <span class="modalClose">×</span>
+            </div>
+			<form action="">
+				<p><input type="file" name="car_img" id="myImage" accept="image/*"></p>
+				<p>ID：0001</p>
+				<p>
+					メーカー名
+					<select name="maker">
+						<option value="1">メーカー1</option>
+						<option value="2">メーカー2</option>
+						<option value="3">メーカー3</option>
+					</select>
+				</p>
+				<p>
+					車種名
+					<select name="car-type">
+						<option value="1">車種1</option>
+						<option value="2">車種2</option>
+						<option value="3">車種3</option>
+					</select>
+				</p>
+				<p>グレード<input type="text" name="grade"></p>
+				<p>排気量<input type="text" name="displacement"></p>
+				<p>年式<input type="text" name="model-year"></p>
+				<p>輸入車モデル年式<input type="text" name="import-model-year"></p>
+				<p>走行距離<input type="text" name="mileage"></p>
+				<p>
+					走行状態
+					<select name="run-status">
+						<option value="1">実走行</option>
+						<option value="2">メーター交換車</option>
+						<option value="3">改ざん車</option>
+						<option value="99">その他</option>
+					</select>
+				</p>
+				<p>
+					色系統
+					<select name="color-type">
+						<option value="1">赤</option>
+						<option value="2">青</option>
+						<option value="3">黒</option>
+					</select>
+				</p>
+				<p>色名<input type="text" name=""></p>
+				<p>車検有効期限<input type="text" name=""></p>
+				<p>
+					ミッション
+					<select name="">
+						<option value="1">AT</option>
+						<option value="2">MT</option>
+					</select>
+				</p>
+				<p>
+					ボディタイプ
+					<select name="body-type">
+						<option value="1">クロカン、SUV</option>
+						<option value="2">ああ</option>
+					</select>
+				</p>
+				<p>型式<input type="text" name=""></p>
+				<button>ボタン</button>
+			</form>
+          </div>
+        </div>
+    </div>
+
+	
+    <script src="../js/modal.js"></script>
+
+</body>
+</html>

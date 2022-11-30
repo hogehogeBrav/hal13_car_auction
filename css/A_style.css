@@ -1,0 +1,316 @@
+@charset "UTF-8";
+/**
+* システム名：HAL自動車オークションシステム
+* 
+* 管理画面共通CSS
+* さわるなキケン
+* 
+* 作成者：小嶋美紀
+*/
+body {
+  background: #f6f5f9;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  left: 20%;
+  top: 0;
+  width: 80%;
+  height: 15vh;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-bottom: solid 1px #113458;
+  z-index: 2;
+  background: #f6f5f9;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  background: #113458;
+}
+
+nav ul {
+  padding-top: 15vh;
+}
+
+nav ul li {
+  color: #fff;
+  font-size: 1.3rem;
+  width: 100%;
+}
+
+nav ul li a {
+  display: block;
+  padding: 1rem;
+  padding-left: 2rem;
+}
+
+nav ul li a:hover {
+  background: #f6f5f9;
+  color: #113458;
+}
+
+nav ul li .current {
+  background: #0998af;
+}
+
+main {
+  padding: 1.5rem;
+  padding-left: calc(20% + 1.5rem);
+  padding-top: calc(15vh + 1.5rem);
+  margin-bottom: 1.5rem;
+}
+
+.form-article {
+  margin-right: 2rem;
+}
+
+span {
+  color: #f00;
+}
+
+.headerdiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.logoutform {
+  border: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.logoutform button {
+  background: #fff;
+  color: #113458;
+  border: solid 1px #113458;
+  padding: 0.3rem 0.6rem;
+}
+
+.logoutform button:hover {
+  background: #ccc;
+  border: solid 1px #fff;
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #113458;
+}
+
+h2 {
+  font-size: 1.2rem;
+  color: #113458;
+  font-weight: bold;
+}
+
+input {
+  background: #e0e0e0;
+  margin-bottom: 0.8rem;
+  margin-top: 0.2rem;
+}
+
+.tablediv {
+  background: #fff;
+  padding: 0.8rem;
+  -webkit-box-shadow: 0.5px 2px 1px 0 rgba(99, 99, 99, 0.5);
+          box-shadow: 0.5px 2px 1px 0 rgba(99, 99, 99, 0.5);
+  border-top: 0.1px solid rgba(0, 0, 0, 0.12);
+  border-left: 0.1px solid rgba(140, 140, 140, 0.5);
+  border-right: 0.1px solid rgba(140, 140, 140, 0.5);
+  border-radius: 3px;
+  overflow-x: auto;
+}
+
+.tablediv tr th {
+  color: #fff;
+  background: #113458;
+  text-align: center;
+}
+
+.tablediv tr th, .tablediv tr td {
+  padding: 0.5rem 0.8rem;
+  white-space: nowrap;
+}
+
+.tablediv tr td {
+  background: #eee;
+  vertical-align: middle;
+}
+
+.tablediv tr td button {
+  color: #00f;
+  -webkit-text-decoration: solid;
+          text-decoration: solid;
+}
+
+.tablediv tr td button:hover {
+  color: #888;
+}
+
+.tablediv tr:nth-child(odd) td {
+  background: #fff;
+}
+
+.tablediv::-webkit-scrollbar {
+  height: 10px;
+}
+
+.tablediv::-webkit-scrollbar-track {
+  background-color: #f4f4f4;
+  border-radius: 100px;
+}
+
+.tablediv::-webkit-scrollbar-thumb {
+  background-color: #cdcdcd;
+  border-radius: 100px;
+}
+
+.genderradio, .selectp {
+  margin-bottom: 0.8rem;
+}
+
+select, option {
+  border: solid 1px #303030;
+}
+
+.article-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+button {
+  background: #113458;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  margin-right: 1rem;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #f4f4f4;
+  /* margin: 20% auto; */
+  margin: 0 auto;
+  width: 60%;
+  height: 70%;
+  -webkit-box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+          box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  -webkit-animation-name: modalopen;
+          animation-name: modalopen;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  overflow: auto;
+  /* スクロール設定 */
+  border-radius: 7px;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background-color: #f4f4f4;
+  border-radius: 100px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: #cdcdcd;
+  border-radius: 100px;
+}
+
+@-webkit-keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modalClose {
+  font-size: 2rem;
+  color: #113458;
+}
+
+.modalClose:hover {
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 10px 20px;
+  color: black;
+}
+
+.open {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+/*# sourceMappingURL=A_style.css.map */
