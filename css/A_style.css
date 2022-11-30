@@ -156,7 +156,7 @@ input {
 }
 
 .tablediv tr td button {
-  color: #00f;
+  color: #fff;
   -webkit-text-decoration: solid;
           text-decoration: solid;
 }
