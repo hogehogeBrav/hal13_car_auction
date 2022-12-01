@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>売上照会画面</title>
+</head>
+<body>
+    <h1>売上照会</h1>
+
+    <div class="table">
+        <div class="group">
+            <input type="date">日付
+            <input type="number">ユーザーID
+            <select name="state" id="">
+                <% for(let i=0; i < options.length; i++){ %>
+                    <option value="<%= options[i].status_ID %>"><%= options[i].state %></option>
+                <% } %>
+            </select>
+
+            <button type="submit" name="serch">検索</button>
+        </div>
+<br>
+        <div class="sales">
+            <% for(let i=0; i < values.length; i++){ %>
+            <div class="tr">
+                <div class="th">
+                    <input type="checkbox" name="sales_id" class="sales_list_check" value="<%= values[i].sales_ID %>">
+                    <input type="hidden" name="state_id" class="state_values" value="<%= values[i].sales_status_ID %>">
+                    落札日時：
+                    <%= values[i].bid_date %>
+                </div>
+                <div class="td">
+                    車両名：
+                    <%= values[i].model_name %>
+                </div>
+                <div class="td">
+                    落札者：
+                    <%= values[i].user_name %>
+                </div>
+                <div class="td">
+                    状態：
+                    <span class="state_lists">
+                        <%= values[i].state %>
+                    </span>
+                </div>
+                <div class="td">
+                    落札価格：
+                    <%= values[i].bid_price %>
+                </div>
+            </div>
+            <br>
+            <% } %>
+        </div>
+<!-- <br>
+        <div class="check_button">
+            <button name="all_select" id="all_select">全選択</button>
+            <button name="all_clear" id="all_clear">全解除</button>
+            <button name="range_select" id="range_select">範囲選択</button>
+            <button name="range_clear" id="range_clear">範囲解除</button>
+        </div> -->
+<br>
+        <div class="command">
+            <button name="save" id="save_btn">保存</button>
+            <button name="change" id="state_btn">状態変更</button>
+            <!-- <button name="ouput_excel" id="excel_btn">excel出力</button> -->
+            <button name="output_pdf" id="pdf_btn">帳票出力</button>
+        </div>
+    </div>
+
+<script>
+    let options = "<%= json_option %>";
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/A_sales_list.js"></script>
+</body>
+</html>
