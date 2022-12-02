@@ -228,38 +228,35 @@ app.get('/sales', (req, res)=> {
     ON st.car_model_ID = m.car_model_ID 
     ORDER BY sales_ID DESC`,
     (error, results) => {
-        if(error) {
-            console.log('error conenction: ' + error.stack);
-            return;
+      if(error) {
+        console.log('error conenction: ' + error.stack);
+        return;
+      }
+
+      for(let i=0; i < results.length; i++){
+        // デフォルト値
+        let format = 'YYYY年MM月DD日 hh:mm';
+
+        format = format.replace(/YYYY/g, results[i].bid_date.getFullYear());
+        format = format.replace(/MM/g, ('0' + (results[i].bid_date.getMonth() + 1)).slice(-2));
+        format = format.replace(/DD/g, ('0' + results[i].bid_date.getDate()).slice(-2));
+        format = format.replace(/hh/g, ('0' + results[i].bid_date.getHours()).slice(-2));
+        format = format.replace(/mm/g, ('0' + results[i].bid_date.getMinutes()).slice(-2));
+
+        results[i].bid_date = format;
+      }
+      connection.query(
+        'SELECT * FROM sales_status',
+        (error, options) => {
+          if(error) {
+              console.log('error conenction: ' + error.stack);
+              return; 
+          }
+          let json_result = JSON.stringify(results);
+          let json_option = JSON.stringify(options);
+          res.render('A_sales_lists.ejs', {values:results, options:options, json_result:json_result, json_option:json_option});
         }
-
-        for(let i=0; i < results.length; i++){
-            // デフォルト値
-            let format = 'YYYY年MM月DD日 hh:mm';
-
-            format = format.replace(/YYYY/g, results[i].bid_date.getFullYear());
-            format = format.replace(/MM/g, ('0' + (results[i].bid_date.getMonth() + 1)).slice(-2));
-            format = format.replace(/DD/g, ('0' + results[i].bid_date.getDate()).slice(-2));
-            format = format.replace(/hh/g, ('0' + results[i].bid_date.getHours()).slice(-2));
-            format = format.replace(/mm/g, ('0' + results[i].bid_date.getMinutes()).slice(-2));
-
-            results[i].bid_date = format;
-        }
-
-
-        connection.query(
-            'SELECT * FROM sales_status',
-            (error, options) => {
-                if(error) {
-                    console.log('error conenction: ' + error.stack);
-                    return; 
-                }
-                
-                let json_result = JSON.stringify(results);
-                let json_option = JSON.stringify(options);
-                res.render('A_sales_lists.ejs', {values:results, options:options, json_result:json_result, json_option:json_option});
-            }
-        );
+      );
     }
   );
 });
