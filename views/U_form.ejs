@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>お問い合わせ</title>
+
+</head>
+
+<body>
+    <h1>お問い合わせ</h1>
+    <p><%= msg %></p>
+    <form action="/Uform" method="post">
+        <div class="table">
+            <div class="td">
+                タイトル：<input type="text" name="title">
+            </div>
+            <div class="td">
+                本文：<input type="text" name="form_data">
+            </div>
+            <div class="td">
+                <button type="submit" name="send_btn">送信</button>
+            </div>
+        </div>
+    </form>
+<!-- <script src="/socket.io/socket.io.js"></script> -->
+<script src=""></script>
+</body>
+
+</html>

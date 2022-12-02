@@ -36,9 +36,9 @@ connection.connect((error) => {
 });
 
 // 初期表示
-app.get('/', (req, res)=> {
+app.get('/sales', (req, res)=> {
     connection.query(
-        'SELECT * FROM sales as s INNER JOIN sales_status as ss ON s.sales_status_ID = ss.sales_status_ID ORDER BY sales_ID DESC',
+        'SELECT s.sales_ID, s.bid_price, s.bid_date, s.sales_status_ID, ss.state, u.name as user_name, m.name as model_name FROM sales as s INNER JOIN sales_status as ss ON s.sales_status_ID = ss.sales_status_ID INNER JOIN user as u ON s.user_ID = u.user_ID INNER JOIN stock as st ON s.car_ID = st.car_ID INNER JOIN model as m ON st.car_model_ID = m.car_model_ID ORDER BY sales_ID DESC',
         (error, results) => {
             if(error) {
                 console.log('error conenction: ' + error.stack);
@@ -54,10 +54,8 @@ app.get('/', (req, res)=> {
                 format = format.replace(/DD/g, ('0' + results[i].bid_date.getDate()).slice(-2));
                 format = format.replace(/hh/g, ('0' + results[i].bid_date.getHours()).slice(-2));
                 format = format.replace(/mm/g, ('0' + results[i].bid_date.getMinutes()).slice(-2));
-                // format = format.replace(/ss/g, ('0' + results[i].bid_date.getSeconds()).slice(-2));
 
                 results[i].bid_date = format;
-                // results[i].bid_date = displayTimestamp(results[i].bid_date);
             }
 
 
@@ -69,17 +67,12 @@ app.get('/', (req, res)=> {
                         return; 
                     }
                     
-                    let json_result = JSON.stringify(results);
                     let json_option = JSON.stringify(options);
-                    res.render('A_sales_lists.ejs', {values:results, options:options, json_result:json_result, json_option:json_option});
+                    res.render('A_sales_lists.ejs', {values:results, options:options, json_option:json_option});
                 }
             );
         }
     );
-});
-
-app.get('/:sales', (req, res)=>{
-
 });
 
 // 保存ボタン
@@ -92,32 +85,33 @@ io_socket.on('connection', function(socket){
         console.log('c-sales-save: ' + data);
 
         // DB処理
-        let values = [];
-        for(let i=0; i<data.length; i++){
-            values[i] = [
-                data[i].sales_ID,
-                data[i].sales_status_ID
-            ];
+        let loop = Object.keys(data);
+        if(loop != []){
+            for(let i=0; i<loop.length; i++){
+                let values = [];
+                values[i] = [
+                    data[i].sales_state_ID,
+                    data[i].sales_ID
+                ];
+                connection.query(
+                    "UPDATE sales SET sales_status_ID=? WHERE sales_ID=?;", values[i],
+                    (error, results, fields) => {
+                        if(error) {
+                            console.log('error connecting: ' + error.stack);
+                            res.status(400).send({ message: 'Error!!' });
+                            return;
+                        }
+                        console.log(results);
+                    }
+                );
+            }
         }
-
-        io_socket.emit('s-sales-save', values);
-        // connection.query(
-        //     // "INSERT INTO t02_chatmessage (chatid, id, username, message) VALUES (?,?,?,?);", values,
-        //     "INSERT INTO sales (sales_ID, sales_status_ID) VALUES (?,?);", values,
-        //     (error, results, fields) => {
-        //         if(error) {
-        //             console.log('error connecting: ' + error.stack);
-        //             res.status(400).send({ message: 'Error!!' });
-        //             return;
-        //         }
-        //         console.log(results);
-        //         // サーバ(Node.js)⇒クライアント(ブラウザ)へSocekt送信
-        //         io_socket.to(data.chatid).emit('s-sales-save', data);
-        //     }
-        // );
+        io_socket.emit('s-sales-save');
     });
 });
 
 
 // ポート番号
 http_socket.listen(9000);
+
+

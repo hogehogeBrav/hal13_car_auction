@@ -21,12 +21,6 @@
                 <% for(let i=0; i < options.length; i++){ %>
                     <option value="<%= options[i].status_ID %>"><%= options[i].state %></option>
                 <% } %>
-                <!-- <option value="">未入金</option>
-                <option value="">期限間近</option>
-                <option value="">期限切れ</option>
-                <option value="">入力待ち</option>
-                <option value="">入金済み</option> -->
-                <!-- <option value="">キャンセル</option> -->
             </select>
 
             <button type="submit" name="serch">検索</button>
@@ -43,11 +37,11 @@
                 </div>
                 <div class="td">
                     車両名：
-                    <%= values[i].car_ID %>
+                    <%= values[i].model_name %>
                 </div>
                 <div class="td">
                     落札者：
-                    <%= values[i].user_ID %>
+                    <%= values[i].user_name %>
                 </div>
                 <div class="td">
                     状態：
@@ -76,12 +70,10 @@
             <button name="change" id="state_btn">状態変更</button>
             <!-- <button name="ouput_excel" id="excel_btn">excel出力</button> -->
             <button name="output_pdf" id="pdf_btn">帳票出力</button>
-            <!-- <button name="sum">合計</button> -->
         </div>
     </div>
 
 <script>
-    // let results = "<%= json_result %>";
     let options = "<%= json_option %>";
 </script>
 <script src="/socket.io/socket.io.js"></script>

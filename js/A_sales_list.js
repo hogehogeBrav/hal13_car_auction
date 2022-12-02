@@ -25,33 +25,21 @@ btn_state.addEventListener('click', (e)=>{
     let on_checkboxs= [];
     for(let i=0; i < checkboxs.length; i++){
         if(checkboxs[i].checked){
-            // let flag = true;
+            on_checkboxs.push([i, checkboxs[i].value]);
             
-            // if(flag){
-                // 1:sales_ID, 2:state_ID
-                // console.log("----------------");
-                // console.log(state_values[i]);
-                // console.log(checkboxs[i]);
-                on_checkboxs.push([i, checkboxs[i].value]);
-            // }
         }
     }
-    // console.log("on-" + on_checkboxs);
     // status変更
     for(let i=0; i < on_checkboxs.length; i++){
         let work = on_checkboxs[i][0];
 
         // state_ID変更
-        console.log(work);
-        console.log("---------" + state_values[work].value);
-        // console.log(options_list[state_values[work].value]);
         state_values[work].value++;
         if(options_list[state_values[work].value - 1] == null){
             state_values[work].value = 1;
         }
 
         state_lists[on_checkboxs[i][0]].textContent = options_list[state_values[work].value - 1].state;
-        // console.log("string-" + options_list[state_values[work].value - 1].state);
     }
 });
 
@@ -78,6 +66,7 @@ btn_save.addEventListener('click', (e) => {
         }
     }
 console.log(sendData);
+let json_option = JSON.stringify(sendData);
     // クライアント(ブラウザ)⇒サーバ(Node.js)へSocket送信
     socket_io.emit("c-sales-save", sendData);
 });
