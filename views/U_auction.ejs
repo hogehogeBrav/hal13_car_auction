@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/destyle.css">
+  <link rel="stylesheet" href="/U_header.css">
+  <link rel="stylesheet" href="/U_auction.css">
   <title>Document</title>
 </head>
 <body>
-  <p>こんにちは、<%= name %>さん </p><a href="/logout">ログアウト</a>
-  <h1>オークション一覧</h1>
+  <%- include('U_header.ejs'); %>
   <ul>
     <% for(let i = 0;i < auction.length; i++){ %> 
       <li>オークションID<%= auction[i].auction_ID %> <%= auction[i].maker_name  %> <%= auction[i].name %>  開始時間:<%= auction[i].start_time.toLocaleString() %> 終了時間:<%= auction[i].ending_time.toLocaleString() %> </li>
