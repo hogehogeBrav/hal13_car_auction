@@ -12,6 +12,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + "/view" , {index: false}));
 app.use(express.static(__dirname + "/public" , {index: false}));
 app.use(express.static(__dirname + "/js" , {index: false}));
+app.use(express.static(__dirname + "/css" , {index: false}));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
@@ -22,6 +23,16 @@ const connection = mysql.createConnection({
   port: db.dbPort,
   database: db.dbDatabase
 });
+
+// オークション情報取得SQL(TOP画面)
+const indexsql = `SELECT auction.auction_ID, model.name, maker.maker_name, stock.grade, auction.start_time, auction.ending_time, auction.minimum_amount, MAX(auction_bid.amount) AS max_amount
+                  FROM auction 
+                  JOIN stock ON auction.car_ID = stock.car_ID 
+                  JOIN model ON stock.car_model_ID = model.car_model_ID 
+                  JOIN maker ON model.maker_ID = maker.maker_ID
+                  LEFT OUTER JOIN auction_bid ON auction.auction_ID = auction_bid.auction_ID
+                  WHERE auction.start_time <= NOW() and NOW() <= auction.ending_time
+                  GROUP BY auction.auction_id;`
 
 // ログイン認証
 app.use(passport.initialize());
@@ -55,6 +66,7 @@ passport.use(new LocalStrategy(
 ));
 
 var session = require('express-session');
+const exp = require("constants");
 app.use(session({
     secret: 'auction',
 }));
@@ -71,39 +83,56 @@ passport.deserializeUser(function(user, done) {
 // ログインセッション管理
 function isAuthenticated(req, res, next){
   if (req.isAuthenticated()) {  // 認証済
-      return next();
+    return next();
   }
   else {  // 認証されていない
-      res.redirect('/');  // ログイン画面に遷移
+    connection.query(
+      indexsql ,
+      (error, results) => {
+        console.log(results);
+        if (error) {
+          console.log('error connecting: ' + error.stack);
+          res.status(400).send({ message: 'Error!!' });
+          return;
+        }
+        res.render('U_index.ejs' , {
+          now_auction: results,
+          login: false
+        });
+      }
+    ); // ログイン画面に遷移
   }
 }
 
-app.get('/', (req, res) => {
+app.get('/', isAuthenticated, (req, res) => {
   connection.query(
-    "SELECT * FROM user;" ,
+    indexsql ,
     (error, results) => {
+      console.log(results);
       if (error) {
         console.log('error connecting: ' + error.stack);
         res.status(400).send({ message: 'Error!!' });
         return;
       }
-      res.render('U_index.ejs' , {values:results});
+      res.render('U_index.ejs' , {
+        now_auction: results,
+        login: true,
+        name: req.user.name
+      });
     }
   );
 });
 
-app.get('/', (req, res) => {
-  res.render('U_index.ejs')
-});
-
 // ログイン画面
 app.get('/login', (req, res) => {
-  res.render('U_login.ejs');
+  res.render('U_login.ejs', {
+    login: false
+  });
 });
 // ログイン認証
 app.post('/login', passport.authenticate('local', {
   session: true,
-  successRedirect: '/auction',
+  successRedirect: '/',
   failureRedirect: '/login'
 }));
 
@@ -111,18 +140,20 @@ app.post('/login', passport.authenticate('local', {
 app.get('/logout', function(req, res, next){
   req.logout(function(err) {
     if (err) { return next(err); }
-    res.redirect('/');
+    res.redirect('/login');
   });
 });
 
 // オークション画面
 app.get('/auction', isAuthenticated, (req, res) => {
   connection.query(
-    `SELECT auction.auction_ID, model.name, maker.maker_name, auction.start_time, auction.ending_time 
+    `SELECT auction.auction_ID, model.name, maker.maker_name, auction.start_time, stock.grade, auction.ending_time, auction.minimum_amount, MAX(auction_bid.amount) AS max_amount 
     FROM auction 
     JOIN stock ON auction.car_ID = stock.car_ID 
     JOIN model ON stock.car_model_ID = model.car_model_ID 
-    JOIN maker ON model.maker_ID = maker.maker_ID;` ,
+    JOIN maker ON model.maker_ID = maker.maker_ID
+    LEFT OUTER JOIN auction_bid ON auction.auction_ID = auction_bid.auction_ID
+    GROUP BY auction.auction_ID;` ,
     (error, results) => {
       console.log(results);
       if (error) {
@@ -131,6 +162,7 @@ app.get('/auction', isAuthenticated, (req, res) => {
         return;
       }
       res.render('U_auction.ejs', {
+        login: true,
         auction: results,
         id: req.user.user_ID,
         name: req.user.name
@@ -179,6 +211,7 @@ app.get('/auction/:auction_ID', isAuthenticated, (req, res) => {
             now_amount = results[0].minimum_amount;
           }
           res.render('U_auction_room.ejs', {
+            login: true,
             auction: results,
             auction_bid_history: results2,
             now_amount: now_amount,

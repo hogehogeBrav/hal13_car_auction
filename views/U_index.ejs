@@ -4,12 +4,75 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="/destyle.css">
+  <link rel="stylesheet" href="/U_header.css">
+  <link rel="stylesheet" href="/U_footer.css">
+  <link rel="stylesheet" href="/U_index.css">
+  <title>HALオークション | TOP</title>
 </head>
 <body>
-  <a href="/login">ログインへ</a><hr>
-  <% for (let i = 0; i < values.length; i++) { %>
-    <p>ユーザID<%= values[i].user_ID %> : <%= values[i].email %></p>
-  <% } %> 
+  <%- include('U_header.ejs'); %>
+  <main>
+    <div id="top_introduction">
+      <h1>HAL AUCTION</h1>
+      <p>業者オークションの価格で車両を落札できるオークションサイト。</p>
+    </div>
+    <div id="now_auction">
+      <h2>現在開催中のオークション</h2>
+    </div>
+    <% if (now_auction.length == 0) { %>
+      <div class="auction_not_yet">
+        <h2>現在開催しているオークションはありません。</h2>
+      </div>
+    <% } %> 
+    <% for (let i = 0; i < now_auction.length; i++) { %>
+      <div class="now_auction">
+        <div class="now_auction_img">
+          <img src="https://placehold.jp/3d4070/ffffff/150x150.png" alt="車両画像">
+        </div>
+        <div class="now_auction_info">
+          <div class="maker">
+            <p><%= now_auction[i].maker_name %> <%= now_auction[i].name %> <%= now_auction[i].grade %> </p>
+          </div>
+          <div class="time">
+            <p>開始時間:<%= now_auction[i].start_time.toLocaleString() %> <br>終了時間:<%= now_auction[i].ending_time.toLocaleString() %></p>
+          </div>
+          <div class="bottom">
+            <div class="amount">
+              <div class="start">
+                <p>開始価格</p>
+                <p><%= now_auction[i].minimum_amount %>円</p>
+              </div>
+              <div class="now">
+                <p>現在価格</p>
+                <% if(now_auction[i].max_amount == null) { %>
+                  <p><%= now_auction[i].minimum_amount %>円</p>
+                <% } else { %>
+                  <p><%= now_auction[i].max_amount %>円</p>
+                <% } %>
+              </div>
+            </div>
+            <div class="to_auction">
+              <% if(login) { %>
+                <a href="/auction/<%= now_auction[i].auction_ID %>">オークションへ</a>
+              <% } else { %>
+                <a href="/login">ログイン</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+    <div id="to_auction_list">
+      <% if(login) { %>
+        <a href="/auction">オークション一覧へ</a>
+      <% } else { %>
+        <a href="/login">ログインして一覧を見る</a>
+      <% } %>
+    </div>
+  </main>
+  <%- include('U_footer.ejs'); %>
 </body>
+<script src="/U_header.js"></script>
 </html>
