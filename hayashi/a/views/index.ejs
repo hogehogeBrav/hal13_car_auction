@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>User list</title>
+</head>
+<body>
+    <p><a href="/create">会員登録</a></p>
+    <table>
+        <tr>
+           <th>メールアドレス</th>
+           <th>パスワード</th>
+           <th>名前</th>
+           <th>郵便番号</th>
+           <th>住所</th>
+           <th>電話番号</th>
+        </tr>
+        <% users.forEach(function (value) { %>
+        <tr>
+            <td><%= value.email %></td>
+            <td><%= value.password %></td>
+            <td><%= value.name %></td>
+            <td><%= value.postcode %></td>
+            <td><%= value.address %></td>
+            <td><%= value.tel %></td>
+            <td><a href="/edit/<%= value.user_ID %>">変更</a></td>
+            <td><a href="/delete/<%= value.user_ID %>">削除</a></td>
+            <td><a href = "/detail/<%= value.user_ID%>">詳細</td>
+        </tr>
+        <% }); %>
+    </table>
+</body>
+</html>

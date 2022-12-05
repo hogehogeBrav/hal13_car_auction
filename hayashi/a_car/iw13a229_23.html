@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #map{
+            width: 300px;
+            height: 300px;
+            margin:0 auto;
+        }
+        body{
+            display:flex;
+        }
+        #area{
+            display: flex;
+            flex-direction: column;
+            width:40%;
+            margin:0 auto;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+    <!-- ・googlemap使用したなにかのおすすめ情報を作成する -->
+    <!-- ・おすすめ一覧の項目をクリックすると場所がgooglemapで示されたり -->
+    <!-- ・GoogleMapに示されているおすすめ情報をクリックするとその詳細情報が表示されたり -->
+</head>
+<body>
+    <div id ="area">
+      <p id ="recommendation1" onclick = "area1()"><a href="#">① 天ぷらと海鮮 ニューツルマツ 心斎橋パルコ店 / 中央区心斎橋</a></p>
+      <p id ="recommendation2" onclick = "area2()"><a href="#">② おでんと鴨蕎麦居酒屋じんべえ / 北区梅田</a></p>
+      <p id ="recommendation3" onclick = "area3()"><a href="#">③ いしもん 本店 / 北区梅田</a></p>
+      <p id ="recommendation4" onclick = "area4()"><a href="#">④ 大衆中華スタンド チャーシューパンチ / 北区堂山</a></p>
+    </div>
+    <div id="map" ></div><!--地図を表示するdiv要素(id="map")-->
+    <script>
+           var map;
+           var infoWindows;
+        function initMap(){
+            map = new google.maps.Map(document.getElementById('map'),{
+                center: {lat: 34.69893644, lng: 135.49634885},
+                zoom: 14
+            });
+            //GoogleMapの表示位置(中心座標)を変更するメソッド
+            map.panTo(new google.maps.LatLng(35.666397,139.758153));
+        }
+        function area1(){
+            if(infoWindows){
+                infoWindows.close();
+            }
+            map.panTo(new google.maps.LatLng(34.67397080844502, 135.50097349090348));
+            var infoWindowOption = {
+                position: map.getCenter(),
+                content: '<p><h4>天ぷらと海鮮 ニューツルマツ 心斎橋パルコ店 / 中央区心斎橋</h4><a href="https://new-tsurumatsu-3.com/"><img width="100px" height="50px" src="https://new-tsurumatsu-3.com/wp-content/uploads/2021/04/slider-tsurumatsu.png"/></a></p>'
+            };
+            infoWindows = new google.maps.InfoWindow(infoWindowOption);
+            infoWindows.open(map);
+        }
+
+        function area2(){
+            if(infoWindows){
+                infoWindows.close();
+            }
+            map.panTo(new google.maps.LatLng(34.6989551958197, 135.4994642774102));
+            var infoWindowOption = {
+                position: map.getCenter(),
+                content: '<p><h4>おでんと鴨蕎麦居酒屋じんべえ / 北区梅田</h4><a href="https://tabelog.com/osaka/A2701/A270101/27099624/"><img width="100px" height="50px" src="https://tblg.k-img.com/resize/660x370c/restaurant/images/Rvw/78586/78586861.jpg?token=3df354e&api=v2" /></a></p>'
+            };
+            infoWindows = new google.maps.InfoWindow(infoWindowOption);
+            infoWindows.open(map);
+        }
+
+        function area3(){
+            if(infoWindows){
+                infoWindows.close();
+            }
+            map.panTo(new google.maps.LatLng(34.698690771559626, 135.49668360439793));
+            var infoWindowOption = {
+                position: map.getCenter(),
+                content: '<p><h4>いしもん 本店 / 北区梅田</h4><a href="https://honten.sakanaya-ishimon.com/"><img width="100px" height="50px" src="https://img.esprot.cloud/Mbn75yWNSeJI6WciKFjR/7f7a2b122a11b51a8cc8b6672a8d2cbd.jpeg?quality=50&size=lg&format=webp" /></a></p>'
+            };
+            infoWindows = new google.maps.InfoWindow(infoWindowOption);
+            infoWindows.open(map);
+        }
+
+        function area4(){
+            if(infoWindows){
+                infoWindows.close();
+            }
+            map.panTo(new google.maps.LatLng(34.69984327799266, 135.493029923378));
+            var infoWindowOption = {
+                position: map.getCenter(),
+                content: '<p><h4>大衆中華スタンド チャーシューパンチ / 北区堂山</h4><a href="https://chasyupunch.owst.jp/"><img width="100px" height="50px" src="https://cdn.r-corona.jp/prd.rb.r-corona.jp/assets/site_files/um5eioy9/17436009/1po9_.jpg" /></a></p>'
+            };
+            infoWindows = new google.maps.InfoWindow(infoWindowOption);
+            infoWindows.open(map);
+        }
+    </script>
+     <script async defer src = "https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
+    </script>
+</body>
+</html>
