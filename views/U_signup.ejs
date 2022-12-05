@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/destyle.css">
+    <link rel="stylesheet" href="/U_header.css">
+    <link rel="stylesheet" href="/U_footer.css">
+    <link rel="stylesheet" href="/U_signup.css">
+    <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+    <title>HALオークション | 新規登録</title>
+</head>
+<body>
+    <%- include('U_header.ejs'); %>
+    <h1>アカウント登録フォームh1>
+    <form action="/signup/confirm" method="POST">
+        <label for="user" class="label">ユーザ名</label>
+        <input type="text" name="user" value="<%= user %>" required><br>
+        <label for="email" class="label">メールアドレス</label>
+        <input type="email" name="email" value="<%= email %>" required><br>
+        <label for="password" class="label">パスワード</label>
+        <input type="password" name="password" value="<%= password %>" required><br>
+        <div class="h-adr">
+            <span class="p-country-name" style="display:none;">Japan</span>
+            <label for="postcode" class="label">郵便番号</label>
+            <input type="text" name="postcode" class="p-postal-code" size="8" maxlength="8" value="<%= postcode %>" required ><br>
+            <label for="user" class="label">都道府県</label>
+            <input type="text" name="region" class="p-region" value="<%= region %>" required /><br>
+            <label for="address" class="label">住所</label>
+            <input type="text" name="address" class="p-locality p-street-address p-extended-address" value="<%= address %>" required /><br>
+        </div>
+        <label for="address" class="label">電話番号</label>
+        <input type="tel" name = "tel" pattern="[\d\-]*" value="<%= tel %>" required><br>
+        <button type="submit">送信</button>
+    </form>
+    <% if(error) { %>
+        <p><%= error %></p>
+    <% } %>
+    <!-- <%- include('U_footer.ejs'); %> -->
+</body>
+</html>

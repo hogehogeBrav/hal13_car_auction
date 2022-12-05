@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/destyle.css">
+    <link rel="stylesheet" href="/U_header.css">
+    <link rel="stylesheet" href="/U_footer.css">
+    <link rel="stylesheet" href="/U_signup.css">
+    <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+    <title>HALオークション | 登録完了</title>
+</head>
+<body>
+    <%- include('U_header.ejs'); %>
+    <h1>入力フォーム</h1>
+    <p>以下の内容で登録しました。</p>
+    <p>ユーザ名：<%= user %></p>
+    <p>メールアドレス：<%= email %></p>
+    <p>パスワード：<%= password %></p>
+    <p>郵便番号：<%= postcode %></p>
+    <p>住所：<%= address %></p>
+    <p>電話番号：<%= tel %></p>
+    <a href="/login">ログイン画面へ</a>
+    <!-- <%- include('U_footer.ejs'); %> -->
+</body>
+</html>

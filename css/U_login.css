@@ -45,7 +45,7 @@ a {
   width: 100%;
   height: 100%;
   position: absolute;
-  padding: 90px 70px 50px 70px;
+  padding: 70px 70px 70px 70px;
   background: rgba(40, 57, 101, 0.9);
 }
 
@@ -90,6 +90,7 @@ a {
 }
 
 .login-form {
+  margin-top: 25px;
   min-height: 345px;
   position: relative;
   perspective: 1000px;
@@ -194,4 +195,12 @@ a {
 
 .foot-lnk {
   text-align: center;
+}
+
+.loginerror {
+  border: solid 2px red;
+  border-radius: 10px;
+  margin: 30px auto;
+  padding: 20px;
+  color: #fff;
 }/*# sourceMappingURL=U_login.css.map */

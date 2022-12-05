@@ -22,11 +22,11 @@
             <form action="/login" method="post">
               <div class="group">
                 <label for="user" class="label">メールアドレス</label>
-                <input id="user" name="email" type="text" class="input" value="hogehoge@icloud.com">
+                <input id="user" name="email" type="text" class="input" value="hogehoge@icloud.com" required>
               </div>
               <div class="group">
                 <label for="pass" class="label">パスワード</label>
-                <input id="pass" name="password" type="password" class="input" data-type="password">
+                <input id="pass" name="password" type="password" class="input" data-type="password" required>
               </div>
               <div class="group">
                 <input id="check" type="checkbox" class="check" checked>
@@ -40,31 +40,34 @@
             <div class="foot-lnk">
               <a href="#forgot">パスワードを忘れましたか?</a>
             </div>
+            <% if(error != '') { %> 
+              <div class="loginerror">
+                <p><%= error %></p>
+              </div>
+            <% } %> 
           </div>
           <div class="sign-up-htm">
-            <div class="group">
-              <label for="user" class="label">Username</label>
-              <input id="user" type="text" class="input">
-            </div>
-            <div class="group">
-              <label for="pass" class="label">Password</label>
-              <input id="pass" type="password" class="input" data-type="password">
-            </div>
-            <div class="group">
-              <label for="pass" class="label">Repeat Password</label>
-              <input id="pass" type="password" class="input" data-type="password">
-            </div>
-            <div class="group">
-              <label for="pass" class="label">Email Address</label>
-              <input id="pass" type="text" class="input">
-            </div>
-            <div class="group">
-              <input type="submit" class="button" value="Sign Up">
-            </div>
-            <div class="hr"></div>
-            <div class="foot-lnk">
-              <label for="tab-1">Already Member?</a>
-            </div>
+            <form action="/signup" method="post">
+              <div class="group">
+                <label for="user" class="label">ユーザ名</label>
+                <input id="user" name="user" type="text" class="input" required>
+              </div>
+              <div class="group">
+                <label for="pass" class="label">メールアドレス</label>
+                <input id="user" name="email" type="text" class="input" value="" required>
+              </div>
+              <div class="group">
+                <label for="pass" class="label">パスワード</label>
+                <input id="pass" name="password" type="password" class="input" data-type="password" required>
+              </div>
+              <div class="group">
+                <input type="submit" class="button" value="登録する">
+              </div>
+              <div class="hr"></div>
+              <div class="foot-lnk">
+                <label for="tab-1">既に登録済みですか?</a>
+              </div>
+            </form>
           </div>
         </div>
       </div>

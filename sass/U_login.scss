@@ -30,7 +30,7 @@ a{color:inherit;text-decoration:none}
   width:100%;
   height:100%;
   position:absolute;
-  padding:90px 70px 50px 70px;
+  padding:70px 70px 70px 70px;
   background:rgba(40,57,101,.9);
 }
 .login-html .sign-in-htm,
@@ -68,6 +68,7 @@ a{color:inherit;text-decoration:none}
   border-color:#1161ee;
 }
 .login-form{
+  margin-top:25px;
   min-height:345px;
   position:relative;
   perspective:1000px;
@@ -155,4 +156,12 @@ a{color:inherit;text-decoration:none}
 }
 .foot-lnk{
   text-align:center;
+}
+
+.loginerror{
+  border: solid 2px red;
+  border-radius: 10px;
+  margin: 30px auto;
+  padding: 20px;
+  color: #fff;
 }

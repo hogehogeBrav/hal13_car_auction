@@ -6,6 +6,7 @@ const http_socket = require('http').Server(app);
 const io_socket = require('socket.io')(http_socket);
 const passport = require('passport');
 const mysql = require('mysql2');
+const flash = require('connect-flash');
 
 app.set('view engine', 'ejs');
 
@@ -15,6 +16,7 @@ app.use(express.static(__dirname + "/js" , {index: false}));
 app.use(express.static(__dirname + "/css" , {index: false}));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(flash());
 
 const connection = mysql.createConnection({
   host: db.dbHost,
@@ -56,7 +58,7 @@ passport.use(new LocalStrategy(
         }
         const count = results.length;
         if (count == 0) {
-          return done(null, false); //NG
+          return done(null, false, {message: "メールアドレスまたはパスワードが正しくありません。"}); //NG
         }else{
           return done(null, results[0]); //OK
         }
@@ -125,15 +127,18 @@ app.get('/', isAuthenticated, (req, res) => {
 
 // ログイン画面
 app.get('/login', (req, res) => {
+  // console.log(req.flash('error'));
   res.render('U_login.ejs', {
-    login: false
+    login: false,
+    error: req.flash('error')
   });
 });
 // ログイン認証
 app.post('/login', passport.authenticate('local', {
   session: true,
   successRedirect: '/',
-  failureRedirect: '/login'
+  failureRedirect: '/login',
+  failureFlash: true
 }));
 
 // ログアウト処理
@@ -142,6 +147,75 @@ app.get('/logout', function(req, res, next){
     if (err) { return next(err); }
     res.redirect('/login');
   });
+});
+
+// サインアップ画面(アカウント登録)
+app.post('/signup', (req, res) => {
+  res.render('U_signup.ejs',{
+    login: false,
+    user: req.body.user,
+    email: req.body.email,
+    password: req.body.password,
+    postcode: null,
+    region: null,
+    address: null,
+    tel: null,
+    error: null
+  });
+});
+// サインアップ処理
+app.post('/signup/confirm', (req, res) => {
+  const values = [
+    req.body.user,
+    req.body.email,
+    req.body.password,
+    req.body.postcode,
+    req.body.region + req.body.address,
+    req.body.tel
+  ];
+  connection.query(
+    "SELECT * FROM user WHERE email = ?;" , req.body.email ,
+    (error, results) => {
+      if (error) {
+        console.log('error connecting: ' + error.stack);
+        res.status(400).send({ message: 'Error!!' });
+        return;
+      }
+      const count = results.length;
+      if (count == 0) {
+        connection.query(
+          "INSERT INTO user (name, email, pass, postcode, address, tel) VALUES (? , ? , ? , ? , ? , ?);" , values ,
+          (error, results) => {
+            if (error) {
+              console.log('error connecting: ' + error.stack);
+              res.status(400).send({ message: 'Error!!' });
+              return;
+            }
+            res.render('U_signup_confirm.ejs',{
+              login: false,
+              user: req.body.user,
+              email: req.body.email,
+              password: req.body.password,
+              postcode: req.body.postcode,
+              address: req.body.region + req.body.address,
+              tel: req.body.tel
+            });
+          });
+      }else{
+        res.render('U_signup.ejs',{
+          login: false,
+          user: req.body.user,
+          email: req.body.email,
+          password: req.body.password,
+          postcode: req.body.postcode,
+          region: req.body.region,
+          address: req.body.address,
+          tel: req.body.tel,
+          error: "このメールアドレスは既に登録されています。"
+        });
+      }
+    }
+  );
 });
 
 // オークション画面
