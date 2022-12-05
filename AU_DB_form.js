@@ -98,20 +98,23 @@ app.post('/Uform', (res, req)=>{
     //         );
     //     }
     // );
-    connection.query(
-        'INSERT-SQL', form,
-        (error, results) => {
-            if(error) {
-                console.log('error conenction: ' + error.stack);
-                return; 
-            }
+    // connection.query(
+    //     'INSERT-SQL', form,
+    //     (error, results) => {
+    //         if(error) {
+    //             console.log('error conenction: ' + error.stack);
+    //             return; 
+    //         }
 
-            // userID
-            let user_ID = window.sessionStorage.getItem(['user_ID']);
+    //         // userID
+    //         let user_ID = window.sessionStorage.getItem(['user_ID']);
+    //         let msg = "送信完了";
+    //         res.render('U_form.ejs', {user_ID:user_ID, msg:msg});
+    //     }
+    // );
+    let user_ID = window.sessionStorage.getItem(['user_ID']);
             let msg = "送信完了";
             res.render('U_form.ejs', {user_ID:user_ID, msg:msg});
-        }
-    );
 });
 
 // お問い合わせ一覧画面
