@@ -1,34 +1,15 @@
 /**
 * システム名：HAL自動車オークションシステム
 * 
-* ユーザ側トップ画面
+* ユーザ側オークション一覧画面
 * 
 * 作成者：宮原誠
 */
 
 main{
-  max-width: 1280px;
-  margin: 0 auto;
-  #top_introduction{
-    margin-bottom: 50px;
-    background-color: #f5f5f5;
-    h1{
-      font-size: 26px;
-      font-weight: bold;
-      text-align: center;
-      height: 80px;
-      line-height: 80px;
-    }
-    p{
-      font-size: 16px;
-      text-align: center;
-      height: 40px;
-      // line-height: 30px;
-    }
-  }
-
-  #now_auction{
+  #auction_list{
     text-align: center;
+    margin-top: 50px;
     h2{
       display: inline-block;
       margin-bottom: 50px;
@@ -37,22 +18,6 @@ main{
       background-color: #f5f5f5;
       padding: 0 20px;
       font-size: 22px;
-      height: 70px;
-      line-height: 70px;
-    }
-  }
-
-  .auction_not_yet{
-    text-align: center;
-    // margin-top: 50px;
-    h2{
-      display: inline-block;
-      margin-bottom: 50px;
-      border: #eb7f7f 3px solid;
-      border-radius: 15px;
-      background-color: #f5f5f5;
-      padding: 0 20px;
-      font-size: 20px;
       height: 70px;
       line-height: 70px;
     }
@@ -143,54 +108,14 @@ main{
           background-color: #15883e;
           height: 48px;
         }
-        a:hover{
+        a:not(.finished):hover{
           background-color: #1db954;
+        }
+        .finished{
+          cursor: default;
+          background-color: #3f3f3f;
         }
       }
     }
-  }
-
-  // [オークション一覧へ]ボタン
-  #to_auction_list a {
-    background: #eee;
-    position: relative;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0 auto;
-    max-width: 240px;
-    padding: 10px 25px;
-    color: #313131;
-    transition: 0.3s ease-in-out;
-    font-weight: 500;
-  }
-  #to_auction_list a:before {
-      content: '';
-      position: absolute;
-      top: calc(50% - 2px);
-      right: -1em;
-      transform: translateY(calc(-50% - 2px)) rotate(30deg);
-      width: 12px;
-      height: 2px;
-      background-color: #6bb6ff;
-      transition: 0.3s;
-  }
-  #to_auction_list a:after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: -1em;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 2px;
-      background-color: #6bb6ff;
-      transition: 0.3s;
-  }
-  #to_auction_list a:hover:before, #to_auction_list a:hover:after {
-      right: -0.5em;
-  }
-  #to_auction_list a:hover {
-      background: #edf6ff;
-      color: #6bb6ff;
   }
 }

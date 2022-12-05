@@ -24,6 +24,16 @@ const connection = mysql.createConnection({
   database: db.dbDatabase
 });
 
+// オークション情報取得SQL(TOP画面)
+const indexsql = `SELECT auction.auction_ID, model.name, maker.maker_name, stock.grade, auction.start_time, auction.ending_time, auction.minimum_amount, MAX(auction_bid.amount) AS max_amount
+                  FROM auction 
+                  JOIN stock ON auction.car_ID = stock.car_ID 
+                  JOIN model ON stock.car_model_ID = model.car_model_ID 
+                  JOIN maker ON model.maker_ID = maker.maker_ID
+                  LEFT OUTER JOIN auction_bid ON auction.auction_ID = auction_bid.auction_ID
+                  WHERE auction.start_time <= NOW() and NOW() <= auction.ending_time
+                  GROUP BY auction.auction_id;`
+
 // ログイン認証
 app.use(passport.initialize());
 const LocalStrategy = require('passport-local').Strategy;
@@ -77,15 +87,16 @@ function isAuthenticated(req, res, next){
   }
   else {  // 認証されていない
     connection.query(
-      "SELECT * FROM user;" ,
+      indexsql ,
       (error, results) => {
+        console.log(results);
         if (error) {
           console.log('error connecting: ' + error.stack);
           res.status(400).send({ message: 'Error!!' });
           return;
         }
         res.render('U_index.ejs' , {
-          values:results,
+          now_auction: results,
           login: false
         });
       }
@@ -95,15 +106,16 @@ function isAuthenticated(req, res, next){
 
 app.get('/', isAuthenticated, (req, res) => {
   connection.query(
-    "SELECT * FROM user;" ,
+    indexsql ,
     (error, results) => {
+      console.log(results);
       if (error) {
         console.log('error connecting: ' + error.stack);
         res.status(400).send({ message: 'Error!!' });
         return;
       }
       res.render('U_index.ejs' , {
-        values:results,
+        now_auction: results,
         login: true,
         name: req.user.name
       });
@@ -135,11 +147,13 @@ app.get('/logout', function(req, res, next){
 // オークション画面
 app.get('/auction', isAuthenticated, (req, res) => {
   connection.query(
-    `SELECT auction.auction_ID, model.name, maker.maker_name, auction.start_time, auction.ending_time 
+    `SELECT auction.auction_ID, model.name, maker.maker_name, auction.start_time, stock.grade, auction.ending_time, auction.minimum_amount, MAX(auction_bid.amount) AS max_amount 
     FROM auction 
     JOIN stock ON auction.car_ID = stock.car_ID 
     JOIN model ON stock.car_model_ID = model.car_model_ID 
-    JOIN maker ON model.maker_ID = maker.maker_ID;` ,
+    JOIN maker ON model.maker_ID = maker.maker_ID
+    LEFT OUTER JOIN auction_bid ON auction.auction_ID = auction_bid.auction_ID
+    GROUP BY auction.auction_ID;` ,
     (error, results) => {
       console.log(results);
       if (error) {

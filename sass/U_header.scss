@@ -12,7 +12,7 @@
 
 .site-header {
   position: relative;
-  background-color: #def7ff; }
+  background-color: #98eb7f; }
 
 .site-header__wrapper {
   display: flex;
@@ -41,8 +41,8 @@
     top: 100%;
     right: 0;
     left: 0;
-    z-index: -1;
-    background-color: #d9f0f7;
+    z-index: 10;
+    background-color: #dadadae3;
     visibility: hidden;
     opacity: 0;
     transform: translateY(-100%);

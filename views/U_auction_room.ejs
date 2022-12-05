@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/destyle.css">
   <link rel="stylesheet" href="/U_header.css">
+  <link rel="stylesheet" href="/U_footer.css">
   <link rel="stylesheet" href="/U_auction_room.css">
-  <title>Document</title>
+  <title>HALオークション | <%= auction[0].maker_name  %> <%= auction[0].name %> </title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
@@ -36,6 +37,7 @@
       <% } %>
     </ul>
   </div>
+  <%- include('U_footer.ejs'); %>
 </body>
 <script>
   var auctionid = '<%= auction[0].auction_ID %>';
