@@ -97,12 +97,12 @@
                 <h3>登録</h2>
                 <span class="modalClose">×</span>
             </div>
-			<form action="">
+			<form action="" method="post">
 				<h4>基本情報</h4>
 				<p><input type="file" name="car_img" id="myImage" accept="image/*"></p>
 				<p>
 					メーカー名
-					<select name="maker">
+					<select name="maker_id">
 						<% for (let i = 0; i < maker_list.length; i++) { %>
 						<option value="<%= maker_list[i].maker_ID %>"><%= maker_list[i].maker_name %></option>
 						<% } %>
@@ -110,7 +110,7 @@
 				</p>
 				<p>
 					車種名
-					<select name="car-type">
+					<select name="model_id">
 						<% for (let i = 0; i < model_list.length; i++) { %>
 						<option value="<%= model_list[i].car_model_ID %>"><%= model_list[i].name %></option>
 						<% } %>
@@ -118,12 +118,12 @@
 				</p>
 				<p>グレード<input type="text" name="grade"></p>
 				<p>排気量<input type="text" name="displacement"></p>
-				<p>年式<input type="text" name="model-year"></p>
-				<p>輸入車モデル年式<input type="text" name="import-model-year"></p>
+				<p>年式<input type="text" name="model_year"></p>
+				<p>輸入車モデル年式<input type="text" name="import_model-year"></p>
 				<p>走行距離<input type="text" name="mileage"></p>
 				<p>
 					走行状態
-					<select name="run-status">
+					<select name="runstatus_id">
 						<% for (let i = 0; i < run_status_list.length; i++) { %>
 						<option value="<%= run_status_list[i].run_status_ID %>"><%= run_status_list[i].run_status %></option>
 						<% } %>
@@ -131,36 +131,36 @@
 				</p>
 				<p>
 					色系統
-					<select name="color-type">
+					<select name="color_type">
 						<% for (let i = 0; i < color_list.length; i++) { %>
 						<option value="<%= color_list[i].color_ID %>"><%= color_list[i].color_name %></option>
 						<% } %>
 					</select>
 				</p>
-				<p>色名<input type="text" name=""></p>
+				<p>色名<input type="text" name="color_name"></p>
 				<p>車検有効期限<input type="text" name=""></p>
 				<p>
 					ミッション
-					<select name="">
+					<select name="AT_MT">
 						<option value="1">AT</option>
 						<option value="2">MT</option>
 					</select>
 				</p>
 				<p>
 					ボディタイプ
-					<select name="body-type">
+					<select name="body_type_id">
 						<% for (let i = 0; i < body_list.length; i++) { %>
 						<option value="<%= body_list[i].body_type_ID %>"><%= body_list[i].body_type_name %></option>
 						<% } %>
 					</select>
 				</p>
-				<p>型式<input type="text" name=""></p>
+				<p>型式<input type="text" name="car_type"></p>
 				<h4>詳細情報</h4>
-				<p>ドア数<input type="number" name=""></p>
-				<p>乗車定員数<input type="number" name=""></p>
+				<p>ドア数<input type="number" name="door"></p>
+				<p>乗車定員数<input type="number" name="ride_member"></p>
 				<p>
 					駆動方式
-					<select name="">
+					<select name="drive_id">
 						<% for (let i = 0; i < drive_list.length; i++) { %>
 						<option value="<%= drive_list[i].drive_ID %>"><%= drive_list[i].drive %></option>
 						<% } %>
@@ -168,7 +168,7 @@
 				</p>
 				<p>
 					燃料
-					<select name="">
+					<select name="fuel_id">
 						<% for (let i = 0; i < fuel_list.length; i++) { %>
 						<option value="<%= fuel_list[i].fuel_ID %>"><%= fuel_list[i].fuel %></option>
 						<% } %>
@@ -176,38 +176,38 @@
 				</p>
 				<p>
 					点検記録簿
-					<select name="">
+					<select name="check_memo">
 						<option value="1">あり</option>
 						<option value="2">なし</option>
 					</select>
 				</p>
 				<p>
 					修復歴
-					<select name="">
+					<select name="repair">
 						<option value="1">あり</option>
 						<option value="2">なし</option>
 					</select>
 				</p>
-				<p>車台番号(下3桁)<input type="number" name=""></p>
-				<p>リサイクル預託金<input type="number" name=""></p>
-				<p>輸入経路<input type="text" name=""></p>
+				<p>車台番号(下3桁)<input type="number" name="car_number"></p>
+				<p>リサイクル預託金<input type="number" name="recycle"></p>
+				<p>輸入経路<input type="text" name="route"></p>
 				<p>
 					ハンドル
-					<select name="">
-						<option value="1">右</option>
-						<option value="2">左</option>
+					<select name="handle">
+						<option value="R">右</option>
+						<option value="L">左</option>
 					</select>
 				</p>
 				<p>
 					車歴
-					<select name="">
+					<select name="car_history_id">
 						<% for (let i = 0; i < car_history_list.length; i++) { %>
 						<option value="<%= car_history_list[i].car_history_ID %>"><%= car_history_list[i].car_history %></option>
 						<% } %>	
 					</select>
 				</p>
-				<p>所有車歴<input type="number" name=""></p>
-				<p>引き渡し条件<input type="text" name=""></p>
+				<p>所有車歴<input type="number" name="owner_history"></p>
+				<p>引き渡し条件<input type="text" name="delivery_condition"></p>
 				<h4>装備品</h4>
 				<ul>
 					<li>
@@ -339,7 +339,7 @@
 						<label for="spare-tire">スペアタイヤ</label>
 					</li>
 				</ul>
-				<button>ボタン</button>
+				<button name="entry" value="entry">登録</button>
 			</form>
           </div>
         </div>

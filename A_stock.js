@@ -35,6 +35,7 @@ exports.main = async function(con,req,res) {
   let fuel_list = await findAll(con,fuel_sql);
   let car_history_list = await findAll(con,car_history_sql);
 
+  //在庫管理画面を呼出
   res.render('A_stock.ejs', {
     stock_list: stock_list,            //在庫全件
     maker_list: maker_list,            //メーカー全件
@@ -46,19 +47,41 @@ exports.main = async function(con,req,res) {
     fuel_list: fuel_list,              //燃料
     car_history_list: car_history_list //車歴
   });
+}
 
-  // con.query( sql,
-  //   (error, results) => {
-  //     console.log(results);
-  //     if (error) {
-  //       console.log('error connecting: ' + error.stack);
-  //       res.status(400).send({ message: 'Error!!' });
-  //       return;
-  //     }
-  //     res.render('A_stock.ejs', {
-  //       stock_list: results
-  //     });
-  // });
+exports.insert = function(con,req,res){
+  console.log(req.body);
+  // let values = [
+  //   // 基本情報
+  //   req.body.maker-id, //select
+  //   req.body.model-id, //select
+  //   req.body.grade, //text
+  //   req.body.displacement, //text
+  //   req.body.model-year, //text
+  //   req.body.import-model-year, //text
+  //   req.body.mileage, //text
+  //   req.body.runstatus-id, //select
+  //   req.body.color-type, //select
+  //   req.body.colorname, //text
+  //   req.body.AT-MT, //select
+  //   req.body.body-type-id, //select
+  //   req.body.car-type, //text
+  //   //詳細情報
+  //   req.body.door, //number
+  //   req.body.ride-member, //number
+  //   req.body.drive-id, //select
+  //   req.body.fuel-id, //select
+  //   req.body.check-memo, //select
+  //   req.body.repair, //text
+  //   req.body.car-number, //text
+  //   req.body.handle, //select
+  //   req.body.car-history-id, //select
+  //   req.body.owner-history, //text
+  //   req.body.delivery-condition, //text
+  //   //装備品
+  //   req.body.parts
+  // ];
+  // console.log(values);
 }
 
 // function findAll(con,req,res,sql) {

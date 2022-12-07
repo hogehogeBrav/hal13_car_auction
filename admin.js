@@ -32,7 +32,10 @@ const stock = require("./A_stock.js");
 // TOP画面(在庫管理画面)
 app.get('/', (req, res) => {
   stock.main(connection,req,res);
-  
+});
+app.post('/', (req, res) => {
+  stock.main(connection,req,res);
+  stock.insert(connection,req,res);
 });
 
 // 車両詳細画面
