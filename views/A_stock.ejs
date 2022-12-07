@@ -10,9 +10,9 @@
 	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/destyle.css">
-    <link rel="stylesheet" href="../css/A_style.css">
-	<link rel="stylesheet" href="../css/A_stock.css">
+    <link rel="stylesheet" href="./destyle.css">
+    <link rel="stylesheet" href="./A_style.css">
+	<link rel="stylesheet" href="./A_stock.css">
 <title>在庫管理画面</title>
 </head>
 <body>
@@ -25,8 +25,8 @@
 		
 		<nav><!-- 共通部分 -->
 		    <ul>
-		        <li><a href="./A_stock.ejs" class="current">在庫管理</a></li>
-		        <li><a href="./A_auction.ejs">オークション管理</a></li>
+		        <li><a href="/" class="current">在庫管理</a></li>
+		        <li><a href="/auctions">オークション管理</a></li>
 		        <li><a href="./">ユーザー管理</a></li>
 		        <li><a href="./">売上管理</a></li>
 		    </ul>
@@ -65,7 +65,7 @@
 			        </tr>
 					<tr class="stock-row">
 						<!-- <td><button class="tdBtn">詳細</button></td> -->
-						<td><a href="./A_car_detail.ejs?id=00001" class="detailBtn">詳細</a></td>
+						<td><a href="./detail/00001" class="detailBtn">詳細</a></td>
 						<!-- <td><button class='update-btn' class="tdBtn">編集</button></td> -->
 						<td>00001</td>
 						<td>日産</td>
@@ -427,7 +427,7 @@
     </div>
 
 	
-    <script src="../js/modal.js"></script>
+    <script src="./modal.js"></script>
 
 </body>
 </html>
