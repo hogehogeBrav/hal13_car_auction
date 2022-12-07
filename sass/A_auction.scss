@@ -1,0 +1,100 @@
+/**
+* システム名：HAL自動車オークションシステム
+* 
+* 在庫管理画面CSS
+* さわるなキケン
+* 
+* 作成者：小嶋美紀
+*/
+
+$black: #303030;
+$blue: #113458;
+$back: #f6f5f9;
+
+th{
+    width: auto;
+}
+
+.tablediv{
+    tr{
+        td{
+            button{
+                color: #fff;
+                background: $blue;
+                white-space: nowrap;
+                margin: 0;
+            }
+            .tdBtn{
+                color: #fff;
+                margin: 0;
+            }
+        }
+    }
+    .stock-row{
+        td{
+            .tdBtn{
+                color: #fff;
+                background: $blue;
+                margin: 0;
+            }
+        }
+    }
+}
+
+
+#entryModal{
+    .modal-content{
+        width: 70%;
+        height: 80%;
+        h4{
+            font-weight: bold;
+            color: $blue;
+            margin-bottom: 0.4rem;
+        }
+        // 装備品チェックボックス
+        ul{
+            display: flex;
+            flex-wrap: wrap;
+            li{
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                input{
+                    display: none;
+                    &:checked + label{
+                        border: solid 1px $blue;
+                        background: $blue;
+                        color: #fff;
+                    }
+                }
+                label{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 7.7rem;
+                    border: solid 1px $black;
+                    border-radius: 5px;
+                    padding: 0.15rem;
+                    height: 2.5rem;
+                    margin-right: 0.3rem;
+                    margin-bottom: 0.3rem;
+                    font-weight: bold;
+                    font-size: 0.8rem;
+                    color: #606060;
+                    border: solid 1px #606060;
+                }
+            }    
+        }
+    }
+}
+
+.detailBtn{
+    display: block;
+    background: $blue;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+}

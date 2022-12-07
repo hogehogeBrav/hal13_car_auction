@@ -13,7 +13,19 @@ th {
 
 .tablediv tr td button {
   color: #fff;
+  background: #113458;
   white-space: nowrap;
+  margin: 0;
+}
+
+.tablediv tr td .tdBtn {
+  color: #fff;
+  margin: 0;
+}
+
+.tablediv .stock-row td .tdBtn {
+  color: #fff;
+  background: #113458;
   margin: 0;
 }
 
@@ -91,4 +103,4 @@ th {
   padding: 0.5rem 1.2rem;
   border-radius: 50px;
 }
-/*# sourceMappingURL=A_stock.css.map */
+/*# sourceMappingURL=A_auction.css.map */

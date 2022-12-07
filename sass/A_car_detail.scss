@@ -33,6 +33,12 @@ article{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    .article-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: nowrap;
+    }
     .info-area{
         font-size: 0.9rem;
     }
@@ -91,6 +97,9 @@ article{
 }
 
 .article-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     margin: 0;
     margin-bottom: 0.2rem;

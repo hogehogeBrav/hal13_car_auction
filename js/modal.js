@@ -14,6 +14,8 @@ const deleteOpen = document.getElementById('delete-btn');
 const deleteModal = document.getElementById('deleteModal');
 // const updateOpen = document.getElementsByClassName('update-btn');
 // const updateModal = document.getElementById('updateModal');
+// 出品ボタン
+const exhibitionBtn = document.getElementsByClassName('exhibition-btn');
 // body要素を取得
 const body = document.getElementsByTagName('body')[0];
 console.log(body);
@@ -64,4 +66,13 @@ deleteOpen.addEventListener('click', deleteModalOpen);
 function deleteModalOpen() {
   deleteModal.style.display = 'block';
   body.classList.add('open');
+}
+
+//出品ボタンにモーダル表示リスナーを付与
+for(let i=0; i< exhibitionBtn.length;i++){
+  exhibitionBtn[i].addEventListener('click',(e)=>{
+    console.log("クリック");
+    modal.style.display = 'block';
+    body.classList.add('open');  
+  },false);
 }
