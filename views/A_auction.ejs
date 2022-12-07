@@ -52,11 +52,11 @@
 						<tr>
 							<td><a href="./A_car_detail.ejs?id=00001" class="detailBtn">詳細</a></td>
 							<td>00001</td>
-							<td>12月3日</td>
-							<td>13:00</td>
-							<td>14:00</td>
-							<td>変更</td>
-							<td>取消</td>
+							<td class="date">12月3日</td>
+							<td class="start">13:00</td>
+							<td class="end">14:00</td>
+							<td><button class="update-btn tdBtn" value="00001">変更</button></td>
+							<td><button class="delete-btn tdBtn" value="00001">取消</button></td>
 						</tr>
 					</table>
 				</div>
@@ -139,10 +139,6 @@
          </main>
      </div>
  
-
-
-
-
      <div id="entryModal" class="modal">
         <div class="modal-content">
           <div class="modal-body">
@@ -152,7 +148,42 @@
             </div>
 			<form action="">
 				<p>ID<span id="car-id"></span>を出品しますか？</p>
+				<p>開催日<input type="date" name="date"></p>
+				<p>開始時刻<input type="time" name="start-time"></p>
+				<p>終了時刻<input type="time" name="end-time"></p>
 				<button id="ex-btn">出品</button>
+			</form>
+          </div>
+        </div>
+    </div>
+
+	<div id="updateModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="modal-header">
+                <h3>オークション開催日時変更</h2>
+                <span class="modalClose">×</span>
+            </div>
+			<form action="">
+				<p>開催日<input type="date" name="u-date" id="u-date"></p>
+				<p>開始時刻<input type="time" name="u-start-time" id="u-start" value="1400"></p>
+				<p>終了時刻<input type="time" name="u-end-time" id="u-end"></p>
+				<button id="update-btn">変更</button>
+			</form>
+          </div>
+        </div>
+    </div>
+
+	<div id="deleteModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="modal-header">
+                <h3>オークション取消</h2>
+                <span class="modalClose">×</span>
+            </div>
+			<form action="">
+				<p><span id="auction-date"></span><span id="start-time"></span>～<span id="end-time"></span>開催予定のオークションを取り消しますか？</p>
+				<button id="delete-btn">取消</button>
 			</form>
           </div>
         </div>
@@ -164,10 +195,30 @@
 		const carId = document.getElementById('car-id');
 		const exBtn = document.getElementById('ex-btn');
 		const modal = document.getElementById('entryModal');
+		const updateModal = document.getElementById('updateModal');
+		const deleteModal = document.getElementById('deleteModal');
 		// body要素を取得
 		const body = document.getElementsByTagName('body')[0];
 		// 出品ボタン
 		const exhibitionBtn = document.getElementsByClassName('exhibition-btn');
+		// 変更ボタン
+		const updateBtn = document.getElementsByClassName('update-btn');
+		const upBtn = document.getElementById('update-btn');
+		// 変更モーダル表示用
+		const upDate = document.getElementById('u-date');
+		const upStart = document.getElementById('u-start');
+		const upEnd = document.getElementById('u-end');
+		// 取消ボタン
+		const deleteBtn = document.getElementsByClassName('delete-btn');
+		const delBtn = document.getElementById('delete-btn');
+		// 開催日リスト
+		const dateList = document.getElementsByClassName('date');
+		const startList = document.getElementsByClassName('start');
+		const endList = document.getElementsByClassName('end');
+		// 取消モーダル表示用開催日時
+		const date = document.getElementById('auction-date');
+		const start = document.getElementById('start-time');
+		const end = document.getElementById('end-time');
 		//出品ボタンにモーダル表示リスナーを付与
 		for(let i=0; i< exhibitionBtn.length;i++){
 			exhibitionBtn[i].addEventListener('click',(e)=>{
@@ -179,12 +230,40 @@
 				exBtn.value = exhibitionBtn[i].value;
 			},false);
 		}
+		//変更ボタンにモーダル表示リスナーを付与
+		for(let i=0; i< updateBtn.length;i++){
+			updateBtn[i].addEventListener('click',(e)=>{
+				console.log("クリック");
+				updateModal.style.display = 'block';
+				body.classList.add('open');
+				upDate.value = dateList[i].textContent;
+				upStart.value = startList[i].textContent;
+				upEnd.value = endList[i].textContent;
+				upBtn.value = updateBtn[i].value;
+			},false);
+		}
+		// 取消ボタンにモーダル表示リスナーを付与
+		for(let i=0; i< deleteBtn.length;i++){
+			deleteBtn[i].addEventListener('click',(e)=>{
+				console.log("クリック");
+				deleteModal.style.display = 'block';
+				body.classList.add('open');  
+				//開催日時を表示
+				console.log(dateList[i]);
+				date.innerHTML = dateList[i].textContent;
+				start.innerHTML = startList[i].textContent;
+				end.innerHTML = endList[i].textContent;
+				delBtn.value = deleteBtn[i].value;
+			},false);
+		}
 
 		// バツ印がクリックされた時
 		for(let i=0; i< buttonClose.length;i++){
 			console.log(buttonClose[i]);
 			buttonClose[i].addEventListener('click',(e)=>{
 				modal.style.display = 'none';
+				updateModal.style.display = 'none';
+				deleteModal.style.display = 'none';
 				body.classList.remove('open');
 			},false);
 		}
@@ -194,8 +273,10 @@
 		function outsideClose(e) {
 			console.log("outsideClose関数実行");
 			console.log(e.target);
-			if (e.target == modal) {
+			if (e.target == modal || e.target == updateModal || e.target == deleteModal) {
 				modal.style.display = 'none';
+				updateModal.style.display = 'none';
+				deleteModal.style.display = 'none';
 			}
 			body.classList.remove('open');
 		}

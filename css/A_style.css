@@ -12,9 +12,15 @@ body {
 }
 
 header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: fixed;
   left: 20%;
   top: 0;
@@ -35,23 +41,28 @@ nav {
   height: 100%;
   background: #113458;
 }
+
 nav ul {
   padding-top: 15vh;
 }
+
 nav ul li {
   color: #fff;
   font-size: 1.3rem;
   width: 100%;
 }
+
 nav ul li a {
   display: block;
   padding: 1rem;
   padding-left: 2rem;
 }
+
 nav ul li a:hover {
   background: #f6f5f9;
   color: #113458;
 }
+
 nav ul li .current {
   background: #0998af;
 }
@@ -72,8 +83,12 @@ span {
 }
 
 .headerdiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .logoutform {
@@ -81,12 +96,14 @@ span {
   padding: 0;
   border-radius: 0;
 }
+
 .logoutform button {
   background: #fff;
   color: #113458;
   border: solid 1px #113458;
   padding: 0.3rem 0.6rem;
 }
+
 .logoutform button:hover {
   background: #ccc;
   border: solid 1px #fff;
@@ -113,44 +130,54 @@ input {
 .tablediv {
   background: #fff;
   padding: 0.8rem;
-  box-shadow: 0.5px 2px 1px 0 rgba(99, 99, 99, 0.5);
+  -webkit-box-shadow: 0.5px 2px 1px 0 rgba(99, 99, 99, 0.5);
+          box-shadow: 0.5px 2px 1px 0 rgba(99, 99, 99, 0.5);
   border-top: 0.1px solid rgba(0, 0, 0, 0.12);
   border-left: 0.1px solid rgba(140, 140, 140, 0.5);
   border-right: 0.1px solid rgba(140, 140, 140, 0.5);
   border-radius: 3px;
   overflow-x: auto;
 }
+
 .tablediv tr th {
   color: #fff;
   background: #113458;
   text-align: center;
 }
+
 .tablediv tr th, .tablediv tr td {
   padding: 0.5rem 0.8rem;
   white-space: nowrap;
 }
+
 .tablediv tr td {
   background: #eee;
   vertical-align: middle;
 }
+
 .tablediv tr td button {
   color: #fff;
   -webkit-text-decoration: solid;
           text-decoration: solid;
 }
+
 .tablediv tr td button:hover {
   color: #888;
 }
+
 .tablediv tr:nth-child(odd) td {
   background: #fff;
 }
+
 .tablediv::-webkit-scrollbar {
   height: 10px;
 }
+
 .tablediv::-webkit-scrollbar-track {
   background-color: #f4f4f4;
   border-radius: 100px;
 }
+
 .tablediv::-webkit-scrollbar-thumb {
   background-color: #cdcdcd;
   border-radius: 100px;
@@ -165,8 +192,12 @@ select, option {
 }
 
 .article-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   text-align: center;
   margin-bottom: 1rem;
 }
@@ -200,7 +231,8 @@ button {
   margin: 0 auto;
   width: 60%;
   height: 70%;
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  -webkit-box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+          box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
   -webkit-animation-name: modalopen;
           animation-name: modalopen;
   -webkit-animation-duration: 1s;
@@ -208,17 +240,22 @@ button {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  overflow: auto; /* スクロール設定 */
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  overflow: auto;
+  /* スクロール設定 */
   border-radius: 7px;
 }
+
 .modal-content::-webkit-scrollbar {
   width: 10px;
 }
+
 .modal-content::-webkit-scrollbar-track {
   background-color: #f4f4f4;
   border-radius: 100px;
 }
+
 .modal-content::-webkit-scrollbar-thumb {
   background-color: #cdcdcd;
   border-radius: 100px;
@@ -241,16 +278,24 @@ button {
     opacity: 1;
   }
 }
+
 .modal-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .modalClose {
   font-size: 2rem;
   color: #113458;
 }
+
 .modalClose:hover {
   cursor: pointer;
 }
@@ -267,4 +312,5 @@ button {
 
 h3 {
   font-size: 1.2rem;
-}/*# sourceMappingURL=A_style.css.map */
+}
+/*# sourceMappingURL=A_style.css.map */

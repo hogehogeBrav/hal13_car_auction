@@ -21,32 +21,53 @@ th {
   width: 70%;
   height: 80%;
 }
+
 #entryModal .modal-content h4 {
   font-weight: bold;
   color: #113458;
   margin-bottom: 0.4rem;
 }
+
 #entryModal .modal-content ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
+
 #entryModal .modal-content ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: start;
-  align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 #entryModal .modal-content ul li input {
   display: none;
 }
+
 #entryModal .modal-content ul li input:checked + label {
   border: solid 1px #113458;
   background: #113458;
   color: #fff;
 }
+
 #entryModal .modal-content ul li label {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 7.7rem;
   border: solid 1px #303030;
   border-radius: 5px;
@@ -69,4 +90,5 @@ th {
   text-align: center;
   padding: 0.5rem 1.2rem;
   border-radius: 50px;
-}/*# sourceMappingURL=A_stock.css.map */
+}
+/*# sourceMappingURL=A_stock.css.map */
