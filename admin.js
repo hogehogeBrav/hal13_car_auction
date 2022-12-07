@@ -23,14 +23,16 @@ const connection = mysql.createConnection({
   user: db.dbUser,
   password: db.dbPassword,
   port: db.dbPort,
-  database: db.dbDatabase
+  database: db.dbDatabase,
+  dateStrings: 'date'
 });
+
+const stock = require("./A_stock.js");
 
 // TOP画面(在庫管理画面)
 app.get('/', (req, res) => {
-  res.render('A_stock.ejs', {
-    
-  });
+  stock.main(connection,req,res);
+  
 });
 
 // 車両詳細画面
