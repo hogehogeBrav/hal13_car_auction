@@ -271,7 +271,7 @@ app.get('/auction/:auction_ID', isAuthenticated, (req, res) => {
         INNER JOIN user 
         ON (auction_bid.user_ID = user.user_ID) 
         WHERE auction_ID = ` + req.params.auction_ID + ` 
-        ORDER BY amount_time ASC;`,
+        ORDER BY amount_time DESC;`,
         (error2, results2) => {
           console.log(results2);
           if (error2) {

@@ -41,6 +41,27 @@ function countdown() {
 countdown();
 var timer = setInterval(countdown,10);
 
+// 日付フォーマット
+function dateFormatter(date, format) {
+  format = format.replace(/YYYY/, date.getFullYear());
+  format = format.replace(/MM/, date.getMonth() + 1);
+  format = format.replace(/DD/, date.getDate());
+  format = format.replace(/hh/, date.getHours());
+  format = format.replace(/mm/, date.getMinutes());
+  format = format.replace(/ss/, date.getSeconds());
+  return format;
+}
+
+// 入札履歴モーダル
+$(document).on('click', '#bid_history', function(event) {
+  event.preventDefault();
+  $('#bid_history_modal').iziModal('open');
+});
+$('#bid_history_modal').iziModal({
+  title: '入札履歴',
+});
+
+// 入札非同期通信
 form.addEventListener('submit' , function(event){
   event.preventDefault();
   const sendData = {
@@ -65,14 +86,9 @@ form.addEventListener('submit' , function(event){
   socketio.emit('c2s' , sendData);
 });
 
-bid_history.addEventListener('click' , function(event){
-  event.preventDefault();
-  bid_history_modal.style.display = "block";
-});
-
 socketio.on('s2c' , function(msg){
   console.log('ソケットs2c: ' + msg);
-  document.getElementById('now_amount').innerHTML = "現在価格: " + msg.amount;
+  document.getElementById('now_amount').innerHTML = msg.amount + "円";
   amount_form.value = msg.amount;
   amount_form.min = parseInt(msg.amount) + 1;
   // 入札履歴モーダルのリストに追加

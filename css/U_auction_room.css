@@ -1,0 +1,94 @@
+@charset "UTF-8";
+/**
+* システム名：HAL自動車オークションシステム
+* 
+* ユーザ側オークション入札画面
+* 
+* 作成者：宮原誠
+*/
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+main #auction_car_title {
+  margin-top: 50px;
+}
+main #auction_car_title h2 {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  font-size: 26px;
+  font-weight: 700;
+  height: 70px;
+  line-height: 70px;
+}
+main #auction_car_detail {
+  display: flex;
+  justify-content: space-between;
+}
+main #auction_car_detail .car_images {
+  border: #515050 solid 2px;
+  width: 47%;
+  height: 400px;
+}
+main #auction_car_detail .car_images img {
+  width: 100%;
+  height: 400px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+main #auction_car_detail .car_auction {
+  width: 47%;
+}
+main #auction_car_detail .car_auction .car_amount {
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+}
+main #auction_car_detail .car_auction .car_amount div {
+  margin-right: 30px;
+}
+main #auction_car_detail .car_auction .car_amount div p:first-child {
+  color: #515050;
+  font-size: 20px;
+  line-height: 28px;
+  margin-bottom: 10px;
+}
+main #auction_car_detail .car_auction .car_amount .start p:first-child {
+  border-bottom: rgb(151, 191, 90) solid 3px;
+}
+main #auction_car_detail .car_auction .car_amount .now p:first-child {
+  border-bottom: #ff0000 solid 3px;
+}
+main #auction_car_detail .car_auction .car_amount div p:last-child {
+  color: #515050;
+  font-size: 32px;
+  line-height: 32px;
+}
+
+#bid_history_modal_lists {
+  max-height: 400px;
+  overflow-y: scroll;
+  padding: 20px;
+}
+#bid_history_modal_lists p {
+  display: block;
+  font-weight: bold;
+  margin: 10px auto;
+  text-align: center;
+}
+#bid_history_modal_lists #history_container {
+  font-size: 18px;
+  line-height: 34px;
+  display: flex;
+  justify-content: space-between;
+}
+#bid_history_modal_lists #history_container li:first-child {
+  width: 30%;
+}
+#bid_history_modal_lists #history_container li {
+  width: 30%;
+}
+#bid_history_modal_lists li {
+  font-weight: 800;
+}/*# sourceMappingURL=U_auction_room.css.map */

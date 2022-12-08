@@ -8,11 +8,13 @@
   <link rel="stylesheet" href="/U_header.css">
   <link rel="stylesheet" href="/U_footer.css">
   <link rel="stylesheet" href="/U_auction.css">
+  <link rel="stylesheet" href="/visuallyhidden.css">
   <title>HALオークション | オークション一覧</title>
 </head>
 <body>
   <%- include('U_header.ejs'); %>
   <main>
+    <h1 class="visuallyhidden">HAL AUCTION オークション一覧</h1>
     <div id="auction_list">
       <h2>オークション一覧</h2>
     </div>
@@ -23,7 +25,7 @@
         </div>
         <div class="now_auction_info">
           <div class="maker">
-            <p><%= auction[i].maker_name %> <%= auction[i].name %> <%= auction[i].grade %> </p>
+            <h3><%= auction[i].maker_name %> <%= auction[i].name %> <%= auction[i].grade %> </h3>
           </div>
           <div class="time">
             <p>開始時間:<%= auction[i].start_time.toLocaleString() %> <br>終了時間:<%= auction[i].ending_time.toLocaleString() %></p>

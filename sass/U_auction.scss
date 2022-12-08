@@ -7,6 +7,8 @@
 */
 
 main{
+  max-width: 1280px;
+  margin: 0 auto;
   #auction_list{
     text-align: center;
     margin-top: 50px;
@@ -72,6 +74,12 @@ main{
             line-height: 24px;
             border-bottom: gray solid 2px;
             margin-bottom: 10px;
+          }
+          .start p:first-child{
+            border-bottom: rgb(151, 191, 90) solid 3px;
+          }
+          .now p:first-child{
+            border-bottom: #ff0000 solid 3px;
           }
           div p:last-child{
             color: #515050;
