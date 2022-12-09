@@ -40,16 +40,34 @@
         <div class="car_amount">
           <div class="start">
             <p>開始価格</p>
-            <p><%= auction[0].minimum_amount %>円</p>
+            <p><%= auction[0].minimum_amount.toLocaleString() %>円</p>
           </div>
           <div class="now">
             <p>現在価格</p>
-            <p id="now_amount"><%= now_amount %>円</p>
+            <p id="now_amount"><%= now_amount.toLocaleString() %>円</p>
           </div>
         </div>
         <div class="auction_button">
           <button id="bid_history">入札履歴を見る</button>
           <button id="bid">入札する</button> 
+        </div>
+        <div class="car_info">
+          <div id="model_year">
+            <span>モデル年式</span>
+            <p><%= new Date(auction[0].model_year).getFullYear() %>年</p>
+          </div>
+          <div id="mileage">
+            <span>走行距離</span>
+            <p><%= auction[0].mileage.toLocaleString() %>km</p>
+          </div>
+          <div id="color">
+            <span>色</span>
+            <p><%= auction[0].color_name %>系</p>
+          </div>
+          <div id="fuel">
+            <span>排気量</span>
+            <p><%=  Math.round(auction[0].displacement / 100) * 100 %>cc</p>
+          </div>
         </div>
       </div>
     </div>

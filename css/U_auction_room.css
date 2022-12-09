@@ -12,8 +12,8 @@ main {
 }
 main #auction_car_title {
   background-color: #f5f5f5;
-  border: 2px solid #6666df;
-  border-left: 10px solid #6666df;
+  border: 2px solid #7070c5;
+  border-left: 10px solid #7070c5;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -119,6 +119,7 @@ main #auction_car_detail .car_auction .car_amount div p:last-child {
 }
 main #auction_car_detail .car_auction .auction_button {
   display: flex;
+  margin-bottom: 35px;
 }
 main #auction_car_detail .car_auction .auction_button button {
   margin-right: 20px;
@@ -172,6 +173,29 @@ main #auction_car_detail .car_auction .auction_button #bid {
 main #auction_car_detail .car_auction .auction_button #bid:hover {
   transform: scale(1.04);
   background-color: #21e065;
+}
+main #auction_car_detail .car_auction .car_info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  color: #515050;
+}
+main #auction_car_detail .car_auction .car_info div {
+  width: 20%;
+}
+main #auction_car_detail .car_auction .car_info div span {
+  display: inline-block;
+  width: 100%;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 600;
+  border-bottom: 3px solid #7070c5;
+  margin-bottom: 10px;
+}
+main #auction_car_detail .car_auction .car_info div p {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 #bid_history_modal #top_comment {

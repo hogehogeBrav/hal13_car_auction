@@ -11,8 +11,8 @@ main{
   margin: 0 auto;
   #auction_car_title{
     background-color: #f5f5f5;
-    border: 2px solid #6666df;
-    border-left: 10px solid #6666df;
+    border: 2px solid #7070c5;
+    border-left: 10px solid #7070c5;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -120,6 +120,7 @@ main{
       }
       .auction_button{
         display: flex;
+        margin-bottom: 35px;
         button{
           margin-right: 20px;
         }
@@ -174,6 +175,29 @@ main{
         #bid:hover{
           transform: scale(1.04);
           background-color: #21e065;
+        }
+      }
+      .car_info{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        color: #515050;
+        div{
+          width: 20%;
+          span{
+            display: inline-block;
+            width: 100%;
+            font-size: 18px;
+            line-height: 30px;
+            font-weight: 600;
+            border-bottom: 3px solid #7070c5;
+            margin-bottom: 10px;
+          }
+          p{
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+          }
         }
       }
     }

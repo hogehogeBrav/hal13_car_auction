@@ -250,6 +250,8 @@ app.get('/auction/:auction_ID', isAuthenticated, (req, res) => {
     FROM auction 
     INNER JOIN stock
     ON (auction.car_ID = stock.car_ID)
+    INNER JOIN option
+    ON (stock.car_ID = option.car_ID)
     INNER JOIN model
     ON (stock.car_model_ID = model.car_model_ID)
     INNER JOIN maker
