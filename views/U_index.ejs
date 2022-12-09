@@ -41,14 +41,14 @@
             <div class="amount">
               <div class="start">
                 <p>開始価格</p>
-                <p><%= now_auction[i].minimum_amount %>円</p>
+                <p><%= now_auction[i].minimum_amount.toLocaleString() %>円</p>
               </div>
               <div class="now">
                 <p>現在価格</p>
                 <% if(now_auction[i].max_amount == null) { %>
-                  <p><%= now_auction[i].minimum_amount %>円</p>
+                  <p><%= now_auction[i].minimum_amount.toLocaleString() %>円</p>
                 <% } else { %>
-                  <p><%= now_auction[i].max_amount %>円</p>
+                  <p><%= now_auction[i].max_amount.toLocaleString() %>円</p>
                 <% } %>
               </div>
             </div>

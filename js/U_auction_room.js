@@ -5,6 +5,7 @@ const bid = document.getElementById('bid'); // 入札モーダルボタン
 const bid_button = document.getElementById('bid_button'); // 入札モーダル内 入札ボタン
 const bid_history = document.getElementById('bid_history'); // 入札履歴ボタン
 const bid_history_modal = document.getElementById('bid_history_modal'); // 入札履歴モーダル
+const numberWithComma = new Intl.NumberFormat(); // 3桁カンマ区切り
 
 const time_container = document.getElementById('time-container'); // 残り時間表示
 const hour = document.getElementById("diff_hour");
@@ -173,22 +174,13 @@ $(document).on('click', '#bid_button', function(event) {
 
     socketio.emit('c2s' , sendData);
   }
-  // setTimeout("bidSuccessModal();", 1000);
-});
-
-$('#bid_success_alert').iziModal({
-  headerColor: '#21e065', //ヘッダー部分の色
-  width: 400, //横幅
-  timeout: 5000, //5秒で非表示
-  timeoutProgressbar: true, //プログレスバーの表示
-  attached: 'bottom' //アラートの表示位置 top or bottom or 指定なしで中央
 });
 
 // ソケット通信
 socketio.on('s2c' , function(msg){
   console.log('ソケットs2c: ' + msg);
-  document.getElementById('now_amount').innerHTML = msg.amount + "円";
-  document.getElementById('amount_form').value = msg.amount;
+  document.getElementById('now_amount').innerHTML = numberWithComma.format(msg.amount) + "円";
+  document.getElementById('amount_form').value = msg.amount + 1000;
   now_amount = msg.amount;
 
   // トースト通知
@@ -196,7 +188,7 @@ socketio.on('s2c' , function(msg){
 
   // 入札履歴モーダルのリストに追加
   var div = document.createElement('div');
-  div.innerHTML = "<li>" + new Date().toLocaleString() + "</li><li>入札者: " + msg.name + "</li><li>入札金額: " + msg.amount + "</li>";
+  div.innerHTML = "<li>" + new Date().toLocaleString() + "</li><li>入札者: " + msg.name + "</li><li>入札金額: " + numberWithComma.format(msg.amount) + "</li>";
   // divにID追加
   div.id = "history_container";
   // 履歴モーダルの先頭に追加
