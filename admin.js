@@ -34,8 +34,8 @@ app.get('/', (req, res) => {
   stock.main(connection,req,res);
 });
 app.post('/', (req, res) => {
-  stock.main(connection,req,res);
   stock.insert(connection,req,res);
+  stock.main(connection,req,res);
 });
 
 // 車両詳細画面

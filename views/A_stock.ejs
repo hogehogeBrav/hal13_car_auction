@@ -119,7 +119,7 @@
 				<p>グレード<input type="text" name="grade"></p>
 				<p>排気量<input type="text" name="displacement"></p>
 				<p>年式<input type="text" name="model_year"></p>
-				<p>輸入車モデル年式<input type="text" name="import_model-year"></p>
+				<p>輸入車モデル年式<input type="text" name="import_model_year"></p>
 				<p>走行距離<input type="text" name="mileage"></p>
 				<p>
 					走行状態
@@ -138,7 +138,7 @@
 					</select>
 				</p>
 				<p>色名<input type="text" name="color_name"></p>
-				<p>車検有効期限<input type="text" name=""></p>
+				<p>車検有効期限<input type="text" name="insurance_deadline"></p>
 				<p>
 					ミッション
 					<select name="AT_MT">
@@ -178,14 +178,14 @@
 					点検記録簿
 					<select name="check_memo">
 						<option value="1">あり</option>
-						<option value="2">なし</option>
+						<option value="0">なし</option>
 					</select>
 				</p>
 				<p>
 					修復歴
 					<select name="repair">
 						<option value="1">あり</option>
-						<option value="2">なし</option>
+						<option value="0">なし</option>
 					</select>
 				</p>
 				<p>車台番号(下3桁)<input type="number" name="car_number"></p>
@@ -211,47 +211,47 @@
 				<h4>装備品</h4>
 				<ul>
 					<li>
-						<input type="checkbox" name="parts" id="aircon" value="aircon">
+						<input type="checkbox" name="parts" id="aircon" value="air_conditioner">
 						<label for="aircon">エアコン</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="smartkey" value="smartkey">
+						<input type="checkbox" name="parts" id="smartkey" value="smart_key">
 						<label for="smartkey">スマートキー</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="sunroof" value="sunroof">
+						<input type="checkbox" name="parts" id="sunroof" value="sun_roof">
 						<label for="sunroof">サンルーフ</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="lowdown" value="lowdown">
+						<input type="checkbox" name="parts" id="lowdown" value="low_down">
 						<label for="lowdown">ローダウン</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="power-steering" value="power-steering">
+						<input type="checkbox" name="parts" id="power-steering" value="power_steering">
 						<label for="power-steering">パワステ</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="CD" value="CD">
+						<input type="checkbox" name="parts" id="CD" value="cd">
 						<label for="CD">CD</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="seats" value="seats">
+						<input type="checkbox" name="parts" id="seats" value="leather_seat">
 						<label for="seats">本革シート</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="no-smoking" value="no-smoking">
+						<input type="checkbox" name="parts" id="no-smoking" value="non_smoking">
 						<label for="no-smoking">禁煙車</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="power-window" value="power-window">
+						<input type="checkbox" name="parts" id="power-window" value="power_window">
 						<label for="power-window">パワーウィンドウ</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="MD" value="MD">
+						<input type="checkbox" name="parts" id="MD" value="md">
 						<label for="MD">MD</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="aero" value="aero">
+						<input type="checkbox" name="parts" id="aero" value="aero_parts">
 						<label for="aero">純正エアロパーツ</label>
 					</li>
 					<li>
@@ -259,35 +259,35 @@
 						<label for="pet">ペット同乗なし</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="door-lock" value="door-lock">
+						<input type="checkbox" name="parts" id="door-lock" value="central_door_lock">
 						<label for="door-lock">集中ドアロック</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="DVD" value="DVD">
+						<input type="checkbox" name="parts" id="DVD" value="dvd">
 						<label for="DVD">DVDビデオ</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="alumi" value="alumi">
+						<input type="checkbox" name="parts" id="alumi" value="genuine_alminium_wheel">
 						<label for="alumi">純正アルミホイール</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="limited" value="limited">
+						<input type="checkbox" name="parts" id="limited" value="limited_edition">
 						<label for="limited">限定車</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="ABS" value="ABS">
+						<input type="checkbox" name="parts" id="ABS" value="abs">
 						<label for="ABS">ABS</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="TV" value="TV">
+						<input type="checkbox" name="parts" id="TV" value="tv">
 						<label for="TV">テレビ</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="ESC" value="ESC">
+						<input type="checkbox" name="parts" id="ESC" value="skid_prevention">
 						<label for="ESC">横滑り防止装置</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="test" value="test">
+						<input type="checkbox" name="parts" id="test" value="test_drive">
 						<label for="test">試乗、現車確認可能</label>
 					</li>
 					<li>
@@ -295,11 +295,11 @@
 						<label for="airbag">エアバッグ</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="nav" value="nav">
+						<input type="checkbox" name="parts" id="nav" value="navi">
 						<label for="nav">ナビゲーション</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="TCS" value="TCS">
+						<input type="checkbox" name="parts" id="TCS" value="traction_control">
 						<label for="TCS">トラクションコントロール</label>
 					</li>
 					<li>
@@ -307,35 +307,35 @@
 						<label for="manual">取扱説明書</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="ETC" value="ETC">
+						<input type="checkbox" name="parts" id="ETC" value="etc">
 						<label for="ETC">ETC</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="back-camera" value="back-camera">
+						<input type="checkbox" name="parts" id="back-camera" value="back_cam">
 						<label for="back-camera">バックカメラ</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="cold-manual" value="cold-manual">
+						<input type="checkbox" name="parts" id="cold-manual" value="cold_climate">
 						<label for="cold-manual">寒冷地帯仕様書</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="new-warranty" value="new-warranty">
+						<input type="checkbox" name="parts" id="new-warranty" value="warranty">
 						<label for="new-warranty">新車時保証書</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="keyless" value="keyless">
+						<input type="checkbox" name="parts" id="keyless" value="key_less">
 						<label for="keyless">キーレスエントリー</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="slide-door" value="slide-door">
+						<input type="checkbox" name="parts" id="slide-door" value="electric_door">
 						<label for="slide-door">電動スライドドア</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="welfare" value="welfare">
+						<input type="checkbox" name="parts" id="welfare" value="welfare_vechicles">
 						<label for="welfare">福祉車両</label>
 					</li>
 					<li>
-						<input type="checkbox" name="parts" id="spare-tire" value="spare-tire">
+						<input type="checkbox" name="parts" id="spare-tire" value="spare_tire">
 						<label for="spare-tire">スペアタイヤ</label>
 					</li>
 				</ul>
