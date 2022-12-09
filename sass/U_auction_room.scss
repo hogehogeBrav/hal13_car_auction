@@ -10,15 +10,37 @@ main{
   max-width: 1280px;
   margin: 0 auto;
   #auction_car_title{
-    margin-top: 50px;
+    background-color: #e0e0e0;
+    border: 2px solid #6666df;
+    border-left: 10px solid #6666df;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin: 50px auto 40px auto;
+    justify-content: space-between;
+    padding: 0 30px;
     h2{
+      width: 60%;
       display: inline-block;
-      margin-bottom: 20px;
-      padding: 0 20px;
+      // margin-bottom: 20px;
       font-size: 26px;
       font-weight: 700;
       height: 70px;
       line-height: 70px;
+    }
+    .time{
+      width: 35%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 45px;
+      font-size: 20px;
+      font-weight: 700;
+      background-color: #6666df;
+      color: #fff;
+      border: solid 3px #626262;
+      border-radius: 100px;
+      text-align: center;
     }
   }
   
@@ -26,7 +48,8 @@ main{
     display: flex;
     justify-content: space-between;
     .car_images{
-      border: #515050 solid 2px;
+      border: #b7b7b7 solid 2px;
+      border-radius: 5px;
       width: 47%;
       height: 400px;
       img{
@@ -38,14 +61,29 @@ main{
 
     .car_auction{
       width: 47%;
+      #time-container{
+        border: 3px solid #21e065;
+        border-radius: 100px;
+        width: 90%;
+        // margin: 0 auto;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        margin: 0 0 30px 0;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 0px 40px;
+        background-color: #f5f5f5;
+      }
       .car_amount{
         display: flex;
-        // justify-content: space-evenly;
-        // line-height: 50px;
+        margin-bottom: 30px;
         font-size: 20px;
         font-weight: bold;
         div{
-          margin-right: 30px;
+          margin-right: 5%;
+          width: 33%;
+          // margin-right: 30px;
         }
         div p:first-child{
           color: #515050;
@@ -54,47 +92,168 @@ main{
           margin-bottom: 10px;
         }
         .start p:first-child{
-          border-bottom: rgb(151, 191, 90) solid 3px;
+          border-bottom: #ff0000 solid 3px;
         }
         .now p:first-child{
-          border-bottom: #ff0000 solid 3px;
+          border-bottom: #97bf5a  solid 3px;
         }
         div p:last-child{
           color: #515050;
-          font-size: 32px;
-          line-height: 32px;
+          font-size: 30px;
+          line-height: 30px;
         }
-        // .history{
-          
-        // }
+      }
+      .auction_button{
+        display: flex;
+        button{
+          margin-right: 20px;
+        }
+        #bid_history{
+          margin-bottom: 10px;
+          display: inline-block;
+          outline: none;
+          cursor: pointer;
+          font-size: 14px;
+          line-height: 1;
+          border-radius: 500px;
+          transition-property: background-color,border-color,color,box-shadow,filter;
+          transition-duration: .3s;
+          border: 1px solid transparent;
+          letter-spacing: 2px;
+          min-width: 160px;
+          text-transform: uppercase;
+          white-space: normal;
+          font-weight: 700;
+          text-align: center;
+          // padding: 16px 14px 18px;
+          color: #616467;
+          box-shadow: inset 0 0 0 2px #616467;
+          background-color: transparent;
+          height: 40px;
+        }
+        #bid_history:hover{
+          color: #fff;
+          background-color: #616467;
+        }
+        #bid{
+          display: inline-block;
+          outline: none;
+          cursor: pointer;
+          font-size: 14px;
+          line-height: 1;
+          border-radius: 500px;
+          transition-property: background-color,border-color,color,box-shadow,filter;
+          transition-duration: .3s;
+          border: 1px solid transparent;
+          letter-spacing: 2px;
+          min-width: 160px;
+          text-transform: uppercase;
+          white-space: normal;
+          font-weight: 700;
+          text-align: center;
+          // padding: 17px 48px;
+          color: #fff;
+          background-color: #1ED760;
+          height: 40px;
+        }
+        #bid:hover{
+          transform: scale(1.04);
+          background-color: #21e065;
+        }
       }
     }
   }
 }
 
-#bid_history_modal_lists{
-  max-height: 400px;
-  overflow-y: scroll; 
-  padding: 20px;
-  p{
+#bid_history_modal{
+  #top_comment{
     display: block;
     font-weight: bold;
-    margin: 10px auto;
+    margin: 20px auto 0 auto;
     text-align: center;
   }
-  #history_container{
-    font-size: 18px;
-    line-height: 34px;
-    display: flex;
-    justify-content: space-between;
-    li:first-child{
-      width: 30%;
+  #bid_history_modal_lists{
+    max-height: 400px;
+    overflow-y: scroll; 
+    padding: 20px;
+    p{
+      display: block;
+      font-weight: bold;
+      margin: 10px auto;
+      text-align: center;
+    }
+    #history_container{
+      font-size: 18px;
+      line-height: 34px;
+      display: flex;
+      justify-content: space-between;
+      li:first-child{
+        width: 30%;
+      }
+      li{
+        width: 30%;
+      }
     }
     li{
-      width: 30%;
+      font-weight: 800;
     }
   }
-  li{
-    font-weight: 800;
+}
+
+#bid_modal{
+  #bid_form{
+    padding: 30px;
+    justify-content: space-between;
+    #form_text{
+      margin-bottom: 30px;
+    }
+    input{
+      width: 50%;
+      height: 40px;
+      font-size: 20px;
+      font-weight: bold;
+      border: 1px solid #b7b7b7;
+      border-radius: 5px;
+      padding: 0 10px;
+    }
+    #add_text{
+      margin-bottom: 15px;
+    }
+    #add_button{
+      display: flex;
+      justify-content: space-between;
+      margin: 15px auto;
+      button{
+        text-align: center;
+        width: 25%;
+        height: 40px;
+        font-size: 20px;
+        font-weight: bold;
+        border: 1px solid #b7b7b7;
+        border-radius: 5px;
+        padding: 0 10px;
+        background-color: #97bf5a ;
+        color: #fff;
+      }
+    }
+    #confirm_button{
+      display: flex;
+      justify-content: center;
+      #bid_button{
+        text-align: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 30px;
+        width: 30%;
+        height: 40px;
+        font-size: 20px;
+        font-weight: bold;
+        border: 1px solid #b7b7b7;
+        border-radius: 5px;
+        padding: 0 10px;
+        background-color: #21e065;
+        color: #fff;
+      }
+    }
   }
 }

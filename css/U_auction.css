@@ -79,10 +79,10 @@ main .now_auction .now_auction_info .bottom .amount div p:first-child {
   margin-bottom: 10px;
 }
 main .now_auction .now_auction_info .bottom .amount .start p:first-child {
-  border-bottom: rgb(151, 191, 90) solid 3px;
+  border-bottom: #ff0000 solid 3px;
 }
 main .now_auction .now_auction_info .bottom .amount .now p:first-child {
-  border-bottom: #ff0000 solid 3px;
+  border-bottom: rgb(151, 191, 90) solid 3px;
 }
 main .now_auction .now_auction_info .bottom .amount div p:last-child {
   color: #515050;
