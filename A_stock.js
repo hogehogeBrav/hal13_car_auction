@@ -36,7 +36,7 @@ const option_sql ="INSERT INTO option SET ?;";
  * @param {*} req リクエスト
  * @param {*} res レスポンス
  */
-exports.get = async function(con,req,res) {
+exports.main = async function(con,req,res) {
   let stock_list = await findAll(con,sql);
   let maker_list = await findAll(con,maker_sql);
   let model_list = await findAll(con,model_sql);
