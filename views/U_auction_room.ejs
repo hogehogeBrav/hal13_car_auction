@@ -25,8 +25,8 @@
       <h2><%= auction[0].maker_name  %> <%= auction[0].name %> <%= auction[0].grade %> <small></small></h2>
       <p class="visuallyhidden">開催時刻</p>
       <div class="time">
-        <p id="start_time"><%= auction[0].start_time.toLocaleString() %>&nbsp;~&nbsp;</p>   
-        <p id="ending_time"><%= auction[0].ending_time.toLocaleString() %></p>
+        <p id="start_time"><%= auction[0].start_time.getMonth() + 1 %>/<%= auction[0].start_time.getDate() %>&nbsp;<%= auction[0].start_time.getHours() %>:<%= auction[0].start_time.getMinutes() %>&nbsp;~&nbsp;</p>   
+        <p id="ending_time"><%= auction[0].ending_time.getMonth() + 1 %>/<%= auction[0].ending_time.getDate() %>&nbsp;<%= auction[0].ending_time.getHours() %>:<%= auction[0].ending_time.getMinutes() %></p>
       </div>
     </div>
     <div id="auction_car_detail">
@@ -54,7 +54,7 @@
         <div class="car_info">
           <div id="model_year">
             <span>モデル年式</span>
-            <p><%= new Date(auction[0].model_year).getFullYear() %>年</p>
+            <p><%= auction[0].model_year.getFullYear() %>年</p>
           </div>
           <div id="mileage">
             <span>走行距離</span>

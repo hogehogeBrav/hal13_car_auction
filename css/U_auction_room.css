@@ -30,7 +30,7 @@ main #auction_car_title h2 {
   line-height: 70px;
 }
 main #auction_car_title .time {
-  width: 35%;
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
