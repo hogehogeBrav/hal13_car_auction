@@ -9,23 +9,34 @@
   <link rel="stylesheet" href="/U_footer.css">
   <link rel="stylesheet" href="/U_auction_room.css">
   <link rel="stylesheet" href="/iziModal/iziModal.css">
+  <link rel="stylesheet" href="/toastr/toastr.css">
   <link rel="stylesheet" href="/visuallyhidden.css">
   <title>HALオークション | <%= auction[0].maker_name  %> <%= auction[0].name %> </title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
   <script src="/iziModal/iziModal.js"></script>
+  <script src="/toastr/toastr.min.js"></script>
 </head>
 <body>
   <%- include('U_header.ejs'); %>
   <main>
     <h1 class="visuallyhidden">オークションNo. <%= auction[0].auction_ID %>の入札画面</h1>
     <div id="auction_car_title">
-      <h2><%= auction[0].maker_name  %> <%= auction[0].name %> <%= auction[0].grade %> <small></small></h2>    
+      <h2><%= auction[0].maker_name  %> <%= auction[0].name %> <%= auction[0].grade %> <small></small></h2>
+      <p class="visuallyhidden">開催時刻</p>
+      <div class="time">
+        <p id="start_time"><%= auction[0].start_time.toLocaleString() %>&nbsp;~&nbsp;</p>   
+        <p id="ending_time"><%= auction[0].ending_time.toLocaleString() %></p>
+      </div>
     </div>
     <div id="auction_car_detail">
       <div class="car_images">
         <img src="https://placehold.jp/3d4070/ffffff/150x150.png" alt="車両画像">
       </div>
       <div class="car_auction">
+        <div id="time-container">
+          <p class="diff_time">残り時間&nbsp;<span id="diff_hour"></span>:<span id="diff_min"></span>:<span id="diff_sec"></span></p>
+        </div>
         <div class="car_amount">
           <div class="start">
             <p>開始価格</p>
@@ -35,30 +46,38 @@
             <p>現在価格</p>
             <p id="now_amount"><%= now_amount %>円</p>
           </div>
-          <div class="history">
-            <button id="bid_history">入札履歴を見る</button>
-          </div>
         </div>
-        <p id="start_time">開始時間:<%= auction[0].start_time.toLocaleString() %></p>
-        <p id="ending_time">終了時間:<%= auction[0].ending_time.toLocaleString() %></p>
-        <div class="time-container">
-          <p class="diff_time">残り<span id="diff_hour"></span>時間&nbsp;<span id="diff_min"></span>分&nbsp;<span id="diff_sec"></span>秒</p>
+        <div class="auction_button">
+          <button id="bid_history">入札履歴を見る</button>
+          <button id="bid">入札する</button> 
         </div>
       </div>
     </div>
-    <form id="bid_form">
-      <p>入札金額：<input type="number" id="amount_form" min="<%= now_amount + 1%>" value="<%= now_amount %>"></p>
-      <input type="submit" id="bid_button" value="入札">
-    </form>
     <div id="bid_history_modal">
+      <p id="top_comment">上部が最新です</p>
       <ul id="bid_history_modal_lists">
-        <p>上部が最新です</p>
         <% for(let i = 0; i < auction_bid_history.length; i++) {%>
           <div id="history_container">
             <li><%= auction_bid_history[i].amount_time.toLocaleString() %></li><li>入札者: <%= auction_bid_history[i].name %></li><li>入札金額: <%= auction_bid_history[i].amount %></li>
           </div>
         <% } %>
       </ul>
+    </div>
+    <div id="bid_modal">
+      <form id="bid_form">
+        <p id="form_text">入札金額：<input type="number" id="amount_form" value="<%= now_amount %>">&nbsp;円</p>
+        <p id="add_text">金額を追加する</p>
+        <hr>
+        <div id="add_button">
+          <button id="add10000" value="10000">+10000円</button>
+          <button id="add5000" value="5000">+5000円</button>
+          <button id="add1000" value="1000">+1000円</button>
+        </div>
+        <hr>
+        <div id="confirm_button">
+          <input type="submit" id="bid_button" value="入札する">
+        </div>
+      </form>
     </div>
   </main>
   <%- include('U_footer.ejs'); %>
@@ -67,6 +86,7 @@
   var auctionid = '<%= auction[0].auction_ID %>';
   var userid = '<%= id %>';
   var username = '<%= name %>';
+  var now_amount = '<%= now_amount %>';
   var ending_time = new Date('<%= auction[0].ending_time %>');
 </script>
 <script src="/socket.io/socket.io.js"></script>
