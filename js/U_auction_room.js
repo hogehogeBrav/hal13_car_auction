@@ -26,24 +26,34 @@ function countdown() {
   min.innerHTML = calcMin < 10 ? '0' + calcMin : calcMin;
   sec.innerHTML = calcSec < 10 ? '0' + calcSec : calcSec;
 
-  // オークション終了時、カウントストップ
-  if(diff <= 0) {
-    clearInterval(timer);
-    hour.innerHTML = '00';
-    min.innerHTML = '00';
-    sec.innerHTML = '00';
+  // 残り時間によって、カウントダウンの色を変更
+  // 残り1時間未満でオレンジ
+  if(diff <= 3600000) {
+    time_container.style.borderColor = 'orange';
+    time_container.style.color = 'orange';
+    document.getElementsByClassName('status')[0].innerText = '残り1時間未満';
+    document.getElementsByClassName('status')[0].style.backgroundColor = 'orange';
+    // オークション終了時、カウントストップ
+    if(diff <= 0) {
+      clearInterval(timer);
+      hour.innerHTML = '00';
+      min.innerHTML = '00';
+      sec.innerHTML = '00';
 
-    amount_form.disabled = true;
-    bid_button.disabled = true;
-    bid_button.value = '終了しました';
-    bid.disabled = true;
-    bid.innerText = '終了しました';
-    bid.style.backgroundColor = '#ccc';
+      amount_form.disabled = true;
+      bid_button.disabled = true;
+      bid_button.value = '終了しました';
+      bid.disabled = true;
+      bid.innerText = '終了しました';
+      bid.style.backgroundColor = '#ccc';
 
-    time_container.style.borderColor = 'red';
-    time_container.style.color = 'red';
-    document.getElementsByClassName('diff_time')[0].innerText = 'このオークションは終了しました。';
-    toastr.error('このオークションは終了しました。');
+      time_container.style.borderColor = 'red';
+      time_container.style.color = 'red';
+      // document.getElementsByClassName('diff_time')[0].innerText = 'このオークションは終了しました。';
+      document.getElementsByClassName('status')[0].innerText = '終了しました';
+      document.getElementsByClassName('status')[0].style.backgroundColor = 'red';
+      toastr.error('このオークションは終了しました。');
+    }
   }
 }
 countdown();

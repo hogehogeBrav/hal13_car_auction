@@ -11,7 +11,7 @@ main {
   margin: 0 auto;
 }
 main #auction_car_title {
-  background-color: #e0e0e0;
+  background-color: #f5f5f5;
   border: 2px solid #6666df;
   border-left: 10px solid #6666df;
   border-radius: 10px;
@@ -63,17 +63,32 @@ main #auction_car_detail .car_auction {
   width: 47%;
 }
 main #auction_car_detail .car_auction #time-container {
-  border: 3px solid #21e065;
+  display: flex;
+  justify-content: space-around;
+  border: 3px solid #1ED760;
   border-radius: 100px;
   width: 90%;
-  height: 60px;
   display: flex;
   align-items: center;
   margin: 0 0 30px 0;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
-  padding: 0px 40px;
   background-color: #f5f5f5;
+}
+main #auction_car_detail .car_auction #time-container .diff_time {
+  width: 60%;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+main #auction_car_detail .car_auction #time-container .status {
+  width: 40%;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 0 100px 100px 0;
+  text-align: center;
+  background-color: #1ED760;
+  color: #fff;
 }
 main #auction_car_detail .car_auction .car_amount {
   display: flex;
@@ -88,7 +103,7 @@ main #auction_car_detail .car_auction .car_amount div {
 main #auction_car_detail .car_auction .car_amount div p:first-child {
   color: #515050;
   font-size: 20px;
-  line-height: 28px;
+  line-height: 32px;
   margin-bottom: 10px;
 }
 main #auction_car_detail .car_auction .car_amount .start p:first-child {
