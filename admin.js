@@ -28,6 +28,7 @@ const connection = mysql.createConnection({
 });
 
 const stock = require("./A_stock.js");
+const carDetail = require("./A_car_detail.js");
 
 // TOP画面(在庫管理画面)
 app.get('/', (req, res) => {
@@ -40,9 +41,10 @@ app.post('/', (req, res) => {
 
 // 車両詳細画面
 app.get('/detail/:car_ID', (req, res) => {
-  res.render('A_car_detail.ejs', {
-    
-  });
+  carDetail.main(connection,req,res);
+});
+app.post('/detail/:car_ID', (req, res) => {
+  carDetail.main(connection,req,res);
 });
 
 // オークション管理画面
