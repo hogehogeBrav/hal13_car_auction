@@ -5,8 +5,6 @@
  * 作成者：小嶋美紀
  */
 
-const { get } = require("express/lib/response");
-
 // 車両一覧SQL文
 let sql = 'SELECT stock.* , maker.maker_name AS maker_name, model.name AS model_name, run_status.run_status AS run_status, color.color_name AS color_category, body_type.body_type_name AS body_type';
 sql += ' FROM stock';
@@ -69,7 +67,6 @@ exports.main = async function(con,req,res) {
  * @param {*} res レスポンス
  */
 exports.insert = async function(con,req,res){
-  console.log(req.body);
   let stock_values = [
     req.body.maker_id, //select
     req.body.model_id, //select
@@ -197,6 +194,7 @@ async function insertStock (con,sql,values){
           res.status(400).send({ message: 'Error!!' });
           return;
         }
+        console.log('在庫登録完了');
       }
     );
   })
