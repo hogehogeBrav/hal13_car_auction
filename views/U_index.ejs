@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/U_header.css">
   <link rel="stylesheet" href="/U_footer.css">
   <link rel="stylesheet" href="/U_index.css">
+  <link rel="stylesheet" href="/visuallyhidden.css">
   <title>HALオークション | TOP</title>
 </head>
 <body>
@@ -26,6 +27,7 @@
       </div>
     <% } %> 
     <% for (let i = 0; i < now_auction.length; i++) { %>
+      <h3 class="visuallyhidden">オークションNo.<%= now_auction[i].auction_ID %> <%= now_auction[i].maker_name %> <%= now_auction[i].name %> <%= now_auction[i].grade %></h3>
       <div class="now_auction">
         <div class="now_auction_img">
           <img src="https://placehold.jp/3d4070/ffffff/150x150.png" alt="車両画像">

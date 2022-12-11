@@ -8,17 +8,20 @@
   <link rel="stylesheet" href="/U_header.css">
   <link rel="stylesheet" href="/U_footer.css">
   <link rel="stylesheet" href="/U_login.css">
+  <link rel="stylesheet" href="/visuallyhidden.css">
   <title>HALオークション | ログイン</title>
 </head>
 <body>
   <%- include('U_header.ejs'); %>
   <main>
+    <h1 class="visuallyhidden">ログインとサインアップ</h1>
     <div class="login-wrap">
       <div class="login-html">
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">ログイン</label>
         <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">アカウント登録</label>
         <div class="login-form">
           <div class="sign-in-htm">
+            <h2 class="visuallyhidden">ログイン</h2>
             <form action="/login" method="post">
               <div class="group">
                 <label for="user" class="label">メールアドレス</label>
@@ -47,6 +50,7 @@
             <% } %> 
           </div>
           <div class="sign-up-htm">
+            <h2 class="visuallyhidden">サインアップ</h2>
             <form action="/signup" method="post">
               <div class="group">
                 <label for="user" class="label">ユーザ名</label>

@@ -160,62 +160,90 @@ app.post('/signup', (req, res) => {
     region: null,
     address: null,
     tel: null,
-    error: null
+    error: req.flash('error')
   });
 });
 // サインアップ処理
 app.post('/signup/confirm', (req, res) => {
-  const values = [
-    req.body.user,
-    req.body.email,
-    req.body.password,
-    req.body.postcode,
-    req.body.region + req.body.address,
-    req.body.tel
-  ];
-  connection.query(
-    "SELECT * FROM user WHERE email = ?;" , req.body.email ,
-    (error, results) => {
-      if (error) {
-        console.log('error connecting: ' + error.stack);
-        res.status(400).send({ message: 'Error!!' });
-        return;
-      }
-      const count = results.length;
-      if (count == 0) {
-        connection.query(
-          "INSERT INTO user (name, email, pass, postcode, address, tel) VALUES (? , ? , ? , ? , ? , ?);" , values ,
-          (error, results) => {
-            if (error) {
-              console.log('error connecting: ' + error.stack);
-              res.status(400).send({ message: 'Error!!' });
-              return;
-            }
-            res.render('U_signup_confirm.ejs',{
-              login: false,
-              user: req.body.user,
-              email: req.body.email,
-              password: req.body.password,
-              postcode: req.body.postcode,
-              address: req.body.region + req.body.address,
-              tel: req.body.tel
+  // 入力値フラグ
+  let flag = true;
+  // 入力値エラーメッセージ
+  let error = "";
+  if(req.body.user == "" || req.body.email == "" || req.body.password == "" || req.body.password_re == "" || req.body.postcode == "" || req.body.region == "" || req.body.address == "" || req.body.tel == ""){
+    error = "入力されていない項目があります。すべての項目を入力してください。";
+    flag = false;
+  }
+  if(req.body.password != req.body.password_re){
+    error = "パスワードが一致しません。";
+    flag = false;
+  }
+  if(!flag){
+      res.render('U_signup.ejs',{
+        login: false,
+        user: req.body.user,
+        email: req.body.email,
+        password: req.body.password,
+        password_re: req.body.password_re,
+        postcode: req.body.postcode,
+        region: req.body.region,
+        address: req.body.address,
+        tel: req.body.tel,
+        error: error
+      });
+  }
+  else{
+    const values = [
+      req.body.user,
+      req.body.email,
+      req.body.password,
+      req.body.postcode,
+      req.body.region + req.body.address,
+      req.body.tel
+    ];
+    connection.query(
+      "SELECT * FROM user WHERE email = ?;" , req.body.email ,
+      (error, results) => {
+        if (error) {
+          console.log('error connecting: ' + error.stack);
+          res.status(400).send({ message: 'Error!!' });
+          return;
+        }
+        const count = results.length;
+        if (count == 0) {
+          connection.query(
+            "INSERT INTO user (name, email, pass, postcode, address, tel) VALUES (? , ? , ? , ? , ? , ?);" , values ,
+            (error, results) => {
+              if (error) {
+                console.log('error connecting: ' + error.stack);
+                res.status(400).send({ message: 'Error!!' });
+                return;
+              }
+              res.render('U_signup_confirm.ejs',{
+                login: false,
+                user: req.body.user,
+                email: req.body.email,
+                password: req.body.password,
+                postcode: req.body.postcode,
+                address: req.body.region + req.body.address,
+                tel: req.body.tel
+              });
             });
+        }else{
+          res.render('U_signup.ejs',{
+            login: false,
+            user: req.body.user,
+            email: req.body.email,
+            password: req.body.password,
+            postcode: req.body.postcode,
+            region: req.body.region,
+            address: req.body.address,
+            tel: req.body.tel,
+            error: "このメールアドレスは既に登録されています。"
           });
-      }else{
-        res.render('U_signup.ejs',{
-          login: false,
-          user: req.body.user,
-          email: req.body.email,
-          password: req.body.password,
-          postcode: req.body.postcode,
-          region: req.body.region,
-          address: req.body.address,
-          tel: req.body.tel,
-          error: "このメールアドレスは既に登録されています。"
-        });
+        }
       }
-    }
-  );
+    );
+  }
 });
 
 // オークション画面
@@ -256,7 +284,7 @@ app.get('/auction/:auction_ID', isAuthenticated, (req, res) => {
     ON (stock.car_model_ID = model.car_model_ID)
     INNER JOIN maker
     ON (model.maker_ID = maker.maker_ID)
-    INNER JOIN auction_bid
+    INNER JOIN au¥ction_bid
     ON (auction.auction_ID = auction_bid.auction_ID)
     AND (auction.auction_ID = ` + req.params.auction_ID + `);`, 
     (error1, results) => {

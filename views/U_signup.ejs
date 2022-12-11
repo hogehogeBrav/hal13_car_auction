@@ -8,35 +8,76 @@
     <link rel="stylesheet" href="/U_header.css">
     <link rel="stylesheet" href="/U_footer.css">
     <link rel="stylesheet" href="/U_signup.css">
+    <link rel="stylesheet" href="/visuallyhidden.css">
     <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
     <title>HALオークション | 新規登録</title>
 </head>
 <body>
-    <%- include('U_header.ejs'); %>
-    <h1>アカウント登録フォーム<h1>
-    <form action="/signup/confirm" method="POST">
-        <label for="user" class="label">ユーザ名</label>
-        <input type="text" name="user" value="<%= user %>" required><br>
-        <label for="email" class="label">メールアドレス</label>
-        <input type="email" name="email" value="<%= email %>" required><br>
-        <label for="password" class="label">パスワード</label>
-        <input type="password" name="password" value="<%= password %>" required><br>
-        <div class="h-adr">
+  <%- include('U_header.ejs'); %>
+  <h1 class="visuallyhidden">アカウント登録フォーム</h1>
+
+  <div class="login-wrap">
+    <div class="login-html">
+      <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">アカウント登録</label>
+      <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
+      <div class="login-form">
+        <div class="sign-in-htm">
+        <h2 class="visuallyhidden">ログイン</h2>
+        <form action="/signup/confirm" method="POST">
+          <div class="group">
+            <label for="user" class="label">ユーザ名</label>
+            <input id="user" type="text" class="input" name="user" value="<%= user %>" required>
+          </div>
+          <div class="group">
+            <label for="email" class="label">メールアドレス</label>
+            <input id="email" type="email" class="input" name="email" value="<%= email %>" required>
+          </div>
+          <div class="group">
+            <label for="password" class="label">パスワード</label>
+            <input id="password" type="password" class="input" data-type="password" name="password" value="<%= password %>" required>
+          </div>
+          <div class="group">
+            <label for="password_re" class="label">パスワード（再入力）</label>
+            <input id="password_re" type="password" class="input" data-type="password" name="password_re" value="<%= password %>" required>
+          </div>
+          <div class="h-adr">
             <span class="p-country-name" style="display:none;">Japan</span>
-            <label for="postcode" class="label">郵便番号</label>
-            <input type="text" name="postcode" class="p-postal-code" size="8" maxlength="8" value="<%= postcode %>" required ><br>
-            <label for="user" class="label">都道府県</label>
-            <input type="text" name="region" class="p-region" value="<%= region %>" required /><br>
-            <label for="address" class="label">住所</label>
-            <input type="text" name="address" class="p-locality p-street-address p-extended-address" value="<%= address %>" required /><br>
+            <div class="group">
+              <label for="postcode" class="label">郵便番号（7ケタ）</label>
+              <input type="text" name="postcode" class="p-postal-code" size="8" maxlength="8" value="<%= postcode %>" required >
+            </div>
+            <div class="group">
+              <label for="region" class="label">都道府県</label>
+              <input type="text" name="region" class="p-region" value="<%= region %>" required />
+            </div>
+            <div class="group">
+              <label for="address" class="label">住所</label>
+              <input type="text" name="address" class="p-locality p-street-address p-extended-address" value="<%= address %>" required />
+            </div>
+          </div>
+          <div class="group">
+            <label for="tel" class="label">電話番号</label>
+            <input id="tel" type="tel" class="input" name="tel" value="<%= tel %>" required>
+          </div>
+          <div class="group">
+            <input type="submit" class="button" value="送信">
+          </div>
+          </form>
+          <div class="hr"></div>
+          <div class="foot-lnk">
+            <a href="/login">アカウントをお持ちですか?</a>
+          </div>
+          <% if(error != '') { %> 
+            <div class="loginerror">
+              <p><%= error %></p>
+            </div>
+          <% } %> 
         </div>
-        <label for="address" class="label">電話番号</label>
-        <input type="tel" name = "tel" pattern="[\d\-]*" value="<%= tel %>" required><br>
-        <button type="submit">送信</button>
-    </form>
-    <% if(error) { %>
-        <p><%= error %></p>
-    <% } %>
-    <!-- <%- include('U_footer.ejs'); %> -->
+      </div>
+    </div>
+  </div>
+  <!-- <%- include('U_footer.ejs'); %> -->
 </body>
+<script src="/U_header.js"></script>
+<script src="/U_login.js"></script>
 </html>
