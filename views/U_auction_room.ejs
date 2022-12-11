@@ -34,10 +34,12 @@
         <img src="https://placehold.jp/3d4070/ffffff/150x150.png" alt="車両画像">
       </div>
       <div class="car_auction">
+        <h2 class="visuallyhidden">オークション残り時間</h2>
         <div id="time-container">
           <p class="diff_time">残り時間&nbsp;<span id="diff_hour"></span>:<span id="diff_min"></span>:<span id="diff_sec"></span></p><p class="status">開催中</p>
         </div>
         <div class="car_amount">
+          <h2 class="visuallyhidden">オークション価格</h2>
           <div class="start">
             <p>開始価格</p>
             <p><%= auction[0].minimum_amount.toLocaleString() %>円</p>
@@ -51,6 +53,7 @@
           <button id="bid_history">入札履歴を見る</button>
           <button id="bid">入札する</button> 
         </div>
+        <h2 class="car_info_headline">車両詳細</h2>
         <div class="car_info">
           <div id="model_year">
             <span>モデル年式</span>

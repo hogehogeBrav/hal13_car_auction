@@ -102,7 +102,6 @@ main #auction_car_detail .car_auction .car_amount div {
 }
 main #auction_car_detail .car_auction .car_amount div p:first-child {
   color: #515050;
-  font-size: 20px;
   line-height: 32px;
   margin-bottom: 10px;
 }
@@ -174,6 +173,14 @@ main #auction_car_detail .car_auction .auction_button #bid:hover {
   transform: scale(1.04);
   background-color: #21e065;
 }
+main #auction_car_detail .car_auction .car_info_headline {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 32px;
+  border-bottom: #515050 3px solid;
+  color: #515050;
+  margin-bottom: 15px;
+}
 main #auction_car_detail .car_auction .car_info {
   display: flex;
   justify-content: space-between;
@@ -222,7 +229,7 @@ main #auction_car_detail .car_auction .car_info div p {
   justify-content: space-between;
 }
 #bid_history_modal #bid_history_modal_lists #history_container li:first-child {
-  width: 30%;
+  width: 35%;
 }
 #bid_history_modal #bid_history_modal_lists #history_container li {
   width: 30%;

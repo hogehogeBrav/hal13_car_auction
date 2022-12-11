@@ -102,7 +102,6 @@ main{
         }
         div p:first-child{
           color: #515050;
-          font-size: 20px;
           line-height: 32px;
           margin-bottom: 10px;
         }
@@ -177,6 +176,14 @@ main{
           background-color: #21e065;
         }
       }
+      .car_info_headline{
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 32px;
+        border-bottom: #515050 3px solid;
+        color: #515050;
+        margin-bottom: 15px;
+      }
       .car_info{
         display: flex;
         justify-content: space-between;
@@ -227,7 +234,7 @@ main{
       display: flex;
       justify-content: space-between;
       li:first-child{
-        width: 30%;
+        width: 35%;
       }
       li{
         width: 30%;
