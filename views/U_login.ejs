@@ -8,8 +8,11 @@
   <link rel="stylesheet" href="/U_header.css">
   <link rel="stylesheet" href="/U_footer.css">
   <link rel="stylesheet" href="/U_login.css">
+  <link rel="stylesheet" href="/toastr/toastr.css">
   <link rel="stylesheet" href="/visuallyhidden.css">
   <title>HALオークション | ログイン</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="/toastr/toastr.min.js"></script>
 </head>
 <body>
   <%- include('U_header.ejs'); %>
@@ -25,11 +28,11 @@
             <form action="/login" method="post">
               <div class="group">
                 <label for="user" class="label">メールアドレス</label>
-                <input id="user" name="email" type="text" class="input" value="hogehoge@icloud.com" required>
+                <input id="user" name="email" type="text" value="<%= email %>" class="input" required>
               </div>
               <div class="group">
                 <label for="pass" class="label">パスワード</label>
-                <input id="pass" name="password" type="password" class="input" data-type="password" required>
+                <input id="pass" name="password" type="password" value="<%= password %>" class="input" data-type="password" required>
               </div>
               <div class="group">
                 <input id="check" type="checkbox" class="check" checked>
@@ -78,6 +81,9 @@
     </div>
   </main>
 </body>
+<script>
+  var signup = '<%= signup %>';
+</script>
 <script src="/U_header.js"></script>
 <script src="/U_login.js"></script>
 </html>

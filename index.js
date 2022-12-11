@@ -127,10 +127,13 @@ app.get('/', isAuthenticated, (req, res) => {
 
 // ログイン画面
 app.get('/login', (req, res) => {
-  // console.log(req.flash('error'));
+  console.log(req);
   res.render('U_login.ejs', {
     login: false,
-    error: req.flash('error')
+    email: "",
+    password: "",
+    error: req.flash('error'),
+    signup: 0,
   });
 });
 // ログイン認証
@@ -178,18 +181,18 @@ app.post('/signup/confirm', (req, res) => {
     flag = false;
   }
   if(!flag){
-      res.render('U_signup.ejs',{
-        login: false,
-        user: req.body.user,
-        email: req.body.email,
-        password: req.body.password,
-        password_re: req.body.password_re,
-        postcode: req.body.postcode,
-        region: req.body.region,
-        address: req.body.address,
-        tel: req.body.tel,
-        error: error
-      });
+    res.render('U_signup.ejs',{
+      login: false,
+      user: req.body.user,
+      email: req.body.email,
+      password: req.body.password,
+      password_re: "",
+      postcode: req.body.postcode,
+      region: req.body.region,
+      address: req.body.address,
+      tel: req.body.tel,
+      error: error
+    });
   }
   else{
     const values = [
@@ -218,14 +221,12 @@ app.post('/signup/confirm', (req, res) => {
                 res.status(400).send({ message: 'Error!!' });
                 return;
               }
-              res.render('U_signup_confirm.ejs',{
+              res.render('U_login.ejs',{
                 login: false,
-                user: req.body.user,
                 email: req.body.email,
                 password: req.body.password,
-                postcode: req.body.postcode,
-                address: req.body.region + req.body.address,
-                tel: req.body.tel
+                error: "",
+                signup: 1
               });
             });
         }else{
@@ -284,7 +285,7 @@ app.get('/auction/:auction_ID', isAuthenticated, (req, res) => {
     ON (stock.car_model_ID = model.car_model_ID)
     INNER JOIN maker
     ON (model.maker_ID = maker.maker_ID)
-    INNER JOIN au¥ction_bid
+    INNER JOIN auction_bid
     ON (auction.auction_ID = auction_bid.auction_ID)
     AND (auction.auction_ID = ` + req.params.auction_ID + `);`, 
     (error1, results) => {
