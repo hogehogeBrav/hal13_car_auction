@@ -34,12 +34,12 @@ main .now_auction {
   display: flex;
 }
 main .now_auction .now_auction_img {
-  -o-object-fit: cover;
-     object-fit: cover;
   height: 100%;
-  width: 300px;
+  width: 400px;
 }
 main .now_auction .now_auction_img img {
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 8px 0px 0px 8px;
   width: 100%;
   height: 100%;

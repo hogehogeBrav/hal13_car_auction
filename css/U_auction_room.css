@@ -12,8 +12,8 @@ main {
 }
 main #auction_car_title {
   background-color: #f5f5f5;
-  border: 2px solid #7070c5;
-  border-left: 10px solid #7070c5;
+  border: 2px solid #1ED760;
+  border-left: 10px solid #1ED760;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -37,9 +37,8 @@ main #auction_car_title .time {
   height: 45px;
   font-size: 20px;
   font-weight: 700;
-  background-color: #6666df;
+  background-color: #1ED760;
   color: #fff;
-  border: solid 3px #626262;
   border-radius: 100px;
   text-align: center;
 }
@@ -177,7 +176,7 @@ main #auction_car_detail .car_auction .car_info_headline {
   font-weight: bold;
   font-size: 20px;
   line-height: 32px;
-  border-bottom: #515050 3px solid;
+  border-bottom: #cccccc 3px solid;
   color: #515050;
   margin-bottom: 15px;
 }
@@ -208,7 +207,7 @@ main #auction_car_detail .car_auction .equipment_container h2 {
   font-weight: bold;
   font-size: 20px;
   line-height: 32px;
-  border-bottom: #515050 3px solid;
+  border-bottom: #cccccc 3px solid;
   color: #515050;
   margin-bottom: 15px;
 }

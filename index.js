@@ -27,7 +27,7 @@ const connection = mysql.createConnection({
 });
 
 // オークション情報取得SQL(TOP画面)
-const indexsql = `SELECT auction.auction_ID, model.name, maker.maker_name, stock.grade, auction.start_time, auction.ending_time, auction.minimum_amount, MAX(auction_bid.amount) AS max_amount
+const indexsql = `SELECT auction.auction_ID, auction.car_ID, model.name, maker.maker_name, stock.grade, auction.start_time, auction.ending_time, auction.minimum_amount, MAX(auction_bid.amount) AS max_amount
                   FROM auction 
                   JOIN stock ON auction.car_ID = stock.car_ID 
                   JOIN model ON stock.car_model_ID = model.car_model_ID 
@@ -250,7 +250,7 @@ app.post('/signup/confirm', (req, res) => {
 // オークション画面
 app.get('/auction', isAuthenticated, (req, res) => {
   connection.query(
-    `SELECT auction.auction_ID, model.name, maker.maker_name, auction.start_time, stock.grade, auction.ending_time, auction.minimum_amount, MAX(auction_bid.amount) AS max_amount 
+    `SELECT auction.auction_ID, auction.car_ID, model.name, maker.maker_name, auction.start_time, stock.grade, auction.ending_time, auction.minimum_amount, MAX(auction_bid.amount) AS max_amount 
     FROM auction 
     JOIN stock ON auction.car_ID = stock.car_ID 
     JOIN model ON stock.car_model_ID = model.car_model_ID 
