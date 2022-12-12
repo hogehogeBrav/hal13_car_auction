@@ -181,7 +181,7 @@ $(document).on('click', '#bid_button', function(event) {
 socketio.on('s2c' , function(msg){
   console.log('ソケットs2c: ' + msg);
   document.getElementById('now_amount').innerHTML = numberWithComma.format(msg.amount) + "円";
-  document.getElementById('amount_form').value = msg.amount + 1000;
+  document.getElementById('amount_form').value = Number(msg.amount) + 1000;
   now_amount = msg.amount;
 
   // トースト通知
