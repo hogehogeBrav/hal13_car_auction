@@ -247,7 +247,27 @@ app.post('/auction', isAuthenticated, (req, res) => {
   );
 });
 
-app.get('/sales', (req, res)=> {
+app.get('/sales', isAuthenticated, (req, res)=> {
+  let sql = "";
+  if(req.query.search){
+    if(req.query.date != "" && req.query.state != ""){
+      let bid_date_sql = "s.bid_date BETWEEN '" + req.query.date + " 00:00:00' AND '" + req.query.date + " 23:59:59'";
+      let state_sql = "s.sales_status_ID = '" + req.query.state + "'";
+
+      sql = "WHERE " + bid_date_sql + " AND " + state_sql;
+    }
+    else if(req.query.date != ""){
+      let bid_date_sql = "s.bid_date BETWEEN '" + req.query.date + " 00:00:00' AND '" + req.query.date + " 23:59:59'";
+
+      sql = "WHERE " + bid_date_sql;
+    }
+    else if(req.query.state != ""){
+      let state_sql = "s.sales_status_ID = '" + req.query.state + "'";
+
+      sql = "WHERE " + state_sql;
+    }
+    console.log(sql);
+  }
   connection.query(
     `SELECT s.sales_ID, s.bid_price, s.bid_date, s.sales_status_ID, ss.state, u.name as user_name, m.name as model_name 
     FROM sales as s 
@@ -258,8 +278,9 @@ app.get('/sales', (req, res)=> {
     INNER JOIN stock as st 
     ON s.car_ID = st.car_ID 
     INNER JOIN model as m 
-    ON st.car_model_ID = m.car_model_ID 
-    ORDER BY sales_ID DESC`,
+    ON st.car_model_ID = m.car_model_ID `
+    + sql + 
+    `ORDER BY sales_ID DESC`,
     (error, results) => {
       if(error) {
         console.log('error conenction: ' + error.stack);
@@ -285,9 +306,8 @@ app.get('/sales', (req, res)=> {
               console.log('error conenction: ' + error.stack);
               return; 
           }
-          let json_result = JSON.stringify(results);
           let json_option = JSON.stringify(options);
-          res.render('A_sales_lists.ejs', {values:results, options:options, json_result:json_result, json_option:json_option});
+          res.render('A_sales_lists.ejs', {values:results, options:options, json_option:json_option});
         }
       );
     }
@@ -295,87 +315,36 @@ app.get('/sales', (req, res)=> {
 });
 
 app.get('/Uform', isAuthenticated, (req, res)=> {
-  // connection.query(
-  //     'SELECT s.sales_ID, s.bid_price, s.bid_date, s.sales_status_ID, ss.state, u.name as user_name, m.name as model_name FROM sales as s INNER JOIN sales_status as ss ON s.sales_status_ID = ss.sales_status_ID INNER JOIN user as u ON s.user_ID = u.user_ID INNER JOIN stock as st ON s.car_ID = st.car_ID INNER JOIN model as m ON st.car_model_ID = m.car_model_ID ORDER BY sales_ID DESC',
-  //     (error, results) => {
-  //         if(error) {
-  //             console.log('error conenction: ' + error.stack);
-  //             return;
-  //         }
-
-  //         connection.query(
-  //             'SELECT * FROM sales_status',
-  //             (error, options) => {
-  //                 if(error) {
-  //                     console.log('error conenction: ' + error.stack);
-  //                     return; 
-  //                 }
-                  
-  //                 let json_result = JSON.stringify(results);
-  //                 let json_option = JSON.stringify(options);
-  //                 res.render('A_sales_lists.ejs', {values:results, options:options, json_result:json_result, json_option:json_option});
-  //             }
-  //         );
-  //     }
-  // );
-  // userID
   let msg = "";
+  // userID
   console.log(req.user.user_ID);
+  if(req.query.msg){
+    msg = "送信完了";
+  }
   res.render('U_form.ejs', {id:req.user.user_ID, msg:msg});
 });
-
-// 送信ボタン
-app.post('/Uform', isAuthenticated, (res, req)=>{
+app.post('/Uform', isAuthenticated, function(req, res){
+  let today = new Date();
+  today = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
   const form = [
-      req.body.user_ID,
-      req.body.title,
-      req.body.form_data
-      // req.params.user_ID,
-      // req.params.title,
-      // req.params.form_data
+    req.body.user_ID,
+    req.body.subject,
+    req.body.content,
+    today,
+    1
   ];
-
-  // connection.query(
-  //     'SELECT s.sales_ID, s.bid_price, s.bid_date, s.sales_status_ID, ss.state, u.name as user_name, m.name as model_name FROM sales as s INNER JOIN sales_status as ss ON s.sales_status_ID = ss.sales_status_ID INNER JOIN user as u ON s.user_ID = u.user_ID INNER JOIN stock as st ON s.car_ID = st.car_ID INNER JOIN model as m ON st.car_model_ID = m.car_model_ID ORDER BY sales_ID DESC',
-  //     (error, results) => {
-  //         if(error) {
-  //             console.log('error conenction: ' + error.stack);
-  //             return;
-  //         }
-
-  //         connection.query(
-  //             'SELECT * FROM sales_status',
-  //             (error, options) => {
-  //                 if(error) {
-  //                     console.log('error conenction: ' + error.stack);
-  //                     return; 
-  //                 }
-                  
-  //                 let json_result = JSON.stringify(results);
-  //                 let json_option = JSON.stringify(options);
-  //                 res.render('A_sales_lists.ejs', {values:results, options:options, json_result:json_result, json_option:json_option});
-  //             }
-  //         );
-  //     }
-  // );
-  // connection.query(
-  //     'INSERT-SQL', form,
-  //     (error, results) => {
-  //         if(error) {
-  //             console.log('error conenction: ' + error.stack);
-  //             return; 
-  //         }
-
-  //         // userID
-  //         let msg = "送信完了";
-  //         res.render('U_form.ejs', {user_ID:user_ID, msg:msg});
-  //     }
-  // );
-  let msg = "送信完了";
-  console.log("OK");
-  res.render('U_form.ejs', {msg:msg});
+console.log(form);
+  connection.query(
+      'INSERT INTO inquiry (user_ID, subject, content, date, inquiry_status_ID) VALUES (?,?,?,?,?)', form,
+      (error, results) => {
+          if(error) {
+              console.log('error conenction: ' + error.stack);
+              return; 
+          }
+          res.redirect('/Uform?msg=msg');
+      }
+  );
 });
-
 
 
 io_socket.on('connection', function(socket){

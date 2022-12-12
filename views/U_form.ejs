@@ -12,14 +12,15 @@
 
 <body>
     <h1>お問い合わせ</h1>
-    <p><%= msg %></p>
+    <p><%=msg %></p>
     <form action="/Uform" method="post">
         <div class="table">
             <div class="td">
-                タイトル：<input type="text" name="title">
+                件名：<input type="text" name="subject" id="title">
             </div>
             <div class="td">
-                本文：<input type="text" name="form_data">
+                内容：
+                <textarea name="content" id="form_data" cols="20" rows="10"></textarea>
             </div>
             <div class="td">
                 <input type="hidden" name="user_ID" value="<%= id %>">
@@ -27,8 +28,14 @@
             </div>
         </div>
     </form>
-<!-- <script src="/socket.io/socket.io.js"></script> -->
-<script src=""></script>
+    <!-- <form action="/Uform" method="post">
+        <input type="text" name="user_ID" value="0123">
+
+        <button type="submit">送信</button>
+    </form> -->
+
+<!-- <script src="/socket.io/socket.io.js"></script>
+<script src="/U_form.js"></script> -->
 </body>
 
 </html>
