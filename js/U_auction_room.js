@@ -5,6 +5,7 @@ const bid = document.getElementById('bid'); // 入札モーダルボタン
 const bid_button = document.getElementById('bid_button'); // 入札モーダル内 入札ボタン
 const bid_history = document.getElementById('bid_history'); // 入札履歴ボタン
 const bid_history_modal = document.getElementById('bid_history_modal'); // 入札履歴モーダル
+const numberWithComma = new Intl.NumberFormat(); // 3桁カンマ区切り
 
 const time_container = document.getElementById('time-container'); // 残り時間表示
 const hour = document.getElementById("diff_hour");
@@ -26,24 +27,34 @@ function countdown() {
   min.innerHTML = calcMin < 10 ? '0' + calcMin : calcMin;
   sec.innerHTML = calcSec < 10 ? '0' + calcSec : calcSec;
 
-  // オークション終了時、カウントストップ
-  if(diff <= 0) {
-    clearInterval(timer);
-    hour.innerHTML = '00';
-    min.innerHTML = '00';
-    sec.innerHTML = '00';
+  // 残り時間によって、カウントダウンの色を変更
+  // 残り1時間未満でオレンジ
+  if(diff <= 3600000) {
+    time_container.style.borderColor = 'orange';
+    time_container.style.color = 'orange';
+    document.getElementsByClassName('status')[0].innerText = '残り1時間未満';
+    document.getElementsByClassName('status')[0].style.backgroundColor = 'orange';
+    // オークション終了時、カウントストップ
+    if(diff <= 0) {
+      clearInterval(timer);
+      hour.innerHTML = '00';
+      min.innerHTML = '00';
+      sec.innerHTML = '00';
 
-    amount_form.disabled = true;
-    bid_button.disabled = true;
-    bid_button.value = '終了しました';
-    bid.disabled = true;
-    bid.innerText = '終了しました';
-    bid.style.backgroundColor = '#ccc';
+      amount_form.disabled = true;
+      bid_button.disabled = true;
+      bid_button.value = '終了しました';
+      bid.disabled = true;
+      bid.innerText = '終了しました';
+      bid.style.backgroundColor = '#ccc';
 
-    time_container.style.borderColor = 'red';
-    time_container.style.color = 'red';
-    document.getElementsByClassName('diff_time')[0].innerText = 'このオークションは終了しました。';
-    toastr.error('このオークションは終了しました。');
+      time_container.style.borderColor = 'red';
+      time_container.style.color = 'red';
+      // document.getElementsByClassName('diff_time')[0].innerText = 'このオークションは終了しました。';
+      document.getElementsByClassName('status')[0].innerText = '終了しました';
+      document.getElementsByClassName('status')[0].style.backgroundColor = 'red';
+      toastr.error('このオークションは終了しました。');
+    }
   }
 }
 countdown();
@@ -61,6 +72,7 @@ toastr.options = {
   "showDuration": "300",
   "hideDuration": "1000",
   "timeOut": "10000",
+  "extendedTimeOut": "2000",
   "showEasing": "swing",
   "hideEasing": "linear",
 }
@@ -163,22 +175,13 @@ $(document).on('click', '#bid_button', function(event) {
 
     socketio.emit('c2s' , sendData);
   }
-  // setTimeout("bidSuccessModal();", 1000);
-});
-
-$('#bid_success_alert').iziModal({
-  headerColor: '#21e065', //ヘッダー部分の色
-  width: 400, //横幅
-  timeout: 5000, //5秒で非表示
-  timeoutProgressbar: true, //プログレスバーの表示
-  attached: 'bottom' //アラートの表示位置 top or bottom or 指定なしで中央
 });
 
 // ソケット通信
 socketio.on('s2c' , function(msg){
   console.log('ソケットs2c: ' + msg);
-  document.getElementById('now_amount').innerHTML = msg.amount + "円";
-  document.getElementById('amount_form').value = msg.amount;
+  document.getElementById('now_amount').innerHTML = numberWithComma.format(msg.amount) + "円";
+  document.getElementById('amount_form').value = msg.amount + 1000;
   now_amount = msg.amount;
 
   // トースト通知
@@ -186,7 +189,7 @@ socketio.on('s2c' , function(msg){
 
   // 入札履歴モーダルのリストに追加
   var div = document.createElement('div');
-  div.innerHTML = "<li>" + new Date().toLocaleString() + "</li><li>入札者: " + msg.name + "</li><li>入札金額: " + msg.amount + "</li>";
+  div.innerHTML = "<li>" + new Date().toLocaleString() + "</li><li>入札者: " + msg.name + "</li><li>入札金額: " + numberWithComma.format(msg.amount) + "</li>";
   // divにID追加
   div.id = "history_container";
   // 履歴モーダルの先頭に追加

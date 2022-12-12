@@ -25,8 +25,8 @@
       <h2><%= auction[0].maker_name  %> <%= auction[0].name %> <%= auction[0].grade %> <small></small></h2>
       <p class="visuallyhidden">開催時刻</p>
       <div class="time">
-        <p id="start_time"><%= auction[0].start_time.toLocaleString() %>&nbsp;~&nbsp;</p>   
-        <p id="ending_time"><%= auction[0].ending_time.toLocaleString() %></p>
+        <p id="start_time"><%= auction[0].start_time.getMonth() + 1 %>/<%= auction[0].start_time.getDate() %>&nbsp;<%= auction[0].start_time.getHours() %>:<%= auction[0].start_time.getMinutes() %>&nbsp;~&nbsp;</p>   
+        <p id="ending_time"><%= auction[0].ending_time.getMonth() + 1 %>/<%= auction[0].ending_time.getDate() %>&nbsp;<%= auction[0].ending_time.getHours() %>:<%= auction[0].ending_time.getMinutes() %></p>
       </div>
     </div>
     <div id="auction_car_detail">
@@ -34,22 +34,144 @@
         <img src="https://placehold.jp/3d4070/ffffff/150x150.png" alt="車両画像">
       </div>
       <div class="car_auction">
+        <h2 class="visuallyhidden">オークション残り時間</h2>
         <div id="time-container">
-          <p class="diff_time">残り時間&nbsp;<span id="diff_hour"></span>:<span id="diff_min"></span>:<span id="diff_sec"></span></p>
+          <p class="diff_time">残り時間&nbsp;<span id="diff_hour"></span>:<span id="diff_min"></span>:<span id="diff_sec"></span></p><p class="status">開催中</p>
         </div>
         <div class="car_amount">
+          <h2 class="visuallyhidden">オークション価格</h2>
           <div class="start">
             <p>開始価格</p>
-            <p><%= auction[0].minimum_amount %>円</p>
+            <p><%= auction[0].minimum_amount.toLocaleString() %>円</p>
           </div>
           <div class="now">
             <p>現在価格</p>
-            <p id="now_amount"><%= now_amount %>円</p>
+            <p id="now_amount"><%= now_amount.toLocaleString() %>円</p>
           </div>
         </div>
         <div class="auction_button">
           <button id="bid_history">入札履歴を見る</button>
           <button id="bid">入札する</button> 
+        </div>
+        <h2 class="car_info_headline">車両詳細</h2>
+        <div class="car_info">
+          <div id="model_year">
+            <span>モデル年式</span>
+            <p><%= auction[0].model_year.getFullYear() %>年</p>
+          </div>
+          <div id="mileage">
+            <span>走行距離</span>
+            <p><%= auction[0].mileage.toLocaleString() %>km</p>
+          </div>
+          <div id="color">
+            <span>色</span>
+            <p><%= auction[0].color_name %>系</p>
+          </div>
+          <div id="fuel">
+            <span>排気量</span>
+            <p><%=  Math.round(auction[0].displacement / 100) * 100 %>cc</p>
+          </div>
+        </div>
+        <div class="equipment_container">
+          <h2>装備品</h2>
+          <ul>
+            <li <% if(auction[0].air_conditioner == 0) { %> class="invisible" <% } %>>
+              エアコン
+            </li>
+            <li <% if(auction[0].smart_key == 0) { %> class="invisible" <% } %>>
+              スマートキー
+            </li>
+            <li <% if(auction[0].sun_roof == 0) { %> class="invisible" <% } %>>
+              サンルーフ
+            </li>
+            <li <% if(auction[0].low_down == 0) { %> class="invisible" <% } %>>
+              ローダウン
+            </li>
+            <li <% if(auction[0].power_steering == 0) { %> class="invisible" <% } %>>
+              パワステ
+            </li>
+            <li <% if(auction[0].cd == 0) { %> class="invisible" <% } %>>
+              CD
+            </li>
+            <li <% if(auction[0].sun_roof == 0) { %> class="invisible" <% } %>>
+              本革シート
+            </li>
+            <li <% if(auction[0].non_smoking == 0) { %> class="invisible" <% } %>>
+              禁煙車
+            </li>
+            <li <% if(auction[0].power_window == 0) { %> class="invisible" <% } %>>
+              パワーウインドウ
+            </li>
+            <li <% if(auction[0].md == 0) { %> class="invisible" <% } %>>
+              MD
+            </li>
+            <li <% if(auction[0].aero_parts == 0) { %> class="invisible" <% } %>>
+              純正エアロパーツ
+            </li>
+            <li <% if(auction[0].pet == 0) { %> class="invisible" <% } %>>
+              ペット同乗なし
+            </li>
+            <li <% if(auction[0].central_door_lock == 0) { %> class="invisible" <% } %>>
+              集中ドアロック
+            </li>
+            <li <% if(auction[0].dvd == 0) { %> class="invisible" <% } %>>
+              DVD
+            </li>
+            <li <% if(auction[0].genuine_alminium_wheel == 0) { %> class="invisible" <% } %>>
+              純正アルミホイール
+            </li>
+            <li <% if(auction[0].limited_edition == 0) { %> class="invisible" <% } %>>
+              限定車
+            </li>
+            <li <% if(auction[0].abs == 0) { %> class="invisible" <% } %>>
+              ABS
+            </li>
+            <li <% if(auction[0].tv == 0) { %> class="invisible" <% } %>>
+              テレビ
+            </li>
+            <li <% if(auction[0].skid_prevention == 0) { %> class="invisible" <% } %>>
+              横滑り防止装置
+            </li>
+            <li <% if(auction[0].test_drive == 0) { %> class="invisible" <% } %>>
+              試乗、現車確認可能
+            </li>
+            <li <% if(auction[0].airbag == 0) { %> class="invisible" <% } %>>
+              エアバッグ
+            </li>
+            <li <% if(auction[0].navi == 0) { %> class="invisible" <% } %>>
+              ナビゲーション
+            </li>
+            <li <% if(auction[0].traction_control == 0) { %> class="invisible" <% } %>>
+              トラクションコントロール
+            </li>
+            <li <% if(auction[0].manual == 0) { %> class="invisible" <% } %>>
+              取扱説明書
+            </li>
+            <li <% if(auction[0].etc == 0) { %> class="invisible" <% } %>>
+              ETC
+            </li>
+            <li <% if(auction[0].back_cam == 0) { %> class="invisible" <% } %>>
+              バックカメラ
+            </li>
+            <li <% if(auction[0].cold_climate == 0) { %> class="invisible" <% } %>>
+              寒冷仕様
+            </li>
+            <li <% if(auction[0].warranty == 0) { %> class="invisible" <% } %>>
+              新車時保証
+            </li>
+            <li <% if(auction[0].key_less == 0) { %> class="invisible" <% } %>>
+              キーレスエントリー
+            </li>
+            <li <% if(auction[0].electric_door == 0) { %> class="invisible" <% } %>>
+              電動スライドドア
+            </li>
+            <li <% if(auction[0].welfare_vechicles == 0) { %> class="invisible" <% } %>>
+              福祉車両
+            </li>
+            <li <% if(auction[0].spare_tire == 0) { %> class="invisible" <% } %>>
+              スペアタイヤ
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -58,7 +180,7 @@
       <ul id="bid_history_modal_lists">
         <% for(let i = 0; i < auction_bid_history.length; i++) {%>
           <div id="history_container">
-            <li><%= auction_bid_history[i].amount_time.toLocaleString() %></li><li>入札者: <%= auction_bid_history[i].name %></li><li>入札金額: <%= auction_bid_history[i].amount %></li>
+            <li><%= auction_bid_history[i].amount_time.toLocaleString() %></li><li>入札者: <%= auction_bid_history[i].name %></li><li>入札金額: <%= auction_bid_history[i].amount.toLocaleString() %></li>
           </div>
         <% } %>
       </ul>
@@ -91,4 +213,5 @@
 </script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/U_auction_room.js"></script>
+<script src="/U_header.js"></script>
 </html>

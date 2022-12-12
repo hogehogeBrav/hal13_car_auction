@@ -11,9 +11,9 @@ main {
   margin: 0 auto;
 }
 main #auction_car_title {
-  background-color: #e0e0e0;
-  border: 2px solid #6666df;
-  border-left: 10px solid #6666df;
+  background-color: #f5f5f5;
+  border: 2px solid #7070c5;
+  border-left: 10px solid #7070c5;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@ main #auction_car_title h2 {
   line-height: 70px;
 }
 main #auction_car_title .time {
-  width: 35%;
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,17 +63,32 @@ main #auction_car_detail .car_auction {
   width: 47%;
 }
 main #auction_car_detail .car_auction #time-container {
-  border: 3px solid #21e065;
+  display: flex;
+  justify-content: space-around;
+  border: 3px solid #1ED760;
   border-radius: 100px;
   width: 90%;
-  height: 60px;
   display: flex;
   align-items: center;
   margin: 0 0 30px 0;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
-  padding: 0px 40px;
   background-color: #f5f5f5;
+}
+main #auction_car_detail .car_auction #time-container .diff_time {
+  width: 60%;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+main #auction_car_detail .car_auction #time-container .status {
+  width: 40%;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 0 100px 100px 0;
+  text-align: center;
+  background-color: #1ED760;
+  color: #fff;
 }
 main #auction_car_detail .car_auction .car_amount {
   display: flex;
@@ -87,8 +102,7 @@ main #auction_car_detail .car_auction .car_amount div {
 }
 main #auction_car_detail .car_auction .car_amount div p:first-child {
   color: #515050;
-  font-size: 20px;
-  line-height: 28px;
+  line-height: 32px;
   margin-bottom: 10px;
 }
 main #auction_car_detail .car_auction .car_amount .start p:first-child {
@@ -104,6 +118,7 @@ main #auction_car_detail .car_auction .car_amount div p:last-child {
 }
 main #auction_car_detail .car_auction .auction_button {
   display: flex;
+  margin-bottom: 35px;
 }
 main #auction_car_detail .car_auction .auction_button button {
   margin-right: 20px;
@@ -158,6 +173,67 @@ main #auction_car_detail .car_auction .auction_button #bid:hover {
   transform: scale(1.04);
   background-color: #21e065;
 }
+main #auction_car_detail .car_auction .car_info_headline {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 32px;
+  border-bottom: #515050 3px solid;
+  color: #515050;
+  margin-bottom: 15px;
+}
+main #auction_car_detail .car_auction .car_info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  color: #515050;
+}
+main #auction_car_detail .car_auction .car_info div {
+  width: 20%;
+}
+main #auction_car_detail .car_auction .car_info div span {
+  display: inline-block;
+  width: 100%;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 600;
+  border-bottom: 3px solid #7070c5;
+  margin-bottom: 10px;
+}
+main #auction_car_detail .car_auction .car_info div p {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+main #auction_car_detail .car_auction .equipment_container h2 {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 32px;
+  border-bottom: #515050 3px solid;
+  color: #515050;
+  margin-bottom: 15px;
+}
+main #auction_car_detail .car_auction .equipment_container ul {
+  display: flex;
+  gap: 3%;
+  flex-wrap: wrap;
+}
+main #auction_car_detail .car_auction .equipment_container ul li {
+  background-color: rgb(248, 237, 226);
+  color: rgb(236, 107, 48);
+  border-radius: 5px;
+  font-size: 15px;
+  width: 30%;
+  margin-bottom: 15px;
+  line-height: 35px;
+  font-weight: 600;
+  text-align: center;
+}
+main #auction_car_detail .car_auction .equipment_container ul .invisible {
+  background-color: white;
+  color: #515050;
+  border: 1px solid #515050;
+  font-weight: normal;
+}
 
 #bid_history_modal #top_comment {
   display: block;
@@ -183,7 +259,7 @@ main #auction_car_detail .car_auction .auction_button #bid:hover {
   justify-content: space-between;
 }
 #bid_history_modal #bid_history_modal_lists #history_container li:first-child {
-  width: 30%;
+  width: 35%;
 }
 #bid_history_modal #bid_history_modal_lists #history_container li {
   width: 30%;
