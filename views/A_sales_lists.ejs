@@ -1,23 +1,38 @@
 <!doctype html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>売上照会画面</title>
+
+</head>
+
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <title>売上照会画面</title>
 </head>
+
 <body>
     <h1>売上照会</h1>
 
     <div class="table">
         <div class="group">
-            <input type="date">日付
-            <input type="number">ユーザーID
-            <select name="state" id="">
-                <% for(let i=0; i < options.length; i++){ %>
-                    <option value="<%= options[i].status_ID %>"><%= options[i].state %></option>
-                <% } %>
-            </select>
-
-            <button type="submit" name="serch">検索</button>
+            <form action="/sales" method="get">
+                <input type="date" name="date">日付
+                <select name="state" id="">
+                    <option value="">---</option>
+                    <% for(let i=0; i < options.length; i++){ %>
+                        <option value="<%= options[i].sales_status_ID %>"><%= options[i].state %></option>
+                    <% } %>
+                </select>
+    
+                <button type="submit" name="search" value="search">検索</button>
+                <a href="/sales">全件表示</a>
+            </form>
         </div>
 <br>
         <div class="sales">

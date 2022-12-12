@@ -321,52 +321,38 @@ app.post('/auction', isAuthenticated, (req, res) => {
   );
 });
 
-app.get('/sales', (req, res)=> {
+app.get('/Uform', isAuthenticated, (req, res)=> {
+  let msg = "";
+  // userID
+  console.log(req.user.user_ID);
+  if(req.query.msg){
+    msg = "送信完了";
+  }
+  res.render('U_form.ejs', {id:req.user.user_ID, msg:msg});
+});
+app.post('/Uform', isAuthenticated, function(req, res){
+  let today = new Date();
+  today = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  const form = [
+    req.body.user_ID,
+    req.body.subject,
+    req.body.content,
+    today,
+    1
+  ];
+console.log(form);
   connection.query(
-    `SELECT s.sales_ID, s.bid_price, s.bid_date, s.sales_status_ID, ss.state, u.name as user_name, m.name as model_name 
-    FROM sales as s 
-    INNER JOIN sales_status as ss 
-    ON s.sales_status_ID = ss.sales_status_ID 
-    INNER JOIN user as u 
-    ON s.user_ID = u.user_ID 
-    INNER JOIN stock as st 
-    ON s.car_ID = st.car_ID 
-    INNER JOIN model as m 
-    ON st.car_model_ID = m.car_model_ID 
-    ORDER BY sales_ID DESC`,
-    (error, results) => {
-      if(error) {
-        console.log('error conenction: ' + error.stack);
-        return;
-      }
-
-      for(let i=0; i < results.length; i++){
-        // デフォルト値
-        let format = 'YYYY年MM月DD日 hh:mm';
-
-        format = format.replace(/YYYY/g, results[i].bid_date.getFullYear());
-        format = format.replace(/MM/g, ('0' + (results[i].bid_date.getMonth() + 1)).slice(-2));
-        format = format.replace(/DD/g, ('0' + results[i].bid_date.getDate()).slice(-2));
-        format = format.replace(/hh/g, ('0' + results[i].bid_date.getHours()).slice(-2));
-        format = format.replace(/mm/g, ('0' + results[i].bid_date.getMinutes()).slice(-2));
-
-        results[i].bid_date = format;
-      }
-      connection.query(
-        'SELECT * FROM sales_status',
-        (error, options) => {
+      'INSERT INTO inquiry (user_ID, subject, content, date, inquiry_status_ID) VALUES (?,?,?,?,?)', form,
+      (error, results) => {
           if(error) {
               console.log('error conenction: ' + error.stack);
               return; 
           }
-          let json_result = JSON.stringify(results);
-          let json_option = JSON.stringify(options);
-          res.render('A_sales_lists.ejs', {values:results, options:options, json_result:json_result, json_option:json_option});
-        }
-      );
-    }
+          res.redirect('/Uform?msg=msg');
+      }
   );
 });
+
 
 io_socket.on('connection', function(socket){
   console.log('connected');

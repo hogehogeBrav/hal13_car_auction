@@ -3,10 +3,6 @@ const state_values = document.getElementsByClassName("state_values");
 const socket_io = io();
 
 /**
- * 検索ソート
-*/
-
-/**
  * 状態変更ボタン
 */
 const btn_state = document.getElementById("state_btn");
@@ -65,8 +61,8 @@ btn_save.addEventListener('click', (e) => {
             sales_state_ID:state_values[i].value
         }
     }
-console.log(sendData);
-let json_option = JSON.stringify(sendData);
+    console.log(sendData);
+    let json_option = JSON.stringify(sendData);
     // クライアント(ブラウザ)⇒サーバ(Node.js)へSocket送信
     socket_io.emit("c-sales-save", sendData);
 });
