@@ -72,6 +72,107 @@
             <p><%=  Math.round(auction[0].displacement / 100) * 100 %>cc</p>
           </div>
         </div>
+        <div class="equipment_container">
+          <h2>装備品</h2>
+          <ul>
+            <li <% if(auction[0].air_conditioner == 0) { %> class="invisible" <% } %>>
+              エアコン
+            </li>
+            <li <% if(auction[0].smart_key == 0) { %> class="invisible" <% } %>>
+              スマートキー
+            </li>
+            <li <% if(auction[0].sun_roof == 0) { %> class="invisible" <% } %>>
+              サンルーフ
+            </li>
+            <li <% if(auction[0].low_down == 0) { %> class="invisible" <% } %>>
+              ローダウン
+            </li>
+            <li <% if(auction[0].power_steering == 0) { %> class="invisible" <% } %>>
+              パワステ
+            </li>
+            <li <% if(auction[0].cd == 0) { %> class="invisible" <% } %>>
+              CD
+            </li>
+            <li <% if(auction[0].sun_roof == 0) { %> class="invisible" <% } %>>
+              本革シート
+            </li>
+            <li <% if(auction[0].non_smoking == 0) { %> class="invisible" <% } %>>
+              禁煙車
+            </li>
+            <li <% if(auction[0].power_window == 0) { %> class="invisible" <% } %>>
+              パワーウインドウ
+            </li>
+            <li <% if(auction[0].md == 0) { %> class="invisible" <% } %>>
+              MD
+            </li>
+            <li <% if(auction[0].aero_parts == 0) { %> class="invisible" <% } %>>
+              純正エアロパーツ
+            </li>
+            <li <% if(auction[0].pet == 0) { %> class="invisible" <% } %>>
+              ペット同乗なし
+            </li>
+            <li <% if(auction[0].central_door_lock == 0) { %> class="invisible" <% } %>>
+              集中ドアロック
+            </li>
+            <li <% if(auction[0].dvd == 0) { %> class="invisible" <% } %>>
+              DVD
+            </li>
+            <li <% if(auction[0].genuine_alminium_wheel == 0) { %> class="invisible" <% } %>>
+              純正アルミホイール
+            </li>
+            <li <% if(auction[0].limited_edition == 0) { %> class="invisible" <% } %>>
+              限定車
+            </li>
+            <li <% if(auction[0].abs == 0) { %> class="invisible" <% } %>>
+              ABS
+            </li>
+            <li <% if(auction[0].tv == 0) { %> class="invisible" <% } %>>
+              テレビ
+            </li>
+            <li <% if(auction[0].skid_prevention == 0) { %> class="invisible" <% } %>>
+              横滑り防止装置
+            </li>
+            <li <% if(auction[0].test_drive == 0) { %> class="invisible" <% } %>>
+              試乗、現車確認可能
+            </li>
+            <li <% if(auction[0].airbag == 0) { %> class="invisible" <% } %>>
+              エアバッグ
+            </li>
+            <li <% if(auction[0].navi == 0) { %> class="invisible" <% } %>>
+              ナビゲーション
+            </li>
+            <li <% if(auction[0].traction_control == 0) { %> class="invisible" <% } %>>
+              トラクションコントロール
+            </li>
+            <li <% if(auction[0].manual == 0) { %> class="invisible" <% } %>>
+              取扱説明書
+            </li>
+            <li <% if(auction[0].etc == 0) { %> class="invisible" <% } %>>
+              ETC
+            </li>
+            <li <% if(auction[0].back_cam == 0) { %> class="invisible" <% } %>>
+              バックカメラ
+            </li>
+            <li <% if(auction[0].cold_climate == 0) { %> class="invisible" <% } %>>
+              寒冷仕様
+            </li>
+            <li <% if(auction[0].warranty == 0) { %> class="invisible" <% } %>>
+              新車時保証
+            </li>
+            <li <% if(auction[0].key_less == 0) { %> class="invisible" <% } %>>
+              キーレスエントリー
+            </li>
+            <li <% if(auction[0].electric_door == 0) { %> class="invisible" <% } %>>
+              電動スライドドア
+            </li>
+            <li <% if(auction[0].welfare_vechicles == 0) { %> class="invisible" <% } %>>
+              福祉車両
+            </li>
+            <li <% if(auction[0].spare_tire == 0) { %> class="invisible" <% } %>>
+              スペアタイヤ
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <div id="bid_history_modal">
