@@ -67,7 +67,7 @@ main #auction_car_detail .car_auction #time-container {
   justify-content: space-around;
   border: 3px solid #1ED760;
   border-radius: 100px;
-  width: 90%;
+  width: 100%;
   display: flex;
   align-items: center;
   margin: 0 0 30px 0;
