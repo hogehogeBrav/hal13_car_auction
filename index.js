@@ -256,7 +256,8 @@ app.get('/auction', isAuthenticated, (req, res) => {
     JOIN model ON stock.car_model_ID = model.car_model_ID 
     JOIN maker ON model.maker_ID = maker.maker_ID
     LEFT OUTER JOIN auction_bid ON auction.auction_ID = auction_bid.auction_ID
-    GROUP BY auction.auction_ID;` ,
+    GROUP BY auction.auction_ID
+    ORDER BY auction.start_time DESC;` ,
     (error, results) => {
       console.log(results);
       if (error) {
