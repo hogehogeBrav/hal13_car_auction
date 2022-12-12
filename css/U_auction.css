@@ -131,6 +131,10 @@ main .now_auction .now_auction_info .bottom .to_auction a {
   background-color: #15883e;
   height: 48px;
 }
-main .now_auction .now_auction_info .bottom .to_auction a:hover {
+main .now_auction .now_auction_info .bottom .to_auction a:not(.finished):hover {
   background-color: #1db954;
+}
+main .now_auction .now_auction_info .bottom .to_auction .finished {
+  cursor: default;
+  background-color: #3f3f3f;
 }/*# sourceMappingURL=U_auction.css.map */

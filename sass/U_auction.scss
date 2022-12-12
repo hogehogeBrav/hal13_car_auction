@@ -128,8 +128,12 @@ main{
             background-color: #15883e;
             height: 48px;
           }
-          a:hover{
+          a:not(.finished):hover{
             background-color: #1db954;
+          }
+          .finished{
+            cursor: default;
+            background-color: #3f3f3f;
           }
         }
       }
