@@ -55,48 +55,61 @@ main .now_auction .now_auction_info .maker {
   font-size: 20px;
   font-weight: bold;
 }
-main .now_auction .now_auction_info .time {
-  height: 80px;
-}
-main .now_auction .now_auction_info .bottom {
+main .now_auction .now_auction_info .amount_container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
+  height: 80px;
 }
-main .now_auction .now_auction_info .bottom .amount {
+main .now_auction .now_auction_info .amount_container .amount {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: start;
   width: 50%;
   font-size: 20px;
   font-weight: bold;
 }
-main .now_auction .now_auction_info .bottom .amount div p:first-child {
+main .now_auction .now_auction_info .amount_container .amount .start {
+  margin-right: 25px;
+}
+main .now_auction .now_auction_info .amount_container .amount div p:first-child {
   color: #515050;
   font-size: 16px;
   line-height: 24px;
   border-bottom: gray solid 2px;
   margin-bottom: 10px;
 }
-main .now_auction .now_auction_info .bottom .amount .start p:first-child {
+main .now_auction .now_auction_info .amount_container .amount .start p:first-child {
   border-bottom: #ff0000 solid 3px;
 }
-main .now_auction .now_auction_info .bottom .amount .now p:first-child {
+main .now_auction .now_auction_info .amount_container .amount .now p:first-child {
   border-bottom: rgb(151, 191, 90) solid 3px;
 }
-main .now_auction .now_auction_info .bottom .amount div p:last-child {
+main .now_auction .now_auction_info .amount_container .amount div p:last-child {
   color: #515050;
   font-size: 24px;
   line-height: 24px;
 }
-main .now_auction .now_auction_info .to_auction {
-  width: 50%;
-  height: 50px;
+main .now_auction .now_auction_info .bottom {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
 }
-main .now_auction .now_auction_info .to_auction a {
+main .now_auction .now_auction_info .bottom .time {
+  color: #515050;
+  width: 60%;
+  display: flex;
+  height: 80px;
+  align-items: center;
+  line-height: 25px;
+  font-weight: bold;
+}
+main .now_auction .now_auction_info .bottom .to_auction {
+  width: 40%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .now_auction .now_auction_info .bottom .to_auction a {
   margin-right: 20px;
   display: inline-block;
   outline: none;
@@ -118,10 +131,6 @@ main .now_auction .now_auction_info .to_auction a {
   background-color: #15883e;
   height: 48px;
 }
-main .now_auction .now_auction_info .to_auction a:not(.finished):hover {
+main .now_auction .now_auction_info .bottom .to_auction a:hover {
   background-color: #1db954;
-}
-main .now_auction .now_auction_info .to_auction .finished {
-  cursor: default;
-  background-color: #3f3f3f;
 }/*# sourceMappingURL=U_auction.css.map */

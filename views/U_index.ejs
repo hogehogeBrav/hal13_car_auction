@@ -36,10 +36,7 @@
           <div class="maker">
             <p><%= now_auction[i].maker_name %> <%= now_auction[i].name %> <%= now_auction[i].grade %> </p>
           </div>
-          <div class="time">
-            <p>開始時間:<%= now_auction[i].start_time.toLocaleString() %> <br>終了時間:<%= now_auction[i].ending_time.toLocaleString() %></p>
-          </div>
-          <div class="bottom">
+          <div class="amount_container">
             <div class="amount">
               <div class="start">
                 <p>開始価格</p>
@@ -54,6 +51,11 @@
                 <% } %>
               </div>
             </div>
+          </div>
+          <div class="bottom">
+            <div class="time">
+              <p>開始時刻：<%= now_auction[i].start_time.toLocaleString() %> <br>終了時刻：<%= now_auction[i].ending_time.toLocaleString() %></p>
+            </div>
             <div class="to_auction">
               <% if(login) { %>
                 <a href="/auction/<%= now_auction[i].auction_ID %>">オークションへ</a>
@@ -65,7 +67,6 @@
         </div>
       </div>
     <% } %>
-
     <div id="to_auction_list">
       <% if(login) { %>
         <a href="/auction">オークション一覧へ</a>
