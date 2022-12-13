@@ -65,7 +65,7 @@ main .now_auction .now_auction_info .amount_container {
 main .now_auction .now_auction_info .amount_container .amount {
   display: flex;
   justify-content: start;
-  width: 50%;
+  width: 100%;
   font-size: 20px;
   font-weight: bold;
 }
