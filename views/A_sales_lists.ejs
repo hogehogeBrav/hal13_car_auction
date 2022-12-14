@@ -5,7 +5,11 @@
 <head>
 
 <meta charset="UTF-8">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./destyle.css">
+    <link rel="stylesheet" href="./A_style.css">
+	<link rel="stylesheet" href="./A_stock.css">
 <title>売上照会画面</title>
 
 </head>
@@ -17,22 +21,121 @@
 </head>
 
 <body>
-    <h1>売上照会</h1>
+    <div class="grid">
+		<header><!-- 共通部分 -->
+			<h1>売上管理</h1>
+			<!-- <jsp:include page="logout.jsp" /> -->
+		</header>
+		
+		<nav><!-- 共通部分 -->
+		    <ul>
+		        <li><a href="/" class="current">在庫管理</a></li>
+		        <li><a href="/auctions">オークション管理</a></li>
+		        <li><a href="./">ユーザー管理</a></li>
+		        <li><a href="./sales">売上管理</a></li>
+		    </ul>
+		</nav>
+		
+		<main><!-- 画面ごとに変更される部分 -->
+		<article>
+			<div class="article-header">
+                <div>
+                    <form action="/sales" method="get">
+                        <input type="date" name="date">日付
+                        <select name="state" id="">
+                            <option value="">---</option>
+                            <% for(let i=0; i < options.length; i++){ %>
+                                <option value="<%= options[i].sales_status_ID %>"><%= options[i].state %></option>
+                            <% } %>
+                        </select>
+            
+                        <button type="submit" name="search" value="search">検索</button>
+                        <a href="/sales">全件表示</a>
+                    </form>
+                </div>
+				<div>
+                    <button name="save" id="save_btn">保存</button>
+                    <button name="change" id="state_btn">状態変更</button>
+                    <button name="output_pdf" id="pdf_btn">帳票出力</button>	
+				</div>
+			</div>
+			<div class="tablediv">
+				<table>
+			        <tr>
+						<!-- <th>詳細</th>
+			            <th>ID</th>
+			            <th>メーカー名</th>
+			            <th>車種名</th>
+						<th>グレード名</th>
+						<th>排気量</th>
+						<th>年式</th>
+						<th>輸入車モデル年式</th>
+						<th>走行距離</th>
+						<th>走行距離の状態</th>
+						<th>色系統</th>
+						<th>色</th>
+						<th>車検有効期限</th>
+						<th>ミッション</th>
+						<th>ボディタイプ</th>
+						<th>型式</th>
+						<th>削除</th> -->
+                        <div class="th">
+                            <input type="checkbox" name="sales_id" class="sales_list_check" value="<%= values[i].sales_ID %>">
+                            <input type="hidden" name="state_id" class="state_values" value="<%= values[i].sales_status_ID %>">
+                            落札日時：
+                            <%= values[i].bid_date %>
+                        </div>
+                        <div class="td">
+                            車両名：
+                            <%= values[i].model_name %>
+                        </div>
+                        <div class="td">
+                            落札者：
+                            <%= values[i].user_name %>
+                        </div>
+                        <div class="td">
+                            状態：
+                            <span class="state_lists">
+                                <%= values[i].state %>
+                            </span>
+                        </div>
+                        <div class="td">
+                            落札価格：
+                            <%= values[i].bid_price %>
+                        </div>
+			        </tr>
+					<% for (let i = 0; i < stock_list.length; i++) { %>
+					<tr class="stock-row">
+						<td><a href="./detail/<%= stock_list[i].car_ID %>" class="detailBtn">詳細</a></td>
+						<td><%= stock_list[i].car_ID %></td>
+						<td><%= stock_list[i].maker_name %></td>
+						<td><%= stock_list[i].model_name %></td>
+						<td><%= stock_list[i].grade %></td>
+						<td><%= stock_list[i].displacement %></td>
+						<td><%= stock_list[i].model_year %></td>
+						<td><%= stock_list[i].import_model_year %></td>
+						<td><%= stock_list[i].mileage %></td>
+						<td><%= stock_list[i].run_status %></td>
+						<td><%= stock_list[i].color_category %></td>
+						<td><%= stock_list[i].color_name %></td>
+						<td><%= stock_list[i].insurance_deadline %></td>
+						<td><%= stock_list[i].mt_at %></td>
+						<td><%= stock_list[i].body_type %></td>
+						<td><%= stock_list[i].car_type %></td>
+						<td><button class="tdBtn" value="<%= stock_list[i].car_ID %>">削除</button></td>
+					</tr>
+					<% } %>
+			    </table>
+		    </div>
+		</article>
+	    </main>
+	</div>
+
+    <!-- --------------------------------------------------------------- -->
 
     <div class="table">
         <div class="group">
-            <form action="/sales" method="get">
-                <input type="date" name="date">日付
-                <select name="state" id="">
-                    <option value="">---</option>
-                    <% for(let i=0; i < options.length; i++){ %>
-                        <option value="<%= options[i].sales_status_ID %>"><%= options[i].state %></option>
-                    <% } %>
-                </select>
-    
-                <button type="submit" name="search" value="search">検索</button>
-                <a href="/sales">全件表示</a>
-            </form>
+            
         </div>
 <br>
         <div class="sales">
@@ -66,13 +169,6 @@
             <br>
             <% } %>
         </div>
-<!-- <br>
-        <div class="check_button">
-            <button name="all_select" id="all_select">全選択</button>
-            <button name="all_clear" id="all_clear">全解除</button>
-            <button name="range_select" id="range_select">範囲選択</button>
-            <button name="range_clear" id="range_clear">範囲解除</button>
-        </div> -->
 <br>
         <div class="command">
             <button name="save" id="save_btn">保存</button>
