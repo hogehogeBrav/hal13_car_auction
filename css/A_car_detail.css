@@ -25,27 +25,44 @@ h3 {
 }
 
 article {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
+
 article .article-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
+
 article .info-area {
   font-size: 0.9rem;
 }
+
 article .detail-area {
   font-size: 0.9rem;
 }
+
 article table th {
   font-weight: normal;
   border: solid 1px #606060;
   background: #eeeeee;
 }
+
 article table td {
   border: solid 1px #606060;
   width: 5rem;
@@ -54,11 +71,19 @@ article table td {
 }
 
 .parts-area ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: start;
-  align-items: center;
-  flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
+
 .parts-area ul li {
   border: solid 1px #303030;
   border-radius: 5px;
@@ -66,30 +91,44 @@ article table td {
   width: 12%;
   height: 2.5rem;
   text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background: #fff;
   margin-right: 0.3rem;
   margin-bottom: 0.3rem;
   font-weight: bold;
   font-size: 0.9rem;
 }
-.parts-area ul .enable {
+
+.parts-area ul .parts1 {
   color: #fff;
   border: solid 1px #113458;
   background: #113458;
 }
-.parts-area ul .disable {
+
+.parts-area ul .parts0 {
   color: #606060;
   border: solid 1px #606060;
 }
 
 .article-header {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: 0;
   margin-bottom: 0.2rem;
 }
@@ -98,32 +137,53 @@ article table td {
   width: 70%;
   height: 80%;
 }
+
 #entryModal .modal-content h4 {
   font-weight: bold;
   color: #113458;
   margin-bottom: 0.4rem;
 }
+
 #entryModal .modal-content ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
+
 #entryModal .modal-content ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: start;
-  align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 #entryModal .modal-content ul li input {
   display: none;
 }
+
 #entryModal .modal-content ul li input:checked + label {
   border: solid 1px #113458;
   background: #113458;
   color: #fff;
 }
+
 #entryModal .modal-content ul li label {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 7.7rem;
   border: solid 1px #303030;
   border-radius: 5px;
@@ -135,4 +195,5 @@ article table td {
   font-size: 0.8rem;
   color: #606060;
   border: solid 1px #606060;
-}/*# sourceMappingURL=A_car_detail.css.map */
+}
+/*# sourceMappingURL=A_car_detail.css.map */
