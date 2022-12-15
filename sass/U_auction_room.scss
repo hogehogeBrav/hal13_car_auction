@@ -228,8 +228,8 @@ main{
           width: 99%;
           margin: 0 auto;
           display: flex;
-          // justify-content: space-evenly;
-          gap: 3%;
+          align-items: center;
+          gap: 5%;
           flex-wrap: wrap;
           li{
             background-color: rgb(226, 248, 230);

@@ -222,7 +222,8 @@ main #auction_car_detail .car_auction .equipment_container ul {
   width: 99%;
   margin: 0 auto;
   display: flex;
-  gap: 3%;
+  align-items: center;
+  gap: 5%;
   flex-wrap: wrap;
 }
 main #auction_car_detail .car_auction .equipment_container ul li {

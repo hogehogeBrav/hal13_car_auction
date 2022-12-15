@@ -132,17 +132,14 @@
             <li <% if(auction[0].skid_prevention == 0) { %> class="invisible" <% } %>>
               横滑り防止装置
             </li>
-            <li <% if(auction[0].test_drive == 0) { %> class="invisible" <% } %>>
-              試乗、現車確認可能
+            <li <% if(auction[0].traction_control == 0) { %> class="invisible" <% } %>>
+              トラクション（TCS）
             </li>
             <li <% if(auction[0].airbag == 0) { %> class="invisible" <% } %>>
               エアバッグ
             </li>
             <li <% if(auction[0].navi == 0) { %> class="invisible" <% } %>>
               ナビゲーション
-            </li>
-            <li <% if(auction[0].traction_control == 0) { %> class="invisible" <% } %>>
-              トラクションコントロール
             </li>
             <li <% if(auction[0].manual == 0) { %> class="invisible" <% } %>>
               取扱説明書
@@ -170,6 +167,9 @@
             </li>
             <li <% if(auction[0].spare_tire == 0) { %> class="invisible" <% } %>>
               スペアタイヤ
+            </li>
+            <li <% if(auction[0].test_drive == 0) { %> class="invisible" <% } %>>
+              試乗、現車確認可能
             </li>
           </ul>
         </div>
