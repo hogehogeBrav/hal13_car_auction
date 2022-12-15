@@ -12,8 +12,8 @@ main {
 }
 main #auction_car_title {
   background-color: #f5f5f5;
-  border: 2px solid #1ED760;
-  border-left: 10px solid #1ED760;
+  border: 2px solid #1db954;
+  border-left: 10px solid #1db954;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -37,7 +37,7 @@ main #auction_car_title .time {
   height: 45px;
   font-size: 20px;
   font-weight: 700;
-  background-color: #1ED760;
+  background-color: #1db954;
   color: #fff;
   border-radius: 100px;
   text-align: center;
@@ -59,12 +59,15 @@ main #auction_car_detail .car_images img {
      object-fit: contain;
 }
 main #auction_car_detail .car_auction {
+  padding-right: 1%;
+  max-height: 70vh;
+  overflow-y: scroll;
   width: 47%;
 }
 main #auction_car_detail .car_auction #time-container {
   display: flex;
   justify-content: space-around;
-  border: 3px solid #1ED760;
+  border: 3px solid #1db954;
   border-radius: 100px;
   width: 100%;
   display: flex;
@@ -86,18 +89,18 @@ main #auction_car_detail .car_auction #time-container .status {
   line-height: 60px;
   border-radius: 0 100px 100px 0;
   text-align: center;
-  background-color: #1ED760;
+  background-color: #1db954;
   color: #fff;
 }
 main #auction_car_detail .car_auction .car_amount {
   display: flex;
+  justify-content: space-between;
   margin-bottom: 30px;
   font-size: 20px;
   font-weight: bold;
 }
 main #auction_car_detail .car_auction .car_amount div {
-  margin-right: 5%;
-  width: 33%;
+  width: 47%;
 }
 main #auction_car_detail .car_auction .car_amount div p:first-child {
   color: #515050;
@@ -114,10 +117,15 @@ main #auction_car_detail .car_auction .car_amount div p:last-child {
   color: #515050;
   font-size: 30px;
   line-height: 30px;
+  text-align: right;
+}
+main #auction_car_detail .car_auction .car_amount div p:last-child span {
+  font-size: 24px;
+  margin-left: 3px;
 }
 main #auction_car_detail .car_auction .auction_button {
   display: flex;
-  margin-bottom: 35px;
+  margin-bottom: 40px;
 }
 main #auction_car_detail .car_auction .auction_button button {
   margin-right: 20px;
@@ -165,12 +173,12 @@ main #auction_car_detail .car_auction .auction_button #bid {
   font-weight: 700;
   text-align: center;
   color: #fff;
-  background-color: #1ED760;
+  background-color: #15883e;
   height: 40px;
 }
 main #auction_car_detail .car_auction .auction_button #bid:hover {
   transform: scale(1.04);
-  background-color: #21e065;
+  background-color: #1db954;
 }
 main #auction_car_detail .car_auction .car_info_headline {
   font-weight: bold;
@@ -195,13 +203,12 @@ main #auction_car_detail .car_auction .car_info div span {
   font-size: 18px;
   line-height: 30px;
   font-weight: 600;
-  border-bottom: 3px solid #7070c5;
+  border-bottom: 2px solid #7070c5;
   margin-bottom: 10px;
 }
 main #auction_car_detail .car_auction .car_info div p {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  font-size: 18px;
+  margin-bottom: 20px;
 }
 main #auction_car_detail .car_auction .equipment_container h2 {
   font-weight: bold;
@@ -212,13 +219,16 @@ main #auction_car_detail .car_auction .equipment_container h2 {
   margin-bottom: 15px;
 }
 main #auction_car_detail .car_auction .equipment_container ul {
+  width: 99%;
+  margin: 0 auto;
   display: flex;
-  gap: 3%;
+  align-items: center;
+  gap: 5%;
   flex-wrap: wrap;
 }
 main #auction_car_detail .car_auction .equipment_container ul li {
-  background-color: rgb(248, 237, 226);
-  color: rgb(236, 107, 48);
+  background-color: rgb(226, 248, 230);
+  color: rgb(44, 214, 44);
   border-radius: 5px;
   font-size: 15px;
   width: 30%;

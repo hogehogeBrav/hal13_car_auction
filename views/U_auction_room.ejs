@@ -31,7 +31,7 @@
     </div>
     <div id="auction_car_detail">
       <div class="car_images">
-        <img src="https://placehold.jp/3d4070/ffffff/150x150.png" alt="車両画像">
+        <img src="/images/car_images/<%= auction[0].car_ID %>/index.jpg" alt="車両画像">
       </div>
       <div class="car_auction">
         <h2 class="visuallyhidden">オークション残り時間</h2>
@@ -42,11 +42,11 @@
           <h2 class="visuallyhidden">オークション価格</h2>
           <div class="start">
             <p>開始価格</p>
-            <p><%= auction[0].minimum_amount.toLocaleString() %>円</p>
+            <p><%= auction[0].minimum_amount.toLocaleString() %><span>円</span></p>
           </div>
           <div class="now">
             <p>現在価格</p>
-            <p id="now_amount"><%= now_amount.toLocaleString() %>円</p>
+            <p id="now_amount"><%= now_amount.toLocaleString() %><span>円</span></p>
           </div>
         </div>
         <div class="auction_button">
@@ -132,17 +132,14 @@
             <li <% if(auction[0].skid_prevention == 0) { %> class="invisible" <% } %>>
               横滑り防止装置
             </li>
-            <li <% if(auction[0].test_drive == 0) { %> class="invisible" <% } %>>
-              試乗、現車確認可能
+            <li <% if(auction[0].traction_control == 0) { %> class="invisible" <% } %>>
+              トラクション（TCS）
             </li>
             <li <% if(auction[0].airbag == 0) { %> class="invisible" <% } %>>
               エアバッグ
             </li>
             <li <% if(auction[0].navi == 0) { %> class="invisible" <% } %>>
               ナビゲーション
-            </li>
-            <li <% if(auction[0].traction_control == 0) { %> class="invisible" <% } %>>
-              トラクションコントロール
             </li>
             <li <% if(auction[0].manual == 0) { %> class="invisible" <% } %>>
               取扱説明書
@@ -170,6 +167,9 @@
             </li>
             <li <% if(auction[0].spare_tire == 0) { %> class="invisible" <% } %>>
               スペアタイヤ
+            </li>
+            <li <% if(auction[0].test_drive == 0) { %> class="invisible" <% } %>>
+              試乗、現車確認可能
             </li>
           </ul>
         </div>
