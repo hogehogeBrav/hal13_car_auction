@@ -59,6 +59,8 @@ main #auction_car_detail .car_images img {
      object-fit: contain;
 }
 main #auction_car_detail .car_auction {
+  max-height: 400px;
+  overflow-y: scroll;
   width: 47%;
 }
 main #auction_car_detail .car_auction #time-container {

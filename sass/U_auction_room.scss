@@ -60,6 +60,8 @@ main{
     }
 
     .car_auction{
+      max-height: 400px;
+      overflow-y: scroll;
       width: 47%;
       #time-container{
         display: flex;
