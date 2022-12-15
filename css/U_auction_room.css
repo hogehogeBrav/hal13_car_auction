@@ -220,6 +220,7 @@ main #auction_car_detail .car_auction .equipment_container h2 {
 }
 main #auction_car_detail .car_auction .equipment_container ul {
   display: flex;
+  justify-content: space-evenly;
   gap: 3%;
   flex-wrap: wrap;
 }

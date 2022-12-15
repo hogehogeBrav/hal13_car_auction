@@ -226,6 +226,7 @@ main{
         }
         ul{
           display: flex;
+          justify-content: space-evenly;
           gap: 3%;
           flex-wrap: wrap;
           li{
