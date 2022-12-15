@@ -59,7 +59,8 @@ main #auction_car_detail .car_images img {
      object-fit: contain;
 }
 main #auction_car_detail .car_auction {
-  max-height: 400px;
+  padding-right: 1%;
+  max-height: 70vh;
   overflow-y: scroll;
   width: 47%;
 }
@@ -93,13 +94,13 @@ main #auction_car_detail .car_auction #time-container .status {
 }
 main #auction_car_detail .car_auction .car_amount {
   display: flex;
+  justify-content: space-between;
   margin-bottom: 30px;
   font-size: 20px;
   font-weight: bold;
 }
 main #auction_car_detail .car_auction .car_amount div {
-  margin-right: 5%;
-  width: 33%;
+  width: 47%;
 }
 main #auction_car_detail .car_auction .car_amount div p:first-child {
   color: #515050;
@@ -116,10 +117,15 @@ main #auction_car_detail .car_auction .car_amount div p:last-child {
   color: #515050;
   font-size: 30px;
   line-height: 30px;
+  text-align: right;
+}
+main #auction_car_detail .car_auction .car_amount div p:last-child span {
+  font-size: 24px;
+  margin-left: 3px;
 }
 main #auction_car_detail .car_auction .auction_button {
   display: flex;
-  margin-bottom: 35px;
+  margin-bottom: 40px;
 }
 main #auction_car_detail .car_auction .auction_button button {
   margin-right: 20px;
@@ -197,13 +203,12 @@ main #auction_car_detail .car_auction .car_info div span {
   font-size: 18px;
   line-height: 30px;
   font-weight: 600;
-  border-bottom: 3px solid #7070c5;
+  border-bottom: 2px solid #7070c5;
   margin-bottom: 10px;
 }
 main #auction_car_detail .car_auction .car_info div p {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  font-size: 18px;
+  margin-bottom: 20px;
 }
 main #auction_car_detail .car_auction .equipment_container h2 {
   font-weight: bold;
@@ -219,8 +224,8 @@ main #auction_car_detail .car_auction .equipment_container ul {
   flex-wrap: wrap;
 }
 main #auction_car_detail .car_auction .equipment_container ul li {
-  background-color: rgb(248, 237, 226);
-  color: rgb(236, 107, 48);
+  background-color: rgb(226, 248, 230);
+  color: rgb(44, 214, 44);
   border-radius: 5px;
   font-size: 15px;
   width: 30%;

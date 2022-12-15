@@ -42,11 +42,11 @@
           <h2 class="visuallyhidden">オークション価格</h2>
           <div class="start">
             <p>開始価格</p>
-            <p><%= auction[0].minimum_amount.toLocaleString() %>円</p>
+            <p><%= auction[0].minimum_amount.toLocaleString() %><span>円</span></p>
           </div>
           <div class="now">
             <p>現在価格</p>
-            <p id="now_amount"><%= now_amount.toLocaleString() %>円</p>
+            <p id="now_amount"><%= now_amount.toLocaleString() %><span>円</span></p>
           </div>
         </div>
         <div class="auction_button">
