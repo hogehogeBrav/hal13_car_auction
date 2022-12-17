@@ -51,10 +51,10 @@ main .auction_not_yet h2 {
   border-radius: 15px;
   background-color: #f5f5f5;
   padding: 0 20px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
-  height: 70px;
-  line-height: 70px;
+  height: 60px;
+  line-height: 60px;
 }
 main .now_auction {
   width: 800px;

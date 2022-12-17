@@ -14,54 +14,166 @@
 <body>
   <%- include('U_header.ejs'); %>
   <main>
-    <h1 class="visuallyhidden">HAL AUCTION オークション一覧</h1>
     <div id="auction_list">
-      <h2>オークション一覧</h2>
+      <h1>オークション一覧</h1>
     </div>
+    <% var flg = false // 開催中オークションが存在しなければfalse %> 
+    <h2>開催中のオークション</h2>
     <% for (let i = 0; i < auction.length; i++) { %>
-      <h3 class="visuallyhidden">オークションNo.<%= auction[i].auction_ID %> <%= auction[i].maker_name %> <%= auction[i].name %> <%= auction[i].grade %></h3>
-      <div class="now_auction">
-        <div class="now_auction_img">
-          <img src="/images/car_images/<%= auction[i].car_ID %>/index.jpg" alt="車両画像">
-        </div>
-        <div class="now_auction_info">
-          <div class="maker">
-            <p><%= auction[i].maker_name %> <%= auction[i].name %> <%= auction[i].grade %> </p>
+      <% if (new Date(auction[i].start_time) <= new Date() && new Date() <= new Date(auction[i].ending_time)) { %>
+        <% var flg = true // 開催中オークションが存在した場合 %> 
+        <h3 class="visuallyhidden">オークションNo.<%= auction[i].auction_ID %> <%= auction[i].maker_name %> <%= auction[i].name %> <%= auction[i].grade %></h3>
+        <div class="now_auction">
+          <div class="now_auction_img">
+            <img src="/images/car_images/<%= auction[i].car_ID %>/index.jpg" alt="車両画像">
           </div>
-          <div class="amount_container">
-            <div class="amount">
-              <div class="start">
-                <p>開始価格</p>
-                <p><%= auction[i].minimum_amount.toLocaleString() %>円</p>
-              </div>
-              <div class="now">
-                <p>現在価格</p>
-                <% if(auction[i].max_amount == null) { %>
+          <div class="now_auction_info">
+            <div class="maker">
+              <p><%= auction[i].maker_name %> <%= auction[i].name %> <%= auction[i].grade %> </p>
+            </div>
+            <div class="amount_container">
+              <div class="amount">
+                <div class="start">
+                  <p>開始価格</p>
                   <p><%= auction[i].minimum_amount.toLocaleString() %>円</p>
+                </div>
+                <div class="now">
+                  <p>現在価格</p>
+                  <% if(auction[i].max_amount == null) { %>
+                    <p><%= auction[i].minimum_amount.toLocaleString() %>円</p>
+                  <% } else { %>
+                    <p><%= auction[i].max_amount.toLocaleString() %>円</p>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+            <div class="bottom">
+              <div class="time">
+                <p>開始時刻：<%= auction[i].start_time.toLocaleString() %> <br>終了時刻：<%= auction[i].ending_time.toLocaleString() %></p>
+              </div>
+              <div class="to_auction">
+                <% if(new Date(auction[i].start_time) <= new Date(new Date().toLocaleString()) && new Date(new Date().toLocaleString()) <= new Date(auction[i].ending_time)) { %>
+                  <a href="/auction/<%= auction[i].auction_ID %>">オークションへ</a>
+                <% } else if(new Date(auction[i].start_time) <= new Date(new Date().toLocaleString())) { %>
+                  <a class="finished">終了しました</a>
                 <% } else { %>
-                  <p><%= auction[i].max_amount.toLocaleString() %>円</p>
-                <% } %>
+                  <a class="not_start">開始前です</a>
+                <% } %> 
               </div>
             </div>
           </div>
-          <div class="bottom">
-            <div class="time">
-              <p>開始時刻：<%= auction[i].start_time.toLocaleString() %> <br>終了時刻：<%= auction[i].ending_time.toLocaleString() %></p>
+        </div>
+      <% } %>
+    <% } %>
+    <% if(!flg) { %>
+      <div class="auction_not_yet">
+        <h2>現在開催しているオークションはありません。</h2>
+      </div>
+    <% } %>
+
+    <% var flg = false // 開催予定のオークションが存在しなければfalse %> 
+    <h2 class="not_start">開催予定のオークション</h2>
+    <% for (let i = 0; i < auction.length; i++) { %>
+      <% if (new Date() <= new Date(auction[i].start_time)) { %>
+        <% var flg = true // 開催予定のオークションが存在した場合 %> 
+        <h3 class="visuallyhidden">オークションNo.<%= auction[i].auction_ID %> <%= auction[i].maker_name %> <%= auction[i].name %> <%= auction[i].grade %></h3>
+        <div class="now_auction">
+          <div class="now_auction_img">
+            <img src="/images/car_images/<%= auction[i].car_ID %>/index.jpg" alt="車両画像">
+          </div>
+          <div class="now_auction_info">
+            <div class="maker">
+              <p><%= auction[i].maker_name %> <%= auction[i].name %> <%= auction[i].grade %> </p>
             </div>
-            <div class="to_auction">
-              <% if(new Date(auction[i].start_time) <= new Date(new Date().toLocaleString()) && new Date(new Date().toLocaleString()) <= new Date(auction[i].ending_time)) { %>
-                <a href="/auction/<%= auction[i].auction_ID %>">オークションへ</a>
-              <% } else if(new Date(auction[i].start_time) <= new Date(new Date().toLocaleString())) { %>
-                <a class="finished">終了しました</a>
-              <% } else { %>
-                <a class="not_start">開始前です</a>
-              <% } %> 
+            <div class="amount_container">
+              <div class="amount">
+                <div class="start">
+                  <p>開始価格</p>
+                  <p><%= auction[i].minimum_amount.toLocaleString() %>円</p>
+                </div>
+                <div class="now">
+                  <p>現在価格</p>
+                  <% if(auction[i].max_amount == null) { %>
+                    <p><%= auction[i].minimum_amount.toLocaleString() %>円</p>
+                  <% } else { %>
+                    <p><%= auction[i].max_amount.toLocaleString() %>円</p>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+            <div class="bottom">
+              <div class="time">
+                <p>開始時刻：<%= auction[i].start_time.toLocaleString() %> <br>終了時刻：<%= auction[i].ending_time.toLocaleString() %></p>
+              </div>
+              <div class="to_auction">
+                <% if(new Date(auction[i].start_time) <= new Date(new Date().toLocaleString()) && new Date(new Date().toLocaleString()) <= new Date(auction[i].ending_time)) { %>
+                  <a href="/auction/<%= auction[i].auction_ID %>">オークションへ</a>
+                <% } else if(new Date(auction[i].start_time) <= new Date(new Date().toLocaleString())) { %>
+                  <a class="finished">終了しました</a>
+                <% } else { %>
+                  <a class="not_start">開始前です</a>
+                <% } %> 
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
+      <% } %>
     <% } %>
+    <% if(!flg) { %>
+      <div class="auction_not_yet">
+        <h2>開催予定のオークションはありません。</h2>
+      </div>
+    <% } %>
+
+    <h2 class="finished">終了したオークション</h2>
+    <% for (let i = 0; i < auction.length; i++) { %>
+      <% if (new Date() >= new Date(auction[i].ending_time)) { %>
+        <% var flg = true // 開催予定のオークションが存在した場合 %> 
+        <h3 class="visuallyhidden">オークションNo.<%= auction[i].auction_ID %> <%= auction[i].maker_name %> <%= auction[i].name %> <%= auction[i].grade %></h3>
+        <div class="now_auction">
+          <div class="now_auction_img">
+            <img src="/images/car_images/<%= auction[i].car_ID %>/index.jpg" alt="車両画像">
+          </div>
+          <div class="now_auction_info">
+            <div class="maker">
+              <p><%= auction[i].maker_name %> <%= auction[i].name %> <%= auction[i].grade %> </p>
+            </div>
+            <div class="amount_container">
+              <div class="amount">
+                <div class="start">
+                  <p>開始価格</p>
+                  <p><%= auction[i].minimum_amount.toLocaleString() %>円</p>
+                </div>
+                <div class="now">
+                  <p>現在価格</p>
+                  <% if(auction[i].max_amount == null) { %>
+                    <p><%= auction[i].minimum_amount.toLocaleString() %>円</p>
+                  <% } else { %>
+                    <p><%= auction[i].max_amount.toLocaleString() %>円</p>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+            <div class="bottom">
+              <div class="time">
+                <p>開始時刻：<%= auction[i].start_time.toLocaleString() %> <br>終了時刻：<%= auction[i].ending_time.toLocaleString() %></p>
+              </div>
+              <div class="to_auction">
+                <% if(new Date(auction[i].start_time) <= new Date(new Date().toLocaleString()) && new Date(new Date().toLocaleString()) <= new Date(auction[i].ending_time)) { %>
+                  <a href="/auction/<%= auction[i].auction_ID %>">オークションへ</a>
+                <% } else if(new Date(auction[i].start_time) <= new Date(new Date().toLocaleString())) { %>
+                  <a class="finished">終了しました</a>
+                <% } else { %>
+                  <a class="not_start">開始前です</a>
+                <% } %> 
+              </div>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    <% } %> 
+
+
   </main>
   <%- include('U_footer.ejs'); %>
 </body>
