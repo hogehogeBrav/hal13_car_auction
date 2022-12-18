@@ -57,7 +57,10 @@ app.get('/auctions', (req, res) => {
 
 //売上一覧画面(Hirokey8492)
 app.get('/sales', (req,res) => {
-  sales.main(connection,req,res,io_socket);
+  sales.main(connection,req,res);
+});
+app.post('/sales', (req,res) => {
+  sales.update(connection,req,res);
 });
 
-app.listen(9000);
+app.listen(3000);

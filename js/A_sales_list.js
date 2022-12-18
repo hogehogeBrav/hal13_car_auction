@@ -1,6 +1,6 @@
 const checkboxs = document.getElementsByClassName("sales_list_check");
 const state_values = document.getElementsByClassName("state_values");
-const socket_io = io();
+const save_state = document.getElementById("save_state");
 
 /**
  * 状態変更ボタン
@@ -36,6 +36,8 @@ btn_state.addEventListener('click', (e)=>{
         }
 
         state_lists[on_checkboxs[i][0]].textContent = options_list[state_values[work].value - 1].state;
+        save_state.textContent = "未保存データ有り";
+        console.log(save_state);
     }
 });
 
@@ -45,31 +47,6 @@ btn_state.addEventListener('click', (e)=>{
 
 
 /**
- * 保存ボタン
+ * 検索ボタン：モーダル
 */
-const btn_save = document.getElementById("save_btn");
 
-
-btn_save.addEventListener('click', (e) => {
-    // 更新データ
-    const sendData = {};
-    for(let i=0; i < state_values.length; i++){
-        // checkboxs[i].value: sales_ID
-        // state_values[i].value: state_ID
-        sendData[i] = {
-            sales_ID:checkboxs[i].value,
-            sales_state_ID:state_values[i].value
-        }
-    }
-    console.log(sendData);
-    let json_option = JSON.stringify(sendData);
-    // クライアント(ブラウザ)⇒サーバ(Node.js)へSocket送信
-    socket_io.emit("c-sales-save", sendData);
-});
-
-
-// サーバ(Node.js)⇒クライアント(ブラウザ)へSocket受信
-socket_io.on('s-sales-save', function(msg){
-    
-    alert('保存完了');
-});

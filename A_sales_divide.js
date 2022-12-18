@@ -1,4 +1,4 @@
-exports.main = function(connection,req,res,io_socket) { //main関数に全ての処理を入れてadmin.jsに送信しています
+exports.main = function(connection,req,res) { //main関数に全ての処理を入れてadmin.jsに送信しています
   let sql = "";
   if(req.query.search){
     if(req.query.date != "" && req.query.state != ""){
@@ -39,16 +39,7 @@ exports.main = function(connection,req,res,io_socket) { //main関数に全ての
       }
 
       for(let i=0; i < results.length; i++){
-        // デフォルト値
-        let format = 'YYYY年MM月DD日 hh:mm';
-
-        format = format.replace(/YYYY/g, results[i].bid_date.getFullYear());
-        format = format.replace(/MM/g, ('0' + (results[i].bid_date.getMonth() + 1)).slice(-2));
-        format = format.replace(/DD/g, ('0' + results[i].bid_date.getDate()).slice(-2));
-        format = format.replace(/hh/g, ('0' + results[i].bid_date.getHours()).slice(-2));
-        format = format.replace(/mm/g, ('0' + results[i].bid_date.getMinutes()).slice(-2));
-
-        results[i].bid_date = format;
+        results[i].bid_date = formatDate(results[i].bid_date);
       }
       connection.query(
         'SELECT * FROM sales_status',
@@ -63,38 +54,48 @@ exports.main = function(connection,req,res,io_socket) { //main関数に全ての
       );
     }
   );
-
-  io_socket.on('connection', function(socket){
-    console.log('connected');
-    
-    socket.on('c-sales-save', function(data){
-      console.log('c-sales-save: ' + data);
-      // DB処理
-      let loop = Object.keys(data);
-      if(loop != []){
-          for(let i=0; i<loop.length; i++){
-              let values = [];
-              values[i] = [
-                  data[i].sales_state_ID,
-                  data[i].sales_ID
-              ];
-              connection.query(
-                  "UPDATE sales SET sales_status_ID=? WHERE sales_ID=?;", values[i],
-                  (error, results, fields) => {
-                      if(error) {
-                          console.log('error connecting: ' + error.stack);
-                          res.status(400).send({ message: 'Error!!' });
-                          return;
-                      }
-                      console.log(results);
-                  }
-              );
-          }
-      }
-      io_socket.emit('s-sales-save');
-    });
-  });  
 }
 
 
 
+exports.update = function(connection,req,res) { //main関数に全ての処理を入れてadmin.jsに送信しています
+  // DB処理
+  console.log(req.body);
+  let loop = Object.keys(req.body.id);
+  if(loop != []){
+      for(let i=0; i<loop.length; i++){
+          let values = [];
+          values[i] = [
+              req.body.state_id[i],
+              req.body.id[i]
+          ];
+          connection.query(
+              "UPDATE sales SET sales_status_ID=? WHERE sales_ID=?;", values[i],
+              (error, results) => {
+                  if(error) {
+                      console.log('error connecting: ' + error.stack);
+                      res.status(400).send({ message: 'Error!!' });
+                      return;
+                  }
+              }
+          );
+      }
+      res.redirect('/sales');
+  }
+  
+}
+
+
+
+function formatDate(dateStrings){
+  let format = 'YYYY年MM月DD日 hh:mm:ss';
+
+  format = format.replace(/YYYY/g, dateStrings.substr(0, 4));
+  format = format.replace(/MM/g, (dateStrings.substr(5, 2)));
+  format = format.replace(/DD/g, dateStrings.substr(8, 2));
+  format = format.replace(/hh/g, dateStrings.substr(11, 2));
+  format = format.replace(/mm/g, dateStrings.substr(14, 2));
+  format = format.replace(/ss/g, dateStrings.substr(17, 2));
+  
+  return format;
+}
