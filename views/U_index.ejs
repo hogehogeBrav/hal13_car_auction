@@ -26,39 +26,39 @@
         <h2>現在開催しているオークションはありません。</h2>
       </div>
     <% } %> 
-    <% for (let i = 0; i < now_auction.length; i++) { %>
-      <h3 class="visuallyhidden">オークションNo.<%= now_auction[i].auction_ID %> <%= now_auction[i].maker_name %> <%= now_auction[i].name %> <%= now_auction[i].grade %></h3>
+    <% now_auction.forEach(function (value, key) { %>
+      <h3 class="visuallyhidden">オークションNo.<%= value.auction_ID %> <%= value.maker_name %> <%= value.name %> <%= value.grade %></h3>
       <div class="now_auction">
         <div class="now_auction_img">
-          <img src="/images/car_images/<%= now_auction[i].car_ID %>/index.jpg" alt="車両画像">
+          <img src="/images/car_images/<%= value.car_ID %>/index.jpg" alt="車両画像">
         </div>
         <div class="now_auction_info">
           <div class="maker">
-            <p><%= now_auction[i].maker_name %> <%= now_auction[i].name %> <%= now_auction[i].grade %> </p>
+            <p><%= value.maker_name %> <%= value.name %> <%= value.grade %> </p>
           </div>
           <div class="amount_container">
             <div class="amount">
               <div class="start">
                 <p>開始価格</p>
-                <p><%= now_auction[i].minimum_amount.toLocaleString() %>円</p>
+                <p><%= value.minimum_amount.toLocaleString() %>円</p>
               </div>
               <div class="now">
                 <p>現在価格</p>
-                <% if(now_auction[i].max_amount == null) { %>
-                  <p><%= now_auction[i].minimum_amount.toLocaleString() %>円</p>
+                <% if(value.max_amount == null) { %>
+                  <p><%= value.minimum_amount.toLocaleString() %>円</p>
                 <% } else { %>
-                  <p><%= now_auction[i].max_amount.toLocaleString() %>円</p>
+                  <p><%= value.max_amount.toLocaleString() %>円</p>
                 <% } %>
               </div>
             </div>
           </div>
           <div class="bottom">
             <div class="time">
-              <p>開始時刻：<%= now_auction[i].start_time.toLocaleString() %> <br>終了時刻：<%= now_auction[i].ending_time.toLocaleString() %></p>
+              <p>開始時刻：<%= value.start_time.toLocaleString() %> <br>終了時刻：<%= value.ending_time.toLocaleString() %></p>
             </div>
             <div class="to_auction">
               <% if(login) { %>
-                <a href="/auction/<%= now_auction[i].auction_ID %>">オークションへ</a>
+                <a href="/auction/<%= value.auction_ID %>">オークションへ</a>
               <% } else { %>
                 <a href="/login">ログイン</a>
               <% } %>
@@ -66,7 +66,7 @@
           </div>
         </div>
       </div>
-    <% } %>
+    <% }); %>
     <div id="to_auction_list">
       <% if(login) { %>
         <a href="/auction">オークション一覧へ</a>
