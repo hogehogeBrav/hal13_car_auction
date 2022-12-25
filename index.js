@@ -11,7 +11,7 @@ const cron = require('node-cron');
 
 app.set('view engine', 'ejs');
 
-app.use(express.static(__dirname + "/view" , {index: false}));
+app.use(express.static(__dirname + "/views" , {index: false}));
 app.use(express.static(__dirname + "/public" , {index: false}));
 app.use(express.static(__dirname + "/js" , {index: false}));
 app.use(express.static(__dirname + "/css" , {index: false}));
