@@ -201,6 +201,16 @@
         </div>
       </form>
     </div>
+    <div id="auction_end_modal">
+      <p id="top_comment">このオークションは終了しました。</p>
+      <!-- <ul id="bid_history_modal_lists">
+        <% for(let i = 0; i < auction_bid_history.length; i++) {%>
+          <div id="history_container">
+            <li><%= auction_bid_history[i].amount_time.toLocaleString() %></li><li>入札者: <%= auction_bid_history[i].name %></li><li>入札金額: <%= auction_bid_history[i].amount.toLocaleString() %></li>
+          </div>
+        <% } %>
+      </ul> -->
+    </div>
   </main>
   <%- include('U_footer.ejs'); %>
 </body>
