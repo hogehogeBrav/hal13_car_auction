@@ -306,12 +306,20 @@ app.get('/auction/:auction_ID', isAuthenticated, (req, res) => {
         WHERE auction_ID = ` + req.params.auction_ID + ` 
         ORDER BY amount_time DESC;`,
         (error2, results2) => {
-          console.log(results2);
           if (error2) {
             console.log('error connecting: ' + error2.stack);
             res.status(400).send({ message: 'Error!!' });
             return;
           }
+          if (results2.length == 0) {
+            results2 = [{
+              amount_time: 0,
+              user_ID: null,
+              name: null,
+              amount: 0,
+            }];
+          }
+          console.log(results2);
           // 入札金額
           var now_amount = results[0].max_amount;
           if(results[0].max_amount == null){

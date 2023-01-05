@@ -54,6 +54,11 @@ function countdown() {
       document.getElementsByClassName('status')[0].innerText = '終了しました';
       document.getElementsByClassName('status')[0].style.backgroundColor = 'red';
       toastr.error('このオークションは終了しました。');
+
+      $('#auction_end_modal').iziModal('open');
+      $('#auction_end_modal').iziModal({
+        title: 'このオークションは終了しました。',
+      });
     }
   }
 }
