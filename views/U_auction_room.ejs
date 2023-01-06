@@ -213,8 +213,6 @@
         <% if(auction_bid_history[0].user_ID == id) { %>
           <p>おめでとうございます！ あなたが落札しました。</p>
           <p>通知をご確認ください。</p>
-        <% } else if(auction_bid_history[0].user_ID == null) { %>
-          <p>落札者はいません。</p>
         <% } else { %>
           <p>落札者は <%= auction_bid_history[0].name %>です。</p>
         <% } %>
