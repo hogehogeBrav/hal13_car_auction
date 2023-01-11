@@ -331,4 +331,12 @@ main #auction_car_detail .car_auction .equipment_container ul .invisible {
   padding: 0 10px;
   background-color: #21e065;
   color: #fff;
+}
+
+#auction_end_modal #text {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px auto;
+  text-align: center;
+  line-height: 34px;
 }/*# sourceMappingURL=U_auction_room.css.map */
