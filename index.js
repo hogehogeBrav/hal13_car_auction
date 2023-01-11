@@ -373,4 +373,13 @@ io_socket.on('connection', function(socket){
   });
 });
 
+cron.schedule('* * * * *', () => {
+  console.log('cron')
+  connection.query(
+    `UPDATE auction  
+    SET bid_status_ID = 1
+    WHERE auction.ending_time < NOW() and auction.bid_status_ID = 0;`,
+  );
+});
+
 http_socket.listen(9000);
