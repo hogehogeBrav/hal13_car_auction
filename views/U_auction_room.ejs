@@ -178,10 +178,14 @@
     <div id="bid_history_modal">
       <p id="top_comment">上部が最新です</p>
       <ul id="bid_history_modal_lists">
-        <% for(let i = 0; i < auction_bid_history.length; i++) {%>
-          <div id="history_container">
-            <li><%= auction_bid_history[i].amount_time.toLocaleString() %></li><li>入札者: <%= auction_bid_history[i].name %></li><li>入札金額: <%= auction_bid_history[i].amount.toLocaleString() %></li>
-          </div>
+        <% if(auction_bid_history[0].user_ID == null) { %>
+          <p>入札履歴はありません</p>
+        <% } else { %>
+          <% for(let i = 0; i < auction_bid_history.length; i++) {%>
+            <div id="history_container">
+              <li><%= auction_bid_history[i].amount_time.toLocaleString() %></li><li>入札者: <%= auction_bid_history[i].name %></li><li><%= auction_bid_history[i].amount.toLocaleString() %>円</li>
+            </div>
+          <% } %>
         <% } %>
       </ul>
     </div>
@@ -200,6 +204,21 @@
           <input type="submit" id="bid_button" value="入札する">
         </div>
       </form>
+    </div>
+    <div id="auction_end_modal">
+      <div id="text">
+        <% if(auction_bid_history[0].user_ID == null) { %>
+          <p>落札者はいませんでした。</p>
+        <% } else { %>
+          <p id="top_comment"><%= now_amount.toLocaleString() %>円で落札されました。</p>
+          <% if(auction_bid_history[0].user_ID == id) { %>
+            <p>おめでとうございます！ あなたが落札しました。</p>
+            <p>通知をご確認ください。</p>
+          <% } else { %>
+            <p>落札者は <%= auction_bid_history[0].name %>様です。</p>
+          <% } %>
+        <% } %>
+      </div>
     </div>
   </main>
   <%- include('U_footer.ejs'); %>

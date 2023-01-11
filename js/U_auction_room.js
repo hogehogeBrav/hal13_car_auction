@@ -54,9 +54,33 @@ function countdown() {
       document.getElementsByClassName('status')[0].innerText = '終了しました';
       document.getElementsByClassName('status')[0].style.backgroundColor = 'red';
       toastr.error('このオークションは終了しました。');
+
+      $('#auction_end_modal').iziModal('open');
+
+      // // 売上テーブル
+      // const sendData = {
+      //   auctionid: auctionid,
+      //   id: userid,
+      //   amount: document.getElementById("amount_form").value,
+      //   ending_time: ending_time,
+      // }
+      // $.ajax({
+      //   type: "POST",
+      //   url: "/auctionfin",
+      //   data: sendData,
+      // }).done(function(results){
+      // }).fail(function(xhr, textStatus, errorThrown){
+      //   console.log("ajax通信に失敗しました。");
+      // }).always(function(xhr){
+      // });
     }
   }
 }
+
+$('#auction_end_modal').iziModal({
+  title: 'このオークションは終了しました。',
+});
+
 countdown();
 var timer = setInterval(countdown,100);
 

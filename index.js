@@ -11,7 +11,7 @@ const cron = require('node-cron');
 
 app.set('view engine', 'ejs');
 
-app.use(express.static(__dirname + "/view" , {index: false}));
+app.use(express.static(__dirname + "/views" , {index: false}));
 app.use(express.static(__dirname + "/public" , {index: false}));
 app.use(express.static(__dirname + "/js" , {index: false}));
 app.use(express.static(__dirname + "/css" , {index: false}));
@@ -306,12 +306,20 @@ app.get('/auction/:auction_ID', isAuthenticated, (req, res) => {
         WHERE auction_ID = ` + req.params.auction_ID + ` 
         ORDER BY amount_time DESC;`,
         (error2, results2) => {
-          console.log(results2);
           if (error2) {
             console.log('error connecting: ' + error2.stack);
             res.status(400).send({ message: 'Error!!' });
             return;
           }
+          if (results2.length == 0) {
+            results2 = [{
+              amount_time: 0,
+              user_ID: null,
+              name: null,
+              amount: 0,
+            }];
+          }
+          console.log(results2);
           // 入札金額
           var now_amount = results[0].max_amount;
           if(results[0].max_amount == null){
@@ -363,6 +371,15 @@ io_socket.on('connection', function(socket){
     console.log('c2s-join:' + msg.auctionid);
     socket.join(msg.auctionid);
   });
+});
+
+cron.schedule('* * * * *', () => {
+  console.log('cron')
+  connection.query(
+    `UPDATE auction  
+    SET bid_status_ID = 1
+    WHERE auction.ending_time < NOW() and auction.bid_status_ID = 0;`,
+  );
 });
 
 http_socket.listen(9000);

@@ -228,7 +228,7 @@ main #auction_car_detail .car_auction .equipment_container ul {
 }
 main #auction_car_detail .car_auction .equipment_container ul li {
   background-color: rgb(226, 248, 230);
-  color: rgb(44, 214, 44);
+  color: rgb(35, 167, 35);
   border-radius: 5px;
   font-size: 15px;
   width: 30%;
@@ -262,7 +262,7 @@ main #auction_car_detail .car_auction .equipment_container ul .invisible {
   text-align: center;
 }
 #bid_history_modal #bid_history_modal_lists #history_container {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 34px;
   display: flex;
   justify-content: space-between;
@@ -331,4 +331,12 @@ main #auction_car_detail .car_auction .equipment_container ul .invisible {
   padding: 0 10px;
   background-color: #21e065;
   color: #fff;
+}
+
+#auction_end_modal #text {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px auto;
+  text-align: center;
+  line-height: 34px;
 }/*# sourceMappingURL=U_auction_room.css.map */
