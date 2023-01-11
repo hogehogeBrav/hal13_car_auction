@@ -373,8 +373,37 @@ io_socket.on('connection', function(socket){
   });
 });
 
-cron.schedule('* * * * *', () => {
+cron.schedule('* * * * * *', () => {
   console.log('cron')
+  // salesテーブル 情報追加
+  connection.query(
+    `INSERT INTO sales(auction_id, car_ID, user_ID, bid_price, bid_date, pay_deadline, sales_status_ID)
+    SELECT auction.auction_ID, auction.car_ID, auction_bid.user_ID, MAX(auction_bid.amount), NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY), 1
+    FROM auction
+    INNER JOIN auction_bid
+    ON (auction.auction_ID = auction_bid.auction_ID)
+    WHERE auction.ending_time < NOW() and auction.bid_status_ID = 0
+    GROUP BY auction.auction_ID;
+    `
+  );
+  // notificationテーブル 情報追加
+  connection.query(
+    `INSERT INTO notification(user_ID, message, already_read, notification_date)
+    SELECT auction_bid.user_ID, CONCAT(maker.maker_name, model.name, 'を落札しました。'), 0, NOW()
+    FROM auction
+    INNER JOIN auction_bid
+    ON (auction.auction_ID = auction_bid.auction_ID)
+    INNER JOIN stock
+    ON (auction.car_ID = stock.car_ID)
+    INNER JOIN model
+    ON (stock.car_model_ID = model.car_model_ID)
+    INNER JOIN maker
+    ON (model.maker_ID = maker.maker_ID)
+    WHERE auction.ending_time < NOW() and auction.bid_status_ID = 0
+    GROUP BY auction.auction_ID;
+    ` 
+  );
+  // auctionテーブル bid_status_ID更新
   connection.query(
     `UPDATE auction  
     SET bid_status_ID = 1
