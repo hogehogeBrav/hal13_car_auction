@@ -56,12 +56,14 @@ function countdown() {
       toastr.error('このオークションは終了しました。');
 
       $('#auction_end_modal').iziModal('open');
-      $('#auction_end_modal').iziModal({
-        title: 'このオークションは終了しました。',
-      });
     }
   }
 }
+
+$('#auction_end_modal').iziModal({
+  title: 'このオークションは終了しました。',
+});
+
 countdown();
 var timer = setInterval(countdown,100);
 
