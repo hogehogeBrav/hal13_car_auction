@@ -30,6 +30,8 @@ const connection = mysql.createConnection({
 const stock = require("./A_stock.js");
 const carDetail = require("./A_car_detail.js");
 const sales = require("./A_sales_divide.js");
+const user = require("./A_user.js");
+
 
 // TOP画面(在庫管理画面)
 app.get('/', (req, res) => {
@@ -54,6 +56,11 @@ app.get('/auctions', (req, res) => {
   res.render('A_auction.ejs', {
     
   });
+});
+
+// ユーザー管理画面
+app.get('/user', (req, res) => {
+  user.main(connection,req,res);
 });
 
 //売上一覧画面(Hirokey8492)
