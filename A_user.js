@@ -5,6 +5,8 @@
  * 作成者：小嶋美紀
  */
 
+const user_sql = "SELECT * FROM user;";
+
 /**
  * GET送信時用のメソッド(共通処理)
  * @param {} con DBコネクション
@@ -12,9 +14,10 @@
  * @param {*} res レスポンス
  */
 exports.main = async function(con,req,res) {
+  const user_list = await findAll(con,user_sql);
   //ユーザー管理画面を呼出
   res.render('A_user.ejs', {
-    
+    user_list: user_list
   });
 }
 
