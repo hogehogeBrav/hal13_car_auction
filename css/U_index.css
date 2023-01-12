@@ -7,7 +7,7 @@
 * 作成者：宮原誠
 */
 main {
-  height: calc(100vh - 170px);
+  min-height: calc(100vh - 170px);
   max-width: 1280px;
   margin: 0 auto;
 }
