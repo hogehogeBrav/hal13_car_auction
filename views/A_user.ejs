@@ -37,7 +37,7 @@
 			<div class="article-header">
 				<h2>ユーザー一覧</h2>
 				<div>
-					<button id="entry-btn">登録</button>
+					<!-- <button id="entry-btn">登録</button> -->
 					<button>PDF出力</button>	
 				</div>
 			</div>
@@ -54,16 +54,18 @@
 						<th>電話番号</th>
 						<th>退会状況</th>
 			        </tr>
+					<% for (let i = 0; i < user_list.length; i++) { %>
 					<tr class="stock-row">
 						<td><a href="" class="detailBtn">詳細</a></td>
-						<td>00001</td>
-						<td>ohs00001@hal.ac.jp</td>
-						<td>春 太郎</td>
-						<td>530-0001</td>
-						<td>大阪市北区梅田3-3-1</td>
-						<td>06-6347-0001</td>
-						<td>未退会</td>
+						<td><%= user_list[i].user_ID %></td>
+						<td><%= user_list[i].email %></td>
+						<td><%= user_list[i].name %></td>
+						<td><%= user_list[i].postcode %></td>
+						<td><%= user_list[i].address %></td>
+						<td><%= user_list[i].tel %></td>
+						<td><%= user_list[i].state %></td>
 					</tr>
+					<% } %>
 			    </table>
 		    </div>
 		</article>
