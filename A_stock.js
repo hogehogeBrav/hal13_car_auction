@@ -13,6 +13,7 @@ sql += ' INNER JOIN model ON stock.car_model_ID = model.car_model_ID AND stock.m
 sql += ' INNER JOIN run_status ON stock.run_status_ID = run_status.run_status_ID';
 sql += ' INNER JOIN color ON stock.color_ID = color.color_ID';
 sql += ' INNER JOIN body_type ON stock.body_type_ID = body_type.body_type_ID';
+sql += ' ORDER BY stock.car_ID ASC';
 sql += ';'
 const maker_sql = 'SELECT * FROM maker;';
 const model_sql = 'SELECT * FROM model;';
@@ -45,6 +46,7 @@ exports.main = async function(con,req,res) {
   let fuel_list = await findAll(con,fuel_sql);
   let car_history_list = await findAll(con,car_history_sql);
 
+  console.log(stock_list);
   //在庫管理画面を呼出
   res.render('A_stock.ejs', {
     stock_list: stock_list,            //在庫全件
