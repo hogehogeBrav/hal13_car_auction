@@ -68,6 +68,7 @@ exports.main = async function(con,req,res) {
 
 // 編集されたときの処理
 exports.update = async function(con,req,res){
+  // 車両基本情報
   let stock_values = [
     req.body.maker_id, //select
     req.body.model_id, //select
@@ -85,6 +86,7 @@ exports.update = async function(con,req,res){
     req.body.car_type, //text
     req.params.car_ID //get
   ];
+  // 車両詳細情報
   let detail_values = [
     req.body.door,                //ドア数
     req.body.ride_member,         //乗車人数
@@ -101,6 +103,7 @@ exports.update = async function(con,req,res){
     req.body.delivery_condition,   //引き渡し条件
     req.params.car_ID
   ];
+  // 車両装備品情報
   let option_values = [
     0,//air_conditioner //0
     0,// smart_key //1
@@ -145,8 +148,8 @@ exports.update = async function(con,req,res){
           option_values[key] = 1;
         }
       }
-    // } else if(key == req.body.parts){
-    //   option_values[req.body.parts] = 1;
+    } else if(key == req.body.parts){
+      option_values[req.body.parts] = 1;
     }
   }
   console.log(option_values);
