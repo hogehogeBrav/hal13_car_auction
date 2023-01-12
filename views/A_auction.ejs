@@ -52,15 +52,15 @@
 						</tr>
 						<% for (let i = 0; i < auction_list.length; i++) { %>
 						<tr>
-							<td><a href="/detail/00001" class="detailBtn">詳細</a></td>
+							<td><a href="/detail/<%= auction_list[i].car_ID %>" class="detailBtn">詳細</a></td>
 							<td><%= auction_list[i].auction_ID %></td>
 							<td class="car-id-td"><%= auction_list[i].car_ID %></td>
 							<td><%= auction_list[i].minimum_amount %>円</td>
 							<td class="date"><%= auction_list[i].auction_date %></td>
 							<td class="start"><%= auction_list[i].start_time %></td>
 							<td class="end"><%= auction_list[i].ending_time %></td>
-							<td><button class="update-btn tdBtn" value="00001">変更</button></td>
-							<td><button class="delete-btn tdBtn" value="00001">取消</button></td>
+							<td><button class="update-btn tdBtn" value="<%= auction_list[i].car_ID %>">変更</button></td>
+							<td><button class="delete-btn tdBtn" value="<%= auction_list[i].car_ID %>">取消</button></td>
 						</tr>
 						<% } %>
 					</table>
