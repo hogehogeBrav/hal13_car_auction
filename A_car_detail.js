@@ -159,7 +159,7 @@ exports.update = async function(con,req,res){
 /**
  * 全件取得用メソッド
  * @param {*} con DBコネクション
- * @param {*} sql SQL文
+ * @param {String} sql SQL文
  * @returns 取得したデータ
  */
 async function findAll (con,sql) {
@@ -178,7 +178,7 @@ async function findAll (con,sql) {
 /**
  * 車両詳細情報取得用メソッド
  * @param {*} con DBコネクション
- * @param {*} sql SQL文
+ * @param {String} sql SQL文
  * @returns 取得したデータ
  */
 async function selectCar (con,sql,carId) {
@@ -198,8 +198,8 @@ async function selectCar (con,sql,carId) {
 /**
  * 車両情報編集用メソッド
  * @param {*} con DBコネクション
- * @param {*} sql SQL文
- * @param {*} values 
+ * @param {String} sql SQL文
+ * @param {Array} values 
  * @returns 取得したデータ
  */
 async function updateCar(con,sql,values) {
