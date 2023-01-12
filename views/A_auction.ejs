@@ -37,12 +37,12 @@
 				<div class="article-header">
 					<h2>オークション開催予定</h2>
 				</div>
-				<h3>12月3日</h3>
 				<div class="tablediv">
 					<table>
 						<tr>
 							<th>詳細</th>
 							<th>ID</th>
+							<th>車両ID</th>
 							<th>最低落札価格</th>
 							<th>開催日</th>
 							<th>開始時刻</th>
@@ -50,19 +50,21 @@
 							<th>変更</th>
 							<th>取消</th>
 						</tr>
+						<% for (let i = 0; i < auction_list.length; i++) { %>
 						<tr>
 							<td><a href="/detail/00001" class="detailBtn">詳細</a></td>
-							<td>00001</td>
-							<th class="price">200000円</th>
-							<td class="date">12月3日</td>
-							<td class="start">13:00</td>
-							<td class="end">14:00</td>
+							<td><%= auction_list[i].auction_ID %></td>
+							<td><%= auction_list[i].car_ID %></td>
+							<td><%= auction_list[i].minimum_amount %>円</td>
+							<td class="date"><%= auction_list[i].auction_date %></td>
+							<td class="start"><%= auction_list[i].start_time %></td>
+							<td class="end"><%= auction_list[i].ending_time %></td>
 							<td><button class="update-btn tdBtn" value="00001">変更</button></td>
 							<td><button class="delete-btn tdBtn" value="00001">取消</button></td>
 						</tr>
+						<% } %>
 					</table>
 				</div>
-				<h3>12月4日</h3>
 
 			</article>
 			<article>
@@ -77,8 +79,7 @@
 					<table>
 						<tr>
 							<th>出品</th>
-							<!-- <th>編集</th> -->
-							<th>ID</th>
+							<th>車両ID</th>
 							<th>メーカー名</th>
 							<th>車種名</th>
 							<th>グレード名</th>
@@ -94,46 +95,26 @@
 							<th>ボディタイプ</th>
 							<th>型式</th>
 						</tr>
+						<% for (let i = 0; i < stock_list.length; i++) { %>
 						<tr class="stock-row">
-							<!-- <td><button class="tdBtn">詳細</button></td> -->
-							<!-- <td><a href="./A_car_detail.ejs?id=00001" class="detailBtn">出品</a></td> -->
 							<td><button class="exhibition-btn tdBtn" value="00001">出品</button></td>
-							<td>00001</td>
-							<td>日産</td>
-							<td>ジューク</td>
-							<td>16GTターボ</td>
-							<td>1,610cc</td>
-							<td>平成22年(2010年)12月</td>
-							<td>-</td>
-							<td>59,350km</td>
-							<td>実走行</td>
-							<td>アカ系</td>
-							<td>-</td>
-							<td>令和5年12月まで</td>
-							<td>オートマチック(AT)</td>
-							<td>クロカン、SUV</td>
-							<td>型式</td>
+							<td><%= stock_list[i].car_ID %></td>
+							<td><%= stock_list[i].maker_name %></td>
+							<td><%= stock_list[i].model_name %></td>
+							<td><%= stock_list[i].grade %></td>
+							<td><%= stock_list[i].displacement %></td>
+							<td><%= stock_list[i].model_year %></td>
+							<td><%= stock_list[i].import_model_year %></td>
+							<td><%= stock_list[i].mileage %></td>
+							<td><%= stock_list[i].run_status %></td>
+							<td><%= stock_list[i].color_category %></td>
+							<td><%= stock_list[i].color_name %></td>
+							<td><%= stock_list[i].insurance_deadline %></td>
+							<td><%= stock_list[i].mt_at %></td>
+							<td><%= stock_list[i].body_type %></td>
+							<td><%= stock_list[i].car_type %></td>
 						</tr>
-						<tr class="stock-row">
-							<!-- <td><button class="tdBtn">詳細</button></td> -->
-							<!-- <td><a href="./A_car_detail.ejs?id=00001" class="detailBtn">出品</a></td> -->
-							<td><button class="exhibition-btn tdBtn" value="00002">出品</button></td>
-							<td>00001</td>
-							<td>日産</td>
-							<td>ジューク</td>
-							<td>16GTターボ</td>
-							<td>1,610cc</td>
-							<td>平成22年(2010年)12月</td>
-							<td>-</td>
-							<td>59,350km</td>
-							<td>実走行</td>
-							<td>アカ系</td>
-							<td>-</td>
-							<td>令和5年12月まで</td>
-							<td>オートマチック(AT)</td>
-							<td>クロカン、SUV</td>
-							<td>型式</td>
-						</tr>
+						<% } %>
 					</table>
 				</div>
 				</div>
