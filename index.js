@@ -248,6 +248,28 @@ app.post('/signup/confirm', (req, res) => {
   }
 });
 
+app.get('/notification', isAuthenticated, (req, res) => {
+  connection.query(
+    `SELECT * FROM notification 
+    WHERE user_ID =` + req.user.user_ID + `
+    ORDER BY notification_date DESC;`
+    ,
+    (error, results) => {
+      console.log(results);
+      if (error) {
+        console.log('error connecting: ' + error.stack);
+        res.status(400).send({ message: 'Error!!' });
+        return;
+      }
+      res.render('U_notification.ejs' , {
+        notification: results,
+        login: true,
+        name: req.user.name
+      });
+    }
+  );
+});
+
 // オークション画面
 app.get('/auction', isAuthenticated, (req, res) => {
   connection.query(
@@ -375,6 +397,35 @@ io_socket.on('connection', function(socket){
 
 cron.schedule('* * * * *', () => {
   console.log('cron')
+  // salesテーブル 情報追加
+  connection.query(
+    `INSERT INTO sales(auction_id, car_ID, user_ID, bid_price, bid_date, pay_deadline, sales_status_ID)
+    SELECT auction.auction_ID, auction.car_ID, auction_bid.user_ID, MAX(auction_bid.amount), NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY), 1
+    FROM auction
+    INNER JOIN auction_bid
+    ON (auction.auction_ID = auction_bid.auction_ID)
+    WHERE auction.ending_time < NOW() and auction.bid_status_ID = 0
+    GROUP BY auction.auction_ID;
+    `
+  );
+  // notificationテーブル 情報追加
+  connection.query(
+    `INSERT INTO notification(user_ID, title, message, already_read, notification_date)
+    SELECT auction_bid.user_ID, CONCAT('落札金額支払いのお知らせ （', maker.maker_name, model.name, '）') , CONCAT(maker.maker_name, model.name, 'をあなたが落札しました！ 支払いリンクから一週間以内に代金をお支払いください。<br>落札期限 : ', DATE_ADD(NOW(), INTERVAL 7 DAY)), 0, NOW()
+    FROM auction
+    INNER JOIN auction_bid
+    ON (auction.auction_ID = auction_bid.auction_ID)
+    INNER JOIN stock
+    ON (auction.car_ID = stock.car_ID)
+    INNER JOIN model
+    ON (stock.car_model_ID = model.car_model_ID)
+    INNER JOIN maker
+    ON (model.maker_ID = maker.maker_ID)
+    WHERE auction.ending_time < NOW() and auction.bid_status_ID = 0
+    GROUP BY auction.auction_ID;
+    ` 
+  );
+  // auctionテーブル bid_status_ID更新
   connection.query(
     `UPDATE auction  
     SET bid_status_ID = 1

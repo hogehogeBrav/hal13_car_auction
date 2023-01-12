@@ -7,6 +7,7 @@
 * 作成者：宮原誠
 */
 main {
+  min-height: calc(100vh - 170px);
   max-width: 1280px;
   margin: 0 auto;
 }
@@ -31,7 +32,7 @@ main #now_auction {
 }
 main #now_auction h2 {
   display: inline-block;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   border: #98eb7f 3px solid;
   border-radius: 15px;
   background-color: #f5f5f5;
@@ -160,6 +161,9 @@ main .now_auction .now_auction_info .bottom .to_auction a {
 }
 main .now_auction .now_auction_info .bottom .to_auction a:hover {
   background-color: #1db954;
+}
+main #to_auction_list {
+  margin-bottom: 70px;
 }
 main #to_auction_list a {
   background: #eee;
