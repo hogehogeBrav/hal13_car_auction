@@ -104,7 +104,6 @@
 				<p>
 					メーカー名
 					<select name="maker_id" id="select-maker" required>
-						<option class="" value=""></option>
 						<% for (let i = 0; i < maker_list.length; i++) { %>
 						<option value="<%= maker_list[i].maker_ID %>"><%= maker_list[i].maker_name %></option>
 						<% } %>
@@ -113,8 +112,8 @@
 				<p>
 					車種名
 					<select name="model_id" id="select-model" required>
+						<option class="model-option" value="---" hidden></option>
 						<% for (let i = 0; i < model_list.length; i++) { %>
-						<option class="model-option" value=""></option>
 						<option class="model-option maker<%= model_list[i].maker_ID %>" value="<%= model_list[i].car_model_ID %>"><%= model_list[i].name %></option>
 						<% } %>
 					</select>

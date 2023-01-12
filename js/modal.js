@@ -26,44 +26,29 @@ const stockTable = document.getElementById('stock-table');
 const makerSelect = document.getElementById('select-maker');
 const modelOption = document.getElementsByClassName('model-option');
 const modelSelect = document.getElementById('select-model');
+const firstOption = document.getElementsByClassName('maker1');
 for(let i=0; i< modelOption.length;i++){
   modelOption[i].style.display = "none";
 }
-// modelSelect.disabled = true;
+for(let i=0; i< firstOption.length;i++){
+  firstOption[i].style.display = "inline";
+}
 makerSelect.addEventListener('change', modelChange);
 /**
  * 部署IDを選択した時にテキストボックスに変更前の部署名を表示する関数
  */
 function modelChange() {
-  modelSelect.options[0].selected = true;
+  modelSelect.options[0].selected = true; //初期選択に戻す
+  // 全て非表示に戻す
   for(let i=0; i< modelOption.length;i++){
     modelOption[i].style.display = "none";
   }
-  console.log("change");
-  const idx = makerSelect.selectedIndex;
-  if(0 == idx){
-    modelSelect.disabled = true;
-  } else{
-    // modelOption.options[0].style.display = "none";
-    modelSelect.disabled = false;
-  }
+  const idx = makerSelect.selectedIndex + 1;
   const activeOption = document.getElementsByClassName('maker' + idx);
   for(let i=0; i< activeOption.length;i++){
-    modelOption[0].style.display = "none";
     activeOption[i].style.display = "inline";
   }
   console.log(idx);
-  // if(idx != 0){
-  //   const str  = select.options[idx].text;
-  //   depName.value = str;
-  //   nowSelectedName = str;
-  //   depName.focus();
-  //   errMsg.innerText = "部署名を変更してください";
-  // } else{
-	// depName.value = "";
-	// errMsg.innerText = "";
-  // }
-  // button.disabled = true;
 }
 
 
