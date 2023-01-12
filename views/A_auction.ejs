@@ -43,6 +43,7 @@
 						<tr>
 							<th>詳細</th>
 							<th>ID</th>
+							<th>最低落札価格</th>
 							<th>開催日</th>
 							<th>開始時刻</th>
 							<th>終了時刻</th>
@@ -52,6 +53,7 @@
 						<tr>
 							<td><a href="./detail/00001" class="detailBtn">詳細</a></td>
 							<td>00001</td>
+							<th class="price">200000円</th>
 							<td class="date">12月3日</td>
 							<td class="start">13:00</td>
 							<td class="end">14:00</td>
@@ -148,6 +150,7 @@
             </div>
 			<form action="">
 				<p>ID<span id="car-id"></span>を出品しますか？</p>
+				<p>最低落札価格<input type="number" name="min-price">円</p>
 				<p>開催日<input type="date" name="date"></p>
 				<p>開始時刻<input type="time" name="start-time"></p>
 				<p>終了時刻<input type="time" name="end-time"></p>
