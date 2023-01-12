@@ -52,7 +52,7 @@
                         <th>グレード</th>
                         <td><%= car_info.grade %></td>
                         <th>排気量</th>
-                        <td><%= car_info.displacement %></td>
+                        <td><%= car_info.displacement %>cc</td>
                     </tr>
                     <tr>
                         <th>年式</th>
@@ -76,7 +76,7 @@
                         <th>車検有効期限</th>
                         <td><%= car_info.insurance_deadline %></td>
                         <th>ミッション</th>
-                        <td><%= car_info.mt_at %></td><!-- MT/AT表記に変換 -->
+                        <td><%= '1' == car_info.mt_at ? 'AT' : 'MT' %></td><!-- MT/AT表記に変換 -->
                     </tr>
                     <tr>
                         <th>ボディタイプ</th>
@@ -91,7 +91,7 @@
                 <table>
                     <tr>
                         <th>ドア数</th>
-                        <td><%= car_info.door %></td>
+                        <td><%= car_info.door %>ドア</td>
                         <th>乗車定員数</th>
                         <td><%= car_info.ride_member %>人乗り</td>
                     </tr>
@@ -103,9 +103,9 @@
                     </tr>
                     <tr>
                         <th>点検記録簿</th>
-                        <td><%= car_info.checking_memory %></td>
+                        <td><%= '1' == car_info.checking_memory ? 'あり' : 'なし' %></td>
                         <th>修復歴</th>
-                        <td><%= car_info.repair_history %></td>
+                        <td><%= '1' == car_info.repair_history ? 'あり' : 'なし' %></td>
                     </tr>
                     <tr>
                         <th>車台番号(下3桁)</th>
@@ -117,13 +117,13 @@
                         <th>輸入経路</th>
                         <td><%= car_info.import_route %></td>
                         <th>ハンドル</th>
-                        <td><%= car_info.handle %></td>
+                        <td><%= 'L' == car_info.handle ? '左' : '右' %></td>
                     </tr>
                     <tr>
                         <th>車歴</th>
                         <td><%= car_info.car_history %></td>
                         <th>所有者歴</th>
-                        <td><%= car_info.owner_history %></td>
+                        <td><%= '0' == car_info.owner_history ? 'なし' : '1' == car_info.owner_history ? '単一オーナー' : '複数オーナー' %></td>
                     </tr>
                     <tr>
                         <th>引き渡し条件</th>
@@ -223,7 +223,7 @@
 						<% } %>
 					</select>
 				</p>
-				<p>色名<input type="text" name="color_name" value="<%= car_info.color_name %>">></p>
+				<p>色名<input type="text" name="color_name" value="<%= car_info.color_name %>"></p>
 				<p>車検有効期限<input type="text" name="insurance_deadline" value="<%= car_info.insurance_deadline %>"></p>
 				<p>
 					ミッション
