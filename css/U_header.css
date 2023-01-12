@@ -69,6 +69,11 @@
   padding: 1rem;
 }
 
+.nav__item a:hover {
+  color: #fff;
+  transition: 0.5s;
+}
+
 .nav__toggle {
   display: none;
 }
@@ -161,4 +166,8 @@ body {
 
 .logout {
   background-color: rgb(246, 74, 74);
+}
+
+.site-header__end {
+  margin-left: 10px;
 }/*# sourceMappingURL=U_header.css.map */
