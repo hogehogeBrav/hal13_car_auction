@@ -103,7 +103,8 @@
 				<p><input type="file" name="car_img" id="myImage" accept="image/*"></p>
 				<p>
 					メーカー名
-					<select name="maker_id">
+					<select name="maker_id" id="select-maker" required>
+						<option class="" value=""></option>
 						<% for (let i = 0; i < maker_list.length; i++) { %>
 						<option value="<%= maker_list[i].maker_ID %>"><%= maker_list[i].maker_name %></option>
 						<% } %>
@@ -111,13 +112,14 @@
 				</p>
 				<p>
 					車種名
-					<select name="model_id">
+					<select name="model_id" id="select-model" required>
 						<% for (let i = 0; i < model_list.length; i++) { %>
-						<option value="<%= model_list[i].car_model_ID %>"><%= model_list[i].name %></option>
+						<option class="model-option" value=""></option>
+						<option class="model-option maker<%= model_list[i].maker_ID %>" value="<%= model_list[i].car_model_ID %>"><%= model_list[i].name %></option>
 						<% } %>
 					</select>
 				</p>
-				<p>グレード<input type="text" name="grade"></p>
+				<p>グレード<input type="text" name="grade" required></p>
 				<p>排気量<input type="number" name="displacement"></p>
 				<p>年式<input type="date" name="model_year"></p>
 				<p>輸入車モデル年式<input type="date" name="import_model_year"></p>
