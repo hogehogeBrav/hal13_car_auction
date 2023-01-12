@@ -194,6 +194,7 @@ $(document).on('click', '#bid_button', function(event) {
     }).always(function(xhr){
     });
 
+    $("#bid_none").hide();
     // トースト通知
     toastr["success"]("10秒後に非表示になります", document.getElementById('amount_form').value + "円で入札しました");
 

@@ -179,7 +179,7 @@
       <p id="top_comment">上部が最新です</p>
       <ul id="bid_history_modal_lists">
         <% if(auction_bid_history[0].user_ID == null) { %>
-          <p>入札履歴はありません</p>
+          <p id="bid_none">入札履歴はありません</p>
         <% } else { %>
           <% for(let i = 0; i < auction_bid_history.length; i++) {%>
             <div id="history_container">
