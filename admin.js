@@ -54,9 +54,11 @@ app.post('/', multer({storage: multer.diskStorage({
 
 // 車両詳細画面
 app.get('/detail/:car_ID', (req, res) => {
+  console.log(req.params);
   carDetail.main(connection,req,res);
 });
 app.post('/detail/:car_ID', (req, res) => {
+  console.log(req.params);
   carDetail.update(connection,req,res);
   carDetail.main(connection,req,res);
 });
