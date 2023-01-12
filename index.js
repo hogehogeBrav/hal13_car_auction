@@ -248,6 +248,28 @@ app.post('/signup/confirm', (req, res) => {
   }
 });
 
+app.get('/notification', isAuthenticated, (req, res) => {
+  connection.query(
+    `SELECT * FROM notification 
+    WHERE user_ID =` + req.user.user_ID + `
+    ORDER BY notification_date DESC;`
+    ,
+    (error, results) => {
+      console.log(results);
+      if (error) {
+        console.log('error connecting: ' + error.stack);
+        res.status(400).send({ message: 'Error!!' });
+        return;
+      }
+      res.render('U_notification.ejs' , {
+        notification: results,
+        login: true,
+        name: req.user.name
+      });
+    }
+  );
+});
+
 // オークション画面
 app.get('/auction', isAuthenticated, (req, res) => {
   connection.query(
@@ -373,7 +395,7 @@ io_socket.on('connection', function(socket){
   });
 });
 
-cron.schedule('* * * * * *', () => {
+cron.schedule('* * * * *', () => {
   console.log('cron')
   // salesテーブル 情報追加
   connection.query(
@@ -388,8 +410,8 @@ cron.schedule('* * * * * *', () => {
   );
   // notificationテーブル 情報追加
   connection.query(
-    `INSERT INTO notification(user_ID, message, already_read, notification_date)
-    SELECT auction_bid.user_ID, CONCAT(maker.maker_name, model.name, 'を落札しました。'), 0, NOW()
+    `INSERT INTO notification(user_ID, title, message, already_read, notification_date)
+    SELECT auction_bid.user_ID, CONCAT('落札金額支払いのお知らせ （', maker.maker_name, model.name, '）') , CONCAT(maker.maker_name, model.name, 'をあなたが落札しました！ 支払いリンクから一週間以内に代金をお支払いください。<br>落札期限 : ', DATE_ADD(NOW(), INTERVAL 7 DAY)), 0, NOW()
     FROM auction
     INNER JOIN auction_bid
     ON (auction.auction_ID = auction_bid.auction_ID)

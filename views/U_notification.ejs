@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/destyle.css">
+  <link rel="stylesheet" href="/U_header.css">
+  <link rel="stylesheet" href="/U_footer.css">
+  <link rel="stylesheet" href="/U_notification.css">
+  <link rel="stylesheet" href="/visuallyhidden.css">
+  <title>HALオークション | 通知</title>
+</head>
+<body>
+  <%- include('U_header.ejs'); %>
+  <main>
+    <div id="notification_list">
+      <h1>通知一覧</h1>
+    </div>
+    <% if (notification.length == 0) { %>
+      <div class="notification_not_yet">
+        <h3>通知はありません。</h3>
+      </div>
+    <% } %>
+    <% notification.forEach(function (value, key) { %>
+      <div id="notification">
+        <h2><%= value.title %> <span><%= value.notification_date.toLocaleString() %></span></h2>
+        <p><%- value.message %></p>
+      </div>
+    <% }) %>
+    <div id="to_index">
+      <a href="/">Top画面へ戻る</a>
+    </div>
+  </main>
+  <%- include('U_footer.ejs'); %>
+</body>
+<script src="/U_header.js"></script>
+</html>

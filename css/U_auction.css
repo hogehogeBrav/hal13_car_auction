@@ -76,7 +76,7 @@ main .now_auction {
   height: 230px;
   border: #3f3f3f 3px solid;
   border-radius: 10px;
-  margin: 0 auto 50px auto;
+  margin: 0 auto 60px auto;
   display: flex;
 }
 main .now_auction .now_auction_img {
