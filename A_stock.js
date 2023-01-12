@@ -46,6 +46,7 @@ exports.main = async function(con,req,res) {
   let drive_list = await findAll(con,drive_sql);
   let fuel_list = await findAll(con,fuel_sql);
   let car_history_list = await findAll(con,car_history_sql);
+  let ai = await findAll(con,ai_sql);
 
   console.log(stock_list);
   //在庫管理画面を呼出
@@ -58,6 +59,7 @@ exports.main = async function(con,req,res) {
     body_list: body_list,              //ボディタイプ
     drive_list: drive_list,            //駆動方式
     fuel_list: fuel_list,              //燃料
+    ai: ai,                            //AUTO_INCREMENT
     car_history_list: car_history_list //車歴
   });
 }
