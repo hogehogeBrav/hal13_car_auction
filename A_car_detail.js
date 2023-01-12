@@ -39,6 +39,7 @@ const update_option_sql ="UPDATE option SET air_conditioner = ?, smart_key = ?, 
 
 exports.main = async function(con,req,res) {
   // 編集モーダル用情報
+  console.log(req.params.car_ID);
   let stock_list = await findAll(con,sql);
   let maker_list = await findAll(con,maker_sql);
   let model_list = await findAll(con,model_sql);
@@ -62,6 +63,7 @@ exports.main = async function(con,req,res) {
     drive_list: drive_list,             //駆動方式
     fuel_list: fuel_list,               //燃料
     car_history_list: car_history_list, //車歴
+    car_ID: req.params.car_ID,          //車両ID
     car_info: car_info                  //車両詳細
   });
 }
