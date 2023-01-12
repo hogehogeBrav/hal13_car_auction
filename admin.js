@@ -45,6 +45,7 @@ app.get('/detail/:car_ID', (req, res) => {
   carDetail.main(connection,req,res);
 });
 app.post('/detail/:car_ID', (req, res) => {
+  carDetail.update(connection,req,res);
   carDetail.main(connection,req,res);
 });
 
