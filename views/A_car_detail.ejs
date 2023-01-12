@@ -203,10 +203,10 @@
 					</select>
 				</p>
 				<p>グレード<input type="text" name="grade" value="<%= car_info.grade %>"></p>
-				<p>排気量<input type="text" name="displacement" value="<%= car_info.displacement %>"></p>
-				<p>年式<input type="text" name="model_year" value="<%= car_info.model_year %>"></p>
-				<p>輸入車モデル年式<input type="text" name="import_model_year" value="<%= car_info.import_model_year %>"></p>
-				<p>走行距離<input type="text" name="mileage" value="<%= car_info.mileage %>"></p>
+				<p>排気量<input type="number" name="displacement" value="<%= car_info.displacement %>"></p>
+				<p>年式<input type="date" name="model_year" value="<%= car_info.model_year %>"></p>
+				<p>輸入車モデル年式<input type="date" name="import_model_year" value="<%= car_info.import_model_year %>"></p>
+				<p>走行距離<input type="number" name="mileage" value="<%= car_info.mileage %>"></p>
 				<p>
 					走行状態
 					<select name="runstatus_id">
@@ -224,7 +224,7 @@
 					</select>
 				</p>
 				<p>色名<input type="text" name="color_name" value="<%= car_info.color_name %>"></p>
-				<p>車検有効期限<input type="text" name="insurance_deadline" value="<%= car_info.insurance_deadline %>"></p>
+				<p>車検有効期限<input type="date" name="insurance_deadline" value="<%= car_info.insurance_deadline %>"></p>
 				<p>
 					ミッション
 					<select name="AT_MT">
