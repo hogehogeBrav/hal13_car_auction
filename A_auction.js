@@ -23,6 +23,11 @@ stock_sql += ';'
 let auction_sql = 'SELECT * FROM auction ';
 auction_sql += 'WHERE CURRENT_DATE <= auction_date';
 auction_sql += ';';
+//
+let insert_sql = 'INSERT INTO auction SET ?';
+//  car_ID, auction_date, start_time, ending_time, minimum_amount`, `bid_amount`, `bid_status_ID`) VALUES (NULL, '4', '2023-01-13', '2023-04-04 13:00', '2023-04-04 14:00', '100', '0', '0');
+
+
 
 /**
  * GET送信時用のメソッド(共通処理)
@@ -48,7 +53,15 @@ exports.main = async function(con,req,res) {
  * @param {*} res レスポンス
  */
 exports.insert = async function(con,req,res){
-  
+  let insert_values = {
+    car_ID: req.body.car_ID,
+    auction_date: req.body.date,
+    start_time: req.body.date + " " + req.body.start_time,
+    ending_time: req.body.date + " " + req.body.end_time,
+    minimum_amount: req.body.min_price
+  };
+  console.log(insert_values);
+  insertAuction(con,insert_sql,insert_values);
 }
 
 /**
@@ -71,13 +84,13 @@ async function findAll (con,sql) {
 }
 
 /**
- * 在庫登録用のDB接続メソッド
+ * 出品用のDB接続メソッド
  * @param {*} con DBコネクション
  * @param {*} sql SQL文
  * @param {*} values 登録情報
  * @returns 追加したカラムの主キー
  */
-async function insertStock (con,sql,values){
+async function insertAuction (con,sql,values){
   const data = await new Promise((resolve, reject) => {
     con.query(sql, values,
       (error, results) => {
@@ -90,7 +103,7 @@ async function insertStock (con,sql,values){
           res.status(400).send({ message: 'Error!!' });
           return;
         }
-        console.log('在庫登録完了');
+        console.log('出品完了');
       }
     );
   })

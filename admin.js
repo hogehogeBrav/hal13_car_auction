@@ -31,6 +31,7 @@ const stock = require("./A_stock.js");
 const carDetail = require("./A_car_detail.js");
 const sales = require("./A_sales_divide.js");
 const user = require("./A_user.js");
+const auction = require("./A_auction.js");
 
 
 // TOP画面(在庫管理画面)
@@ -53,15 +54,19 @@ app.post('/detail/:car_ID', (req, res) => {
 
 // オークション管理画面
 app.get('/auctions', (req, res) => {
-  res.render('A_auction.ejs', {
-    
-  });
+  auction.main(connection,req,res);
+});
+app.post('/auctions', (req, res) => {
+  console.log("post");
+  auction.insert(connection,req,res);
+  auction.main(connection,req,res);
 });
 
 // ユーザー管理画面
 app.get('/user', (req, res) => {
   user.main(connection,req,res);
 });
+
 
 //売上一覧画面(Hirokey8492)
 app.get('/sales', (req,res) => {

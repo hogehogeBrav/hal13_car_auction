@@ -54,7 +54,7 @@
 						<tr>
 							<td><a href="/detail/00001" class="detailBtn">詳細</a></td>
 							<td><%= auction_list[i].auction_ID %></td>
-							<td><%= auction_list[i].car_ID %></td>
+							<td class="car-id-td"><%= auction_list[i].car_ID %></td>
 							<td><%= auction_list[i].minimum_amount %>円</td>
 							<td class="date"><%= auction_list[i].auction_date %></td>
 							<td class="start"><%= auction_list[i].start_time %></td>
@@ -97,7 +97,7 @@
 						</tr>
 						<% for (let i = 0; i < stock_list.length; i++) { %>
 						<tr class="stock-row">
-							<td><button class="exhibition-btn tdBtn" value="00001">出品</button></td>
+							<td><button class="exhibition-btn tdBtn" value="<%= stock_list[i].car_ID %>">出品</button></td>
 							<td><%= stock_list[i].car_ID %></td>
 							<td><%= stock_list[i].maker_name %></td>
 							<td><%= stock_list[i].model_name %></td>
@@ -129,13 +129,13 @@
                 <h3>出品</h2>
                 <span class="modalClose">×</span>
             </div>
-			<form action="">
+			<form action="" method="post">
 				<p>ID<span id="car-id"></span>を出品しますか？</p>
-				<p>最低落札価格<input type="number" name="min-price">円</p>
+				<p>最低落札価格<input type="number" name="min_price">円</p>
 				<p>開催日<input type="date" name="date"></p>
-				<p>開始時刻<input type="time" name="start-time"></p>
-				<p>終了時刻<input type="time" name="end-time"></p>
-				<button id="ex-btn">出品</button>
+				<p>開始時刻<input type="time" name="start_time"></p>
+				<p>終了時刻<input type="time" name="end_time"></p>
+				<button id="ex-btn" name="car_ID" value="">出品</button>
 			</form>
           </div>
         </div>
@@ -148,7 +148,7 @@
                 <h3>オークション開催日時変更</h2>
                 <span class="modalClose">×</span>
             </div>
-			<form action="">
+			<form action="" method="post">
 				<p>開催日<input type="date" name="u-date" id="u-date"></p>
 				<p>開始時刻<input type="time" name="u-start-time" id="u-start" value="1400"></p>
 				<p>終了時刻<input type="time" name="u-end-time" id="u-end"></p>
@@ -177,10 +177,12 @@
 	<script>
 		const buttonClose = document.getElementsByClassName('modalClose');
 		const carId = document.getElementById('car-id');
+		// const carIdText = document.getElementById('car-id-text');
 		const exBtn = document.getElementById('ex-btn');
 		const modal = document.getElementById('entryModal');
 		const updateModal = document.getElementById('updateModal');
 		const deleteModal = document.getElementById('deleteModal');
+		// const carIdTd = document.getElementsByClassName('car-id-td');
 		// body要素を取得
 		const body = document.getElementsByTagName('body')[0];
 		// 出品ボタン
@@ -211,6 +213,7 @@
 				body.classList.add('open');  
 				console.log(exhibitionBtn[i].value);
 				carId.innerHTML = exhibitionBtn[i].value;
+				// carIdText.value = exhibitionBtn[i].value;
 				exBtn.value = exhibitionBtn[i].value;
 			},false);
 		}
