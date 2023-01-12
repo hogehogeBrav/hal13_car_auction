@@ -27,6 +27,7 @@ const car_history_sql = 'SELECT * FROM car_history';
 const stock_sql ="INSERT INTO stock (maker_ID, car_model_ID, grade, displacement, model_year, import_model_year, mileage, run_status_ID, color_ID, color_name, insurance_deadline, mt_at, body_type_ID, car_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 const detail_sql ="INSERT INTO car_detail (car_ID, door, ride_member, drive_ID, fuel_ID, checking_memory, repair_history, car_number, recycling_deposit, import_route, handle, car_history_ID, owner_history, delivery_condition) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 const option_sql ="INSERT INTO option SET ?;";
+const ai_sql = "SELECT AUTO_INCREMENT FROM information_schema.tables WHERE  TABLE_SCHEMA = 'auction13' AND TABLE_NAME = 'stock';"
 // const option_sql ="INSERT INTO option (car_ID, air_conditioner, smart_key, sun_roof, low_down, power_steering, cd, leather_seat, non_smoking, power_window, md, aero_parts, pet, central_door_lock, dvd, genuine_alminium_wheel, limited_edition, abs, tv, skid_prevention, test_drive, airbag, navi, traction_control, manual, etc, back_cam, cold_climate, warranty, key_less, electric_door, welfare_vechicles, spare_tire) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 /**

@@ -38,9 +38,18 @@ const auction = require("./A_auction.js");
 app.get('/', (req, res) => {
   stock.main(connection,req,res);
 });
-app.post('/', (req, res) => {
-  stock.insert(connection,req,res);
-  stock.main(connection,req,res);
+
+var multer = require('multer');
+app.post('/', multer({storage: multer.diskStorage({
+  destination: function (req, file, cb){
+    cb(null, 'public/images/car_images/')
+  },
+  filename: function (req, file, cb){
+    cb(null, req.body.ai + '.jpg')
+  }
+  })}).single('car_img'), function(req, res){
+    stock.insert(connection,req,res);
+    stock.main(connection,req,res);
 });
 
 // 車両詳細画面

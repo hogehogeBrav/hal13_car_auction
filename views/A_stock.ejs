@@ -97,8 +97,9 @@
                 <h3>登録</h2>
                 <span class="modalClose">×</span>
             </div>
-			<form action="" method="post">
+			<form action="" method="post" enctype="multipart/form-data">
 				<h4>基本情報</h4>
+				<input type="hidden" name="ai" value="<%= ai[0].AUTO_INCREMENT  %>">
 				<p><input type="file" name="car_img" id="myImage" accept="image/*"></p>
 				<p>
 					メーカー名
