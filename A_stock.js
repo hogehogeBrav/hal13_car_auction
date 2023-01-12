@@ -47,8 +47,6 @@ exports.main = async function(con,req,res) {
   let fuel_list = await findAll(con,fuel_sql);
   let car_history_list = await findAll(con,car_history_sql);
   let ai = await findAll(con,ai_sql);
-
-  console.log(stock_list);
   //在庫管理画面を呼出
   res.render('A_stock.ejs', {
     stock_list: stock_list,            //在庫全件
@@ -72,13 +70,14 @@ exports.main = async function(con,req,res) {
  * @param {*} res レスポンス
  */
 exports.insert = async function(con,req,res){
+  console.log(req.body);
   let stock_values = [
     req.body.maker_id, //select
     req.body.model_id, //select
     req.body.grade, //text
     req.body.displacement, //text
     req.body.model_year, //text
-    req.body.import_model_year, //text
+    '' == req.body.import_model_year ? null : req.body.import_model_year, //text
     req.body.mileage, //text
     req.body.runstatus_id, //select
     req.body.color_type, //select

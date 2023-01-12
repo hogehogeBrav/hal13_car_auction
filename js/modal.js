@@ -76,3 +76,4 @@ for(let i=0; i< exhibitionBtn.length;i++){
     body.classList.add('open');  
   },false);
 }
+
