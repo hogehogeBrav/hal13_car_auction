@@ -299,7 +299,7 @@ app.get('/auction', isAuthenticated, (req, res) => {
 
 app.get('/auction/:auction_ID', isAuthenticated, (req, res) => {
   connection.query(
-    `SELECT *, auction.auction_ID, MAX(auction_bid.amount) as max_amount 
+    `SELECT *, auction.auction_ID, MAX(auction_bid.amount) as max_amount, stock.color_name as color_name2
     FROM auction 
     INNER JOIN stock
     ON (auction.car_ID = stock.car_ID)
@@ -311,6 +311,8 @@ app.get('/auction/:auction_ID', isAuthenticated, (req, res) => {
     ON (model.maker_ID = maker.maker_ID)
     INNER JOIN auction_bid
     ON (auction.auction_ID = auction_bid.auction_ID)
+    INNER JOIN color
+    ON (stock.color_ID = color.color_ID)
     AND (auction.auction_ID = ` + req.params.auction_ID + `);`, 
     (error1, results) => {
       console.log(results);
