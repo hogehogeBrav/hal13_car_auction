@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./destyle.css">
     <link rel="stylesheet" href="./A_style.css">
-	<link rel="stylesheet" href="./A_stock.css">
+	<!-- <link rel="stylesheet" href="./A_stock.css"> -->
+	<link rel="stylesheet" href="./A_sales_lists.css">
 <title>売上照会画面</title>
 
 </head>
@@ -31,7 +32,7 @@
 		    <ul>
 		        <li><a href="/">在庫管理</a></li>
 		        <li><a href="/auctions">オークション管理</a></li>
-		        <li><a href="./">ユーザー管理</a></li>
+		        <li><a href="/user">ユーザー管理</a></li>
 		        <li><a href="./sales" class="current">売上管理</a></li>
 		    </ul>
 		</nav>
@@ -39,7 +40,6 @@
 		<main><!-- 画面ごとに変更される部分 -->
 		<article>
 			<div class="article-header">
-                <button id="sales_search">検索</button>
                 <div>
                     <!-- class="modal" -->
                     <form action="/sales" method="get">
@@ -57,18 +57,17 @@
                 </div>
 				<div>
                     <button><label for="save_btn">保存</label></button>
-                    <!-- <button name="save" id="save_btn">保存</button> -->
                     <button name="change" id="state_btn">状態変更</button>
-                    <!-- <button name="output_pdf" id="pdf_btn">帳票出力</button>	 -->
+                    <!-- <button name="output_pdf" id="pdf_btn">PDF出力</button>	 -->
 				</div>
 			</div>
 
-            <p id="save_state"></p>
+            <p id="save_state" class="red"></p>
 			<div class="tablediv">
 				<form action="" method="post">
 				    <table>
     			        <tr>
-                            <th><button name="save" id="save_btn">保存</button></th>
+                            <th class="bd-R"><button name="save" id="save_btn" class="dis-non">保存</button></th>
                             <th>
                                 落札日時
                             </th>
@@ -76,7 +75,16 @@
                                 車両名
                             </th>
                             <th>
+                                ID
+                            </th>
+                            <th>
                                 落札者
+                            </th>
+                            <th>
+                                メールアドレス
+                            </th>
+                            <th>
+                                電話番号
                             </th>
                             <th>
                                 落札価格
@@ -86,8 +94,8 @@
                             </th>
     			        </tr>
     					<% for (let i = 0; i < values.length; i++) { %>
-    					<tr class="stock-row">
-                            <td>
+    					<tr class="stock-row <%= 'bg-' + values[i].sales_status_ID %> sales-list-tr">
+                            <td class="bd-R">
                                 <input type="checkbox" name="sales_id" class="sales_list_check" value="<%= values[i].sales_ID %>">
                                 <input type="hidden" name="state_id" class="state_values" value="<%= values[i].sales_status_ID %>">
                                 <input type="hidden" name="id" value="<%= values[i].sales_ID %>">
@@ -96,7 +104,10 @@
                                 <%= values[i].bid_date %>
                             </td>
                             <td><%= values[i].model_name %></td>
+    						<td><%= values[i].user_ID %></td>
     						<td><%= values[i].user_name %></td>
+    						<td><%= values[i].email %></td>
+    						<td><%= values[i].tel %></td>
     						<td><%= values[i].bid_price %></td>
     						<td class="state_lists">
                                 <%= values[i].state %>

@@ -20,7 +20,7 @@ exports.main = function(connection,req,res) { //main関数に全ての処理を�
     console.log(sql);
   }
   connection.query(
-    `SELECT s.sales_ID, s.bid_price, s.bid_date, s.sales_status_ID, ss.state, u.name as user_name, m.name as model_name 
+    `SELECT s.sales_ID, s.bid_price, s.bid_date, s.sales_status_ID, ss.state, u.name as user_name, m.name as model_name, u.email as email, u.tel as tel, u.user_ID as user_ID
     FROM sales as s 
     INNER JOIN sales_status as ss 
     ON s.sales_status_ID = ss.sales_status_ID 

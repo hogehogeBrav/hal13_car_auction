@@ -7,6 +7,7 @@ const save_state = document.getElementById("save_state");
 */
 const btn_state = document.getElementById("state_btn");
 const state_lists = document.getElementsByClassName("state_lists");
+const tr_checkbox = document.getElementsByClassName("sales-list-tr");
 
 let update_state = [];
 
@@ -36,6 +37,8 @@ btn_state.addEventListener('click', (e)=>{
         }
 
         state_lists[on_checkboxs[i][0]].textContent = options_list[state_values[work].value - 1].state;
+        let class_name = "stock-row bg-" + state_values[work].value;
+        tr_checkbox[on_checkboxs[i][0]].setAttribute('class' , "stock-row bg-" + state_values[work].value + " sales-list-tr");
         save_state.textContent = "未保存データ有り";
         console.log(save_state);
     }
