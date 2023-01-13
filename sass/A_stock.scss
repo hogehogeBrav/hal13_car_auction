@@ -86,3 +86,36 @@ th{
     padding: 0.5rem 1.2rem;
     border-radius: 50px;
 }
+
+#entryModal{
+    h3{
+        font-weight: bold;
+        color: $blue;
+        font-size: 1.4rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.8rem;
+    }
+    h4{
+        font-size: 1.2rem;
+    }
+    .form-content{
+        display: flex;
+        // justify-content: space-between;
+        .basic-content,.detail_content{
+            width: 40%;
+            select{
+                border-color: #808080;
+            }
+        }
+        p{
+            display: flex;
+            justify-content: space-between;
+            input{
+                text-align: right;
+            }
+        }
+        .basic-content{
+            margin-right: 4rem;
+        }
+    }
+}
