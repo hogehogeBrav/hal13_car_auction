@@ -128,8 +128,9 @@ input{
 }
 
 .tablediv{
-    background: #fff;
-    padding: 0.8rem;
+    // background: #fff;
+    // padding: 0.8rem;
+    width:fit-content;
     box-shadow: 0.5px 2px 1px 0 rgba(99,99,99,0.5);
     border-top: 0.1px solid rgba(0,0,0,.12);
     border-left: 0.1px solid rgba(140,140,140,0.5);
