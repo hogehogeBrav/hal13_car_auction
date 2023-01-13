@@ -188,7 +188,7 @@
 				<p><input type="file" name="car_img" id="myImage" accept="image/*"></p>
 				<p>
 					メーカー名
-					<select name="maker_id">
+					<select name="maker_id" id="select-maker">
 						<% for (let i = 0; i < maker_list.length; i++) { %>
 						<option value="<%= maker_list[i].maker_ID %>" <%= maker_list[i].maker_ID == car_info.maker_ID ? 'selected' : '' %>><%= maker_list[i].maker_name %></option>
 						<% } %>
@@ -196,9 +196,10 @@
 				</p>
 				<p>
 					車種名
-					<select name="model_id">
+					<select name="model_id" id="select-model">
+						<option class="model-option" value="---" hidden></option>
 						<% for (let i = 0; i < model_list.length; i++) { %>
-						<option value="<%= model_list[i].car_model_ID %>" <%= model_list[i].car_model_ID == car_info.car_model_ID ? 'selected' : '' %>><%= model_list[i].name %></option>
+						<option  class="model-option maker<%= model_list[i].maker_ID %>" value="<%= model_list[i].car_model_ID %>" <%= model_list[i].car_model_ID == car_info.car_model_ID ? 'selected' : '' %>><%= model_list[i].name %></option>
 						<% } %>
 					</select>
 				</p>
@@ -448,6 +449,7 @@
     </div>
 
      <script src="../modal.js"></script>
+	 <script src="../A_stock.js"></script>
  
  </body>
  </html>
