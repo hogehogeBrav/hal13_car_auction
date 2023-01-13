@@ -15,6 +15,16 @@ th{
     width: auto;
 }
 
+main{
+    height: 100vh;
+    article{
+        max-height: 35vh;
+        // .tablediv{
+        //     max-height: 30%;
+        // }
+    }
+}
+
 .tablediv{
     tr{
         td{
@@ -99,6 +109,7 @@ th{
     border-radius: 50px;
 }
 
+
 article{
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
