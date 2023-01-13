@@ -9,7 +9,8 @@
 const makerSelect = document.getElementById('select-maker');
 const modelOption = document.getElementsByClassName('model-option');
 const modelSelect = document.getElementById('select-model');
-const firstOption = document.getElementsByClassName('maker1');
+let idx = makerSelect.selectedIndex + 1;
+const firstOption = document.getElementsByClassName('maker' + idx);
 for(let i=0; i< modelOption.length;i++){
   modelOption[i].style.display = "none";
 }
@@ -26,7 +27,7 @@ function modelChange() {
   for(let i=0; i< modelOption.length;i++){
     modelOption[i].style.display = "none";
   }
-  const idx = makerSelect.selectedIndex + 1;
+  idx = makerSelect.selectedIndex + 1;
   const activeOption = document.getElementsByClassName('maker' + idx);
   for(let i=0; i< activeOption.length;i++){
     activeOption[i].style.display = "inline";
