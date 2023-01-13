@@ -205,7 +205,7 @@ $(document).on('click', '#bid_button', function(event) {
 // ソケット通信
 socketio.on('s2c' , function(msg){
   console.log('ソケットs2c: ' + msg);
-  document.getElementById('now_amount').innerHTML = numberWithComma.format(msg.amount) + "円";
+  document.getElementById('now_amount').innerHTML = numberWithComma.format(msg.amount) + "<span>円</span>";
   document.getElementById('amount_form').value = Number(msg.amount) + 1000;
   now_amount = msg.amount;
 
